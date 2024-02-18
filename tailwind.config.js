@@ -12,9 +12,25 @@ module.exports = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      
       screens: {
         'xl-h': { 'raw': '(min-height: 700px)' },
+      },
+      keyframes: {
+        opacityLoad: {
+          '0%': { opacity: 1, "z-index": 20},
+          '66%': { opacity: 1, "z-index": 20},
+          '100%': { opacity: 0, "z-index": -10 },
+        }
+      },
+      animation: {
+        opacityLoad: 'opacityLoad 3s',
       }
+    },
+    variants: {
+      extend: {
+        animation: ['group-hover'],
+      },
     },
   },
 

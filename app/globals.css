@@ -30,4 +30,56 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+
+  @property --myColor1 {
+    syntax: '<color>';
+    initial-value: theme(colors.amber.800);
+    inherits: false;
+  }
+
+  @property --myColor2 {
+    syntax: '<color>';
+    initial-value: theme(colors.emerald.700);
+    inherits: false;
+  }
+
+  .color-fondo {
+    background: linear-gradient(to left top, var(--myColor1), var(--myColor2));
+    transition:
+      --myColor1 0.5s ease-in-out,
+      --myColor2 0.5s ease-in-out;
+  }
+
+  .svg-fondo linearGradient:first-child stop:first-child{
+    stop-color: var(--myColor1);
+  }
+
+  .svg-fondo linearGradient:first-child stop:last-child{
+    stop-color: var(--myColor2);
+  }
+
+  .svg-fondo linearGradient:last-child stop:first-child{
+    stop-color: var(--myColor2);
+  }
+  
+  .svg-fondo linearGradient:last-child stop:last-child{
+    stop-color: var(--myColor1);
+  }
+
+  .svg-fondo:hover text:last-child{
+    opacity: 0;
+    -webkit-transition: opacity .4s ease-in-out;
+    -moz-transition: opacity .4s ease-in-out;
+    -o-transition: opacity .4s ease-in-out;
+    transition: opacity .4s ease-in-out;
+  }
+
+  .color-fondo:hover {
+    --myColor1: theme(colors.emerald.600);
+    --myColor2: theme(colors.amber.700);
+  }
+
+  .fill-mode-forwards{
+    animation-fill-mode: forwards;
+  }
 }

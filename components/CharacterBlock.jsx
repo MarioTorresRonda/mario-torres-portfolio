@@ -1,15 +1,29 @@
+'use client'
+
+import SVG from "./SVG/SVG";
+import { useState, useRef, useLayoutEffect } from 'react'
+
 export default function CharacterBlock({ className, startCharacter, endCharacter, children }) {
-	return (
-		<div className="flex gap-2">
-			<svg height="200" width="100" xmlns="http://www.w3.org/2000/svg">
-                <text x="0" y="150" className=" fill-slate-900 text-[200px]"> {startCharacter} </text>
-            </svg>
-			<div className={className}>
+    
+    const [height, setHeight] = useState(0)
+    const ref = useRef(null)
+
+    useLayoutEffect(() => {
+        function updateheight() {
+            setHeight(ref.current.clientHeight)
+        }
+        window.addEventListener('resize', updateheight);
+        updateheight();
+        return () => window.removeEventListener('resize', updateheight);
+      }, []);
+
+    return (
+		<div className="flex gap-2 svg-fondo select-none">
+			<SVG char={startCharacter} height={height} />
+			<div className={className} ref={ref}>
                 { children }
             </div>
-            <svg className="ml-[-10px]" height="400" width="100" xmlns="http://www.w3.org/2000/svg">
-                <text x="0" y="150" className=" fill-slate-900 text-[200px]"> {endCharacter} </text>
-            </svg>
+			<SVG char={endCharacter} height={height}/>
 		</div>
 	);
 }

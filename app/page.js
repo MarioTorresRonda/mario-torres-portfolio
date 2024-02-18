@@ -1,43 +1,37 @@
-import CharacterBlock from "@/components/CharacterBlock";
-import Header from "@/components/Header";
-import HighlightedText from "@/components/HighlightedText";
-import ClickableSocial from "@/components/ClickableImage/ClickableSocial";
+import Header from "@/components/Header/Header";
 
-
-import { faGithub as github } from '@fortawesome/free-brands-svg-icons'
-import { faLinkedin as linkedin } from '@fortawesome/free-brands-svg-icons'
-import { faEnvelope as email } from '@fortawesome/free-regular-svg-icons'
+import Hero from "@/components/Hero";
+import Socials from "@/components/Socials";
 
 export default function Home() {
-	return (
-		<main className="bg-stone-800 font-mono">
-			<Header className="lg:flex" >
-				<div className="w-full lg:w-[67%]">
-					<div className="flex lg:block"> 
-						<p className="text-slate-100 text-[7vw] lg:text-[200px] lg:mt-[-50px]"> # </p>
-						<p className="text-slate-100 text-[7vw] lg:text-7xl lg:mt-[-50px]"> Bienvenido. </p>
-					</div>
-					<HighlightedText
-						texts={[
-							"Mi nombre es Mario y soy un programador full-stack, He desarrollado varias aplicaciones en diferentes entornos y tengo conocimiento en diversos lenguajes",
-							"Me encanta mantenerme actualizado y lo desmuestro aprendiendo siemrpe nuevas formas, tecnologias, y practicas para realizar proyectos de forma profesional",
-						]}
-					/>
-				</div>
-				<div className="mt-10 lg:mt-0" >
-					<CharacterBlock className="flex items-center h-[200px]" startCharacter="{" endCharacter="}" >
-						<div className="flex lg:flex-col gap-4">
-							<div className="flex gap-4">
-								<ClickableSocial icon={github}/>
-								<ClickableSocial icon={linkedin}/>
-							</div>
-							<div className="flex gap-4">
-								<ClickableSocial icon={email}/>
-							</div>
-						</div>
-					</CharacterBlock>
-				</div>
-			</Header>
-		</main>
-	);
+
+	const text = [
+		"Cargando Recursos",
+		"Cargando la ventana",
+		"Cargando contenido",
+		"Cargando codigo",
+		"Cargando Imagenes",
+		"Añadiendo errores al codigo",
+		"Añadiento animaciones inutiles",
+		"Eliminando Errores",
+		"Mirando fotos de gatos",
+		"Eliminando contenidos",
+		"Repitiendo codigo"
+	]
+	const randomText = text[Math.floor(Math.random() * text.length)];
+
+  return (
+    <main className="bg-stone-800 font-mono">
+      <Header className="lg:flex">
+        <Hero />
+        <Socials />
+      </Header>
+      <div className="absolute top-0 left-0 bottom-0 right-0 bg-stone-900 z-20 animate-opacityLoad fill-mode-forwards flex justify-center h-[100vh] items-center">
+	  	<div className="md:flex items-center">
+        	<div className="animate-spin h-10 w-10 md:h-20 md:w-20 bg-slate-200 mx-auto md:mx-0"></div>
+			<p className="text-sm md:ml-10 lg:text-base xl:text-xl text-balance mt-3 md:mt-0 "> {randomText}... </p>
+	  	</div>
+      </div>
+    </main>
+  );
 }
