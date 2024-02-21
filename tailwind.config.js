@@ -19,12 +19,12 @@ module.exports = {
       keyframes: {
         opacityLoad: {
           '0%': { opacity: 1, "z-index": 20},
-          '66%': { opacity: 1, "z-index": 20},
+          '75%': { opacity: 1, "z-index": 20},
           '100%': { opacity: 0, "z-index": -10 },
         }
       },
       animation: {
-        opacityLoad: 'opacityLoad 3s',
+        opacityLoad: 'opacityLoad 4s',
       }
     },
     variants: {
