@@ -1,9 +1,9 @@
 'use client'
 
-import SVG from "./SVG/SVG";
+import SVG from "./SVG";
 import { useState, useRef, useLayoutEffect } from 'react'
 
-export default function CharacterBlock({ className, startCharacter, endCharacter, children }) {
+export default function CharacterBlock({ className, startCharacter, endCharacter, mainClassName = "", children }) {
     
     const [height, setHeight] = useState(0)
     const ref = useRef(null)
@@ -18,12 +18,12 @@ export default function CharacterBlock({ className, startCharacter, endCharacter
       }, []);
 
     return (
-		<div className="flex gap-2 svg-fondo select-none">
+		<div className={`flex flex- gap-2 svg-fondo  ${mainClassName}`} >
 			<SVG char={startCharacter} height={height} />
 			<div className={className} ref={ref}>
                 { children }
             </div>
-			<SVG char={endCharacter} height={height}/>
+			<SVG char={endCharacter} height={height} className="mt-auto"/>
 		</div>
 	);
 }

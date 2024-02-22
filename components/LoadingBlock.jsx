@@ -57,7 +57,10 @@ export default function LoadingBlock() {
         )}
         {totalTime == 2000 && (
           <>
-            <FontAwesomeIcon icon={faCheck} />
+            <FontAwesomeIcon icon={faCheck} className="text-4xl" />
+            <p className="text-sm md:ml-10 lg:text-base xl:text-xl text-balance mt-3 md:mt-0 ">
+              Completado
+            </p>
           </>
         )}
       </div>

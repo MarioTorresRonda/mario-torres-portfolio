@@ -1,15 +1,21 @@
-import Header from "@/components/Header/Header";
+import Header from "@/components/Header";
 
 import Hero from "@/components/Hero";
 import LoadingBlock from "@/components/LoadingBlock";
+import ProjectsBlock from "@/components/ProjectsBlock";
 import Socials from "@/components/Socials";
+import Localization from "@/components/localization";
 
-export default function Home() {
+export default function Home( {searchParams} ) {
   return (
     <main className="bg-stone-800 font-mono">
       <Header className="lg:flex">
-        <Hero />
-        <Socials />
+        <Localization searchParams={searchParams} />
+        <Hero searchParams={searchParams} />
+        <div className="flex flex-col md:flex-row lg:flex-col justify-around" >
+          <Socials />
+          <ProjectsBlock />
+        </div>
       </Header>
       <LoadingBlock/>
     </main>

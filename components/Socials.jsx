@@ -1,19 +1,12 @@
-'use client'
-
 import CharacterBlock from "@/components/CharacterBlock";
 
-import ClickableSocial from "@/components/ClickableImage/ClickableSocial";
+import ClickableSocial from "@/components/ClickableSocial";
 
 import { faGithub as github } from "@fortawesome/free-brands-svg-icons";
 import { faLinkedin as linkedin } from "@fortawesome/free-brands-svg-icons";
 import { faEnvelope as email } from "@fortawesome/free-regular-svg-icons";
 
-import { useState, useRef, useLayoutEffect } from 'react'
-
-
 export default function Socials() {
-
-
   return (
     <div className="mt-10 lg:mt-0">
       <CharacterBlock
@@ -23,11 +16,11 @@ export default function Socials() {
       >
         <div className="flex lg:flex-col gap-4">
           <div className="flex gap-4">
-            <ClickableSocial href="https://github.com/MarioTorresRonda" icon={github} />
-            <ClickableSocial href="https://www.linkedin.com/in/mariotorresronda/" icon={linkedin} />
+            <ClickableSocial href="https://github.com/MarioTorresRonda" icon={github} comma={true}/>
+            <ClickableSocial href="https://www.linkedin.com/in/mariotorresronda/" icon={linkedin} comma={true}/>
           </div>
           <div className="flex gap-4">
-            <ClickableSocial href="mailto:mariotorresrma@gmail.com" icon={email} />
+            <ClickableSocial href="mailto:mariotorresrma@gmail.com" icon={email} comma={true}/>
           </div>
         </div>
       </CharacterBlock>

@@ -1,6 +1,6 @@
-export default function SVG({ char, height }) {
+export default function SVG({ char, height, ...props }) {
   return (
-    <svg height={height} width={height / 2} xmlns="http://www.w3.org/2000/svg">
+    <svg {...props} height={height} width={height / 2} xmlns="http://www.w3.org/2000/svg">
       <defs>
         <linearGradient
           id="gradient1"
