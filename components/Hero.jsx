@@ -11,8 +11,8 @@ export default function Hero() {
             </div>
             <HighlightedText className="text-xs md:text-base"
                 texts={[
-                    "Mi nombre es Mario y soy un programador full-stack, He desarrollado varias aplicaciones en diferentes entornos y tengo conocimiento en diversos lenguajes",
-                    "Me encanta mantenerme actualizado y lo desmuestro aprendiendo siemrpe nuevas formas, tecnologias, y practicas para realizar proyectos de forma profesional",
+                    <Message code={ ["mainPage", "mainDescription1"] } />,
+                    <Message code={ ["mainPage", "mainDescription2"] } />
                 ]}
             />
         </div>

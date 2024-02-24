@@ -1,24 +1,13 @@
 'use client'
 
-import { getLocale, getCodeFromArray } from "@/util/Localization";
-import { useSearchParams } from "next/navigation";
-import { Suspense } from "react";
+import { getCodeFromArray } from "@/util/Localization";
+import { useContext } from "react";
+import { LocalizationContext } from "@/store/location-context";
 
-export default function MessageP( {code} ) {
-
-    let fallbackLang =  getLocale('en');
-    let message = getCodeFromArray( fallbackLang, code );
-
-    return <Suspense fallback={message}>
-        <Message code={code} />
-    </Suspense>
-}
-
-function Message( { code } ) {
+export default function Message( { code } ) {
     
-    const searchParams = useSearchParams();
-    const lang = getLocale( searchParams.get("lang") );
+    const { lang } = useContext( LocalizationContext );
     let message = getCodeFromArray( lang, code );
 
-    return ( <> { message } </>)
+    return ( <>{message}</> )
 }

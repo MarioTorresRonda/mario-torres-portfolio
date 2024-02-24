@@ -9,10 +9,10 @@ import Localization from "@/components/localization";
 export default function Home() {
   return (
     <main className="bg-stone-800 font-mono">
-      <Header className="lg:flex">
+      <Header className="lg:flex h-full">
         <Localization />
         <Hero />
-        <div className="flex flex-col md:flex-row lg:flex-col justify-around" >
+        <div className="flex flex-col md:flex-row lg:flex-col justify-around lg:h-full" >
           <Socials />
           <ProjectsBlock />
         </div>

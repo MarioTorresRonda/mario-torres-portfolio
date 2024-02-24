@@ -1,36 +1,24 @@
 'use client'
 
 import { faGlobe } from "@fortawesome/free-solid-svg-icons";
-import ClickableSocial from "@/components/ClickableSocial";
-import { useSearchParams } from "next/navigation";
-import { Suspense } from "react";
+import { LocalizationContext } from "@/store/location-context";
+import { useContext } from "react";
+import FAI from "./FAI";
 
-export default function LocalizationS() {
+export default function Localization() {
 
-  const ClickableGlobe = <ClickableSocial href="?lang=en" icon={faGlobe} />
+  const { locale, lang, setLocalization } = useContext( LocalizationContext );
 
-  return (
-    <Suspense fallback={ClickableGlobe}>
-      <Localization />
-    </Suspense>
-  )
-}
-
-function Localization() {
-
-  const searchParams = useSearchParams();
-  const lang = searchParams.get("lang");
-
-  let url = '?lang=es';
-  if ( lang == 'es' ) {
-    url = '?lang=en';
+  function setLocale() {
+    const newLocale = ( locale == 'en' ? 'es' : 'en')
+    setLocalization( newLocale );
   }
-
-  const ClickableGlobe = <ClickableSocial href={url} icon={faGlobe} />
 
   return (
       <div className="absolute top-5 right-5">
-        { ClickableGlobe }
+        <button onClick={setLocale} >
+          <FAI icon={faGlobe} />
+        </button>
       </div>
   );
 }

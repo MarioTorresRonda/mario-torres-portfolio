@@ -2,29 +2,20 @@
 
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useCallback, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import Message from "./Message";
+import { LocalizationContext } from "@/store/location-context";
 
-const text = [
-  "Cargando Recursos",
-  "Cargando la ventana",
-  "Cargando contenido",
-  "Cargando codigo",
-  "Cargando Imagenes",
-  "Añadiendo errores al codigo",
-  "Añadiento animaciones inutiles",
-  "Eliminando Errores",
-  "Mirando fotos de gatos",
-  "Eliminando contenidos",
-  "Repitiendo codigo",
-];
 
 const waitTime = 2000;
 
-function getRandomText() {
+function getRandomText(text) {
   return text[Math.floor(Math.random() * text.length)];
 }
 
 export default function LoadingBlock() {
+
+  let text = useContext( LocalizationContext ).lang.mainPage.loadingBlock.randomText;
   const [randomText, setRandomText] = useState(text[0]);
   const [totalTime, setTotalTime] = useState(0);
   
@@ -35,7 +26,7 @@ export default function LoadingBlock() {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-        setRandomText( getRandomText() );
+        setRandomText( getRandomText(text) );
         setTotalTime(prevTotalTime => prevTotalTime + newTime);
     }, newTime);
 
@@ -59,7 +50,7 @@ export default function LoadingBlock() {
           <>
             <FontAwesomeIcon icon={faCheck} className="text-4xl" />
             <p className="text-sm md:ml-10 lg:text-base xl:text-xl text-balance mt-3 md:mt-0 ">
-              Completado
+            <Message code={ ["mainPage", "loadingBlock", "completed"] } />
             </p>
           </>
         )}

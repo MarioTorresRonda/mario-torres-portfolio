@@ -12,9 +12,15 @@ export function getLocale( locale ) {
 }
 
 export function getCodeFromArray( locale, codeArray ) {
-    let localePointer = locale;
-    codeArray.forEach(code => {
-        localePointer = localePointer[code];
-    });
-    return localePointer;
+
+    try{
+        let localePointer = locale;
+        codeArray.forEach(code => {
+            localePointer = localePointer[code];
+        });
+        return localePointer;
+    }catch(e) {
+        return codeArray.join('.');
+    }
+    
 }
