@@ -1,12 +1,36 @@
-import { faGlobe } from "@fortawesome/free-solid-svg-icons";
-import ClickableSocial from "./ClickableSocial";
-import Link from "next/link";
+'use client'
 
-export default function Localization( {searchParams} ) {
+import { faGlobe } from "@fortawesome/free-solid-svg-icons";
+import ClickableSocial from "@/components/ClickableSocial";
+import { useSearchParams } from "next/navigation";
+import { Suspense } from "react";
+
+export default function LocalizationS() {
+
+  const ClickableGlobe = <ClickableSocial href="?lang=en" icon={faGlobe} />
+
   return (
-    <div className="absolute top-5 right-5">
-        { ( !searchParams.lang || searchParams.lang == 'en' ) && <ClickableSocial href="?lang=es" icon={faGlobe} /> }
-        { searchParams.lang == 'es' && <ClickableSocial href="?lang=en" icon={faGlobe} /> }
-    </div>
+    <Suspense fallback={ClickableGlobe}>
+      <Localization />
+    </Suspense>
+  )
+}
+
+function Localization() {
+
+  const searchParams = useSearchParams();
+  const lang = searchParams.get("lang");
+
+  let url = '?lang=es';
+  if ( lang == 'es' ) {
+    url = '?lang=en';
+  }
+
+  const ClickableGlobe = <ClickableSocial href={url} icon={faGlobe} />
+
+  return (
+      <div className="absolute top-5 right-5">
+        { ClickableGlobe }
+      </div>
   );
 }

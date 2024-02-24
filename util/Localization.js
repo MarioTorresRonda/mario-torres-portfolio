@@ -10,3 +10,11 @@ export function getLocale( locale ) {
         return messages_en;
     }
 }
+
+export function getCodeFromArray( locale, codeArray ) {
+    let localePointer = locale;
+    codeArray.forEach(code => {
+        localePointer = localePointer[code];
+    });
+    return localePointer;
+}

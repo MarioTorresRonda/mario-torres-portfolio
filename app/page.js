@@ -6,12 +6,12 @@ import ProjectsBlock from "@/components/ProjectsBlock";
 import Socials from "@/components/Socials";
 import Localization from "@/components/localization";
 
-export default function Home( {searchParams} ) {
+export default function Home() {
   return (
     <main className="bg-stone-800 font-mono">
       <Header className="lg:flex">
-        <Localization searchParams={searchParams} />
-        <Hero searchParams={searchParams} />
+        <Localization />
+        <Hero />
         <div className="flex flex-col md:flex-row lg:flex-col justify-around" >
           <Socials />
           <ProjectsBlock />
