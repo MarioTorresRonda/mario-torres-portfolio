@@ -5,6 +5,9 @@ let messages = {
         mainDescription2: `Me encanta mantenerme actualizado con nuevas tecnologias y lo desmuestro aprendiendo siemrpe nuevas formas, metodos y tecnologias para realizar proyectos de forma profesional`,
         projects: {
             mainTitle: "Proyectos",
+            list: {
+                portfolio: "Porfolio React"
+            }
         },
         loadingBlock: {
             randomText: [

@@ -1,26 +1,28 @@
 import CharacterBlock from "@/components/CharacterBlock";
 
 import { projectList } from "@/data/projects";
-import Link from "next/link";
 import Message from "./Message";
+import Link from "next/link";
 
 export default function ProjectsBlock() {
+
   return (
     <>
       <div className="flex flex-col mt-10 lg:mt-10 md:items-center">
         <p className="text-3xl w-fit mb-3"> <Message code={ ["mainPage", "projects", "mainTitle"] } />: </p>
         {projectList.map((item) => {
           return (
+            <Link href={item.url} key={item.id}>
             <CharacterBlock
             mainClassName="mb-2"
-            key={item.id}
             className="flex items-center hover:animate-pulse my-1"
             startCharacter="["
             endCharacter="]"
-            > {item.name} </CharacterBlock>
+            > <Message code={["mainPage","projects", "list", ...item.name ]} /> </CharacterBlock>
+            </Link>
           );
         })}
-        <Link href="/projects"> <p className="text-stone-400"> <Message code={ ["commons", "seeAll"] } /> </p> </Link>
+         {/* <Link href="/projects"> <p className="text-stone-400"> <Message code={ ["commons", "seeAll"] } /> </p> </Link> */}
       </div>
     </>
   );

@@ -11,8 +11,8 @@ export default function Hero() {
             </div>
             <HighlightedText className="text-xs md:text-base"
                 texts={[
-                    <Message code={ ["mainPage", "mainDescription1"] } />,
-                    <Message code={ ["mainPage", "mainDescription2"] } />
+                    <Message key={"mainDescription1"} code={ ["mainPage", "mainDescription1"] } />,
+                    <Message key={"mainDescription2"} code={ ["mainPage", "mainDescription2"] } />
                 ]}
             />
         </div>

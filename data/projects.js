@@ -3,12 +3,8 @@ import react from '@/public/react-2.svg'
 export const projectList = [
     { 
         id: 1,
-        name: "Portfolio React",
-        tech: [ 'react', 'next', 'tailwind', 'firebase' ] 
-    },
-    { 
-        id: 2,
-        name: "Portfolio React 2",
+        name: ["portfolio"],
+        url: "https://github.com/MarioTorresRonda/mario-torres-portfolio",
         tech: [ 'react', 'next', 'tailwind', 'firebase' ] 
     }
 ];
