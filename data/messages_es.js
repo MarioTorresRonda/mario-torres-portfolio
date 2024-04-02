@@ -1,7 +1,7 @@
 let messages = {
     mainPage: { 
         mainTitle: "Bienvenido.",
-        mainDescription1: `Mi nombre es mario y sou un programador FullStack, He desarrollado multitud de aplicaciones en diferentes entornos y frameworks, Ademas poseo conocinimiento en varios lenguajes`,
+        mainDescription1: `Mi nombre es Mario y soy un programador FullStack, He desarrollado multitud de aplicaciones en diferentes entornos y frameworks, Ademas poseo conocinimiento en varios lenguajes`,
         mainDescription2: `Me encanta mantenerme actualizado con nuevas tecnologias y lo desmuestro aprendiendo siemrpe nuevas formas, metodos y tecnologias para realizar proyectos de forma profesional`,
         projects: {
             mainTitle: "Proyectos",

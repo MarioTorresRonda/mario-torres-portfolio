@@ -2,28 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
-
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+body{
+  @apply text-slate-100; 
 }
 
 @layer utilities {
@@ -82,4 +62,16 @@ body {
   .fill-mode-forwards{
     animation-fill-mode: forwards;
   }
+}
+
+.has-tooltip {
+  @apply relative;
+}
+
+.tooltip {
+  @apply invisible absolute bg-stone-900 rounded-lg px-5 py-0 text-lg text-center w-32 top-full left-1/2 ml-[-64px];
+}
+
+.has-tooltip:hover .tooltip {
+  @apply visible z-50;
 }

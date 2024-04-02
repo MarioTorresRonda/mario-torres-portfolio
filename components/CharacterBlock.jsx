@@ -18,7 +18,7 @@ export default function CharacterBlock({ className, startCharacter, endCharacter
       }, []);
 
     return (
-		<div className={`flex flex- gap-2 svg-fondo  ${mainClassName}`} >
+		<div className={`flex gap-2 svg-fondo ${mainClassName}`} >
 			<SVG char={startCharacter} height={height} />
 			<div className={className} ref={ref}>
                 { children }
