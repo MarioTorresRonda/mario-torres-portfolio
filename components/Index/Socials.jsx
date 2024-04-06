@@ -1,6 +1,6 @@
 import CharacterBlock from "@/components/CharacterBlock";
 
-import ClickableSocial from "@/components/ClickableSocial";
+import ClickableSocial from "@/components/Index/ClickableSocial";
 
 import { faGithub as github } from "@fortawesome/free-brands-svg-icons";
 import { faLinkedin as linkedin } from "@fortawesome/free-brands-svg-icons";

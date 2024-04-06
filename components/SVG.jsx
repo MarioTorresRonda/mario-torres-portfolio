@@ -4,11 +4,10 @@ export default function SVG({ char, height, ...props }) {
       <defs>
         <linearGradient
           id="gradient1"
-          x1="0"
+          x1="100%"
           x2="0"
           y1="0"
           y2="100%"
-          gradientUnits="userSpaceOnUse"
         >
           <stop offset="0%" />
           <stop offset="100%" />
@@ -16,10 +15,9 @@ export default function SVG({ char, height, ...props }) {
         <linearGradient
           id="gradient2"
           x1="0"
-          x2="0"
+          x2="100%"
           y1="0"
           y2="100%"
-          gradientUnits="userSpaceOnUse"
         >
           <stop offset="0%" />
           <stop offset="100%" />
@@ -42,6 +40,7 @@ export default function SVG({ char, height, ...props }) {
         dominantBaseline="middle"
         textAnchor="middle"
         fill="url(#gradient2)"
+        className="opacity-animation"
       >
         {char}
       </text>

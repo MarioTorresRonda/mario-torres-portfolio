@@ -11,3 +11,10 @@ export default function Message( { code } ) {
 
     return ( <>{message}</> )
 }
+
+export function getMessageText( code ) {
+    const { lang } = useContext( LocalizationContext );
+    let message = getCodeFromArray( lang, code );
+
+    return message;
+}

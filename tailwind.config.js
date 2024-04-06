@@ -1,3 +1,5 @@
+const { transform } = require('next/dist/build/swc');
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -18,13 +20,18 @@ module.exports = {
       },
       keyframes: {
         opacityLoad: {
-          '0%': { opacity: 1, "z-index": 20},
-          '75%': { opacity: 1, "z-index": 20},
-          '100%': { opacity: 0, "z-index": -10 },
-        }
+          '0%': { "z-index": 20 },
+          '75%': { "z-index": 20, "transform": "translateX(0)"},
+          '100%': { "z-index": -10, "transform": "translateY(-100%)"},
+        },
+        overflowLoad: {
+          '0%': { "overflow": "hidden" },
+          '100%': { "overflow": "unset" },
+        },
       },
       animation: {
         opacityLoad: 'opacityLoad 4s',
+        overflowLoad: 'overflowLoad 4s'
       }
     },
     variants: {

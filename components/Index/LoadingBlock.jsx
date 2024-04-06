@@ -3,7 +3,7 @@
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useContext, useEffect, useState } from "react";
-import Message from "./Message";
+import Message from "../Message";
 import { LocalizationContext } from "@/store/location-context";
 
 
@@ -36,24 +36,26 @@ export default function LoadingBlock() {
   }, [totalTime]);
 
   return (
-    <div className="absolute top-0 left-0 bottom-0 right-0 bg-stone-900 z-20 animate-opacityLoad fill-mode-forwards flex justify-center h-[100vh] items-center">
-      <div className="md:flex items-center">
-        {totalTime != 2000 && (
-          <>
-            <div className="animate-spin h-10 w-10 md:h-20 md:w-20 bg-slate-200 mx-auto md:mx-0"></div>
-            <p className="text-sm md:ml-10 lg:text-base xl:text-xl text-balance mt-3 md:mt-0 ">
-              {randomText}...
-            </p>
-          </>
-        )}
-        {totalTime == 2000 && (
-          <>
-            <FontAwesomeIcon icon={faCheck} className="text-4xl" />
-            <p className="text-sm md:ml-10 lg:text-base xl:text-xl text-balance mt-3 md:mt-0 ">
-            <Message code={ ["mainPage", "loadingBlock", "completed"] } />
-            </p>
-          </>
-        )}
+    <div className="overflow-hidden absolute top-0 left-0 bottom-0 right-0">
+      <div className="absolute z-20 top-0 left-0 bottom-0 right-0 h-[100vh] bg-stone-900 animate-opacityLoad fill-mode-forwards flex justify-center items-centers">
+        <div className="md:flex items-center">
+          {totalTime != 2000 && (
+            <>
+              <div className="animate-spin h-10 w-10 md:h-20 md:w-20 bg-slate-200 mx-auto md:mx-0"></div>
+              <p className="text-sm md:ml-10 lg:text-base xl:text-xl text-balance mt-3 md:mt-0 ">
+                {randomText}...
+              </p>
+            </>
+          )}
+          {totalTime == 2000 && (
+            <>
+              <FontAwesomeIcon icon={faCheck} className="text-4xl" />
+              <p className="text-sm md:ml-10 lg:text-base xl:text-xl text-balance mt-3 md:mt-0 ">
+              <Message code={ ["mainPage", "loadingBlock", "completed"] } />
+              </p>
+            </>
+          )}
+        </div>
       </div>
     </div>
   );

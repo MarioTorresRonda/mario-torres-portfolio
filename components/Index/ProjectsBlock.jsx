@@ -1,9 +1,9 @@
 import CharacterBlock from "@/components/CharacterBlock";
 
 import { projectList } from "@/data/projects";
-import Message from "./Message";
+import Message from "../Message";
 import Link from "next/link";
-import ClientLink from "./ClientLink";
+import ClientLink from "../ClientLink";
 
 export default function ProjectsBlock() {
   return (

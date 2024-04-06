@@ -1,8 +1,9 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Providers from "@/components/Providers";
-import LoadingBlock from "@/components/LoadingBlock";
+import LoadingBlock from "@/components/Index/LoadingBlock";
 import NavBar from "@/components/NavBar";
+import DinamicColors from "@/components/DinamicColors";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -14,7 +15,8 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} bg-stone-800`}>
+      <body className={`${inter.className} bg-stone-800 overflow-hidden`}>
+        <DinamicColors />
         <Providers>
           <LoadingBlock/>
           <NavBar />
