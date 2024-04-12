@@ -7,7 +7,8 @@ let messages = {
         projects: {
             mainTitle: "Projects",
             list: {
-                portfolio: "React Portfolio"
+                portfolio: "React Portfolio",
+                portfolioDesc: "Responsive React Portfolio that contains my projects, experience and interests as a developer"
             }
         },
         loadingBlock: {

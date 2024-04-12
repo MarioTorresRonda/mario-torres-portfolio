@@ -4,6 +4,7 @@ import Providers from "@/components/Providers";
 import LoadingBlock from "@/components/Index/LoadingBlock";
 import NavBar from "@/components/NavBar";
 import DinamicColors from "@/components/DinamicColors";
+import OnDocumentReady from "@/components/OnDocumentReady";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -13,9 +14,11 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+
   return (
     <html lang="en">
-      <body className={`${inter.className} bg-stone-800 overflow-hidden`}>
+      <body className={`${inter.className} bg-stone-800`}>
+      <OnDocumentReady />
         <DinamicColors />
         <Providers>
           <LoadingBlock/>

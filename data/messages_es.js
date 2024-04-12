@@ -6,7 +6,8 @@ let messages = {
         projects: {
             mainTitle: "Proyectos",
             list: {
-                portfolio: "Porfolio React"
+                portfolio: "Porfolio React",
+                portfolioDesc: "Portfolio Responsivo creado con React que contiene mis proyectos, experiencia e intereses como desarrollador"
             }
         },
         loadingBlock: {

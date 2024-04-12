@@ -3,7 +3,6 @@ import CharacterBlock from "@/components/CharacterBlock";
 import { projectList } from "@/data/projects";
 import Message from "../Message";
 import Link from "next/link";
-import ClientLink from "../ClientLink";
 
 export default function ProjectsBlock() {
   return (
@@ -28,9 +27,6 @@ export default function ProjectsBlock() {
             </Link>
           );
         })}
-        <ClientLink title="/" url="/projects" >
-          <Message code={["commons", "seeAll"]} />
-        </ClientLink>
       </div>
     </>
   );

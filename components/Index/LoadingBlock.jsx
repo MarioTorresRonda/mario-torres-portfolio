@@ -37,7 +37,7 @@ export default function LoadingBlock() {
 
   return (
     <div className="overflow-hidden absolute top-0 left-0 bottom-0 right-0">
-      <div className="absolute z-20 top-0 left-0 bottom-0 right-0 h-[100vh] bg-stone-900 animate-opacityLoad fill-mode-forwards flex justify-center items-centers">
+      <div className="fixed z-20 top-0 left-0 bottom-0 right-0 h-[100vh] bg-stone-900 animate-opacityLoad fill-mode-forwards flex justify-center items-centers">
         <div className="md:flex items-center">
           {totalTime != 2000 && (
             <>

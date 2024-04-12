@@ -5,7 +5,6 @@ import { useContext } from "react";
 import { LocalizationContext } from "@/store/location-context";
 
 export default function Message( { code } ) {
-    
     const { lang } = useContext( LocalizationContext );
     let message = getCodeFromArray( lang, code );
 

@@ -97,4 +97,30 @@
   .has-tooltip:hover .tooltip {
     @apply visible z-50;
   }
+
+    /* width */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    @apply bg-stone-800;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    @apply bg-stone-600;
+    @apply rounded-l-md
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-stone-500;
+  }
+}
+
+.clip-highlight{
+    clip-path: inset(0px 48px 0px 48px);
+    left: -48px;
 }

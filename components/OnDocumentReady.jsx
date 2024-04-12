@@ -10,10 +10,6 @@ export default function OnDocumentReady() {
           const element = colection[0];
           element.classList.remove("svg-inline--fa");
         }
-
-        setTimeout(() => {
-          document.body.classList.remove("overflow-hidden");
-        }, 4000);
       })
 
     return <>
