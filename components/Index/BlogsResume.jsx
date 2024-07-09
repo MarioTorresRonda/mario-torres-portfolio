@@ -6,9 +6,9 @@ import BlogResumeList from "./BlogResumeList";
 export default function BlogsResume() {
 
     return (<>
-        <ContentBox height={"auto"} className="mb-10 mt-10">
+        <ContentBox height={"auto"} className="mb-10 mt-20">
             <div className="mx-6 flex w-full">
-                <div className="w-1/2 text-center">
+                <div className="w-1/2 text-center overflow-hidden">
                     <BlogResumeItemImage />
                 </div>
                 <div className="w-1/2">

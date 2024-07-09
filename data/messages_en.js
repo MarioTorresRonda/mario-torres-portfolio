@@ -19,7 +19,11 @@ let messages = {
             new: "New!",
             ago: "{1} ago",
             from: "From",
-            imageAlt : "Preview of the post"
+            imageAlt : "Preview of the post",
+            list: {
+                blog1: "Blog 1",
+                descBlog1: "Esto es un blog de prueba",
+            }
         },
         loadingBlock: {
             randomText: [

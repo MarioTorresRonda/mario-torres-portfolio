@@ -120,7 +120,12 @@
   }
 }
 
-.clip-highlight{
+.clip-highlight-l{
     clip-path: inset(0px 48px 0px 48px);
     left: -48px;
+}
+
+.clip-highlight-r{
+  clip-path: inset(0px 48px 0px 48px);
+  right: -48px;
 }

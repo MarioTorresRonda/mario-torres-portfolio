@@ -7,6 +7,7 @@ export function useNavigate( MenuContext ) {
     const { setMenu } = useContext( MenuContext );
 
     function navigate( title, url ) {
+        console.log( url )
         setMenu(title);
         router.push(url)
     }
