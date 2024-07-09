@@ -5,10 +5,20 @@ let messages = {
         mainDescription2: `Me encanta mantenerme actualizado con nuevas tecnologias y lo desmuestro aprendiendo siemrpe nuevas formas, metodos y tecnologias para realizar proyectos de forma profesional`,
         projects: {
             mainTitle: "Proyectos",
+            mainDesc: "Lista detallada de mis proyectos favoritos.",
             list: {
                 portfolio: "Porfolio React",
                 portfolioDesc: "Portfolio Responsivo creado con React que contiene mis proyectos, experiencia e intereses como desarrollador"
-            }
+            },
+            imageAlt : "Vista previa del proyecto"
+        },
+        blogs: {
+            mainTitle: "Mi publicaciones",
+            mainDesc: "Lista de todos las publicaciones, actualizaciones y notas de proyecto que he desarrollado.",
+            new: "Nuevo!",
+            ago: "hace {1}",
+            from: "del",
+            imageAlt : "Vista previa del Post"
         },
         loadingBlock: {
             randomText: [
@@ -31,7 +41,8 @@ let messages = {
         accept: 'Aceptar',
         ok: 'Ok',
         cancel: 'Cancelar',
-        seeAll: 'Ver todos...'
+        seeAll: 'Ver todos...',
+        dateFormat: 'es-es'
     }
 }
 export default messages;

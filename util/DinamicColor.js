@@ -1,4 +1,14 @@
 export function updateBubbleColors(time) {
+
+    try {
+        if ( !document ) {
+            return;
+        }
+    } catch (error) {
+        return;
+    }
+    
+
     const sheet = document.styleSheets[0];
     if ( !sheet ) {
         return;

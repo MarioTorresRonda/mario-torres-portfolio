@@ -6,10 +6,20 @@ let messages = {
         mainDescription2: 'I love to be updated with the new technologies, and i prove it learning new ways, methods and stacks to always develop profesional projects',
         projects: {
             mainTitle: "Projects",
+            mainDesc: "Most detailed list of my favorite projects",
             list: {
                 portfolio: "React Portfolio",
                 portfolioDesc: "Responsive React Portfolio that contains my projects, experience and interests as a developer"
-            }
+            },
+            imageAlt : "Preview of the proyect"
+        },
+        blogs: {
+            mainTitle: "My Posts",
+            mainDesc: "List of all the post, updates and project notes i had develop.",
+            new: "New!",
+            ago: "{1} ago",
+            from: "From",
+            imageAlt : "Preview of the post"
         },
         loadingBlock: {
             randomText: [
@@ -32,7 +42,8 @@ let messages = {
         accept: 'Accept',
         ok: 'OK',
         cancel: 'Cancel',
-        seeAll: 'See all...'
+        seeAll: 'See all...',
+        dateFormat: 'en-US'
     }
 }
 export default messages;

@@ -4,6 +4,7 @@ import ProjectsBlock from "@/components/Index/ProjectsBlock";
 import Socials from "@/components/Index/Socials";
 import Localization from "@/components/localization";
 import ProjectsResume from "@/components/Index/ProjectsResume";
+import BlogsResume from "@/components/Index/BlogsResume";
 
 
 export default function Home() {
@@ -18,6 +19,7 @@ export default function Home() {
         </div>
       </Header>
       <ProjectsResume/>
+      <BlogsResume />
     </main>
   );
 }
