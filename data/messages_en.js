@@ -21,9 +21,11 @@ let messages = {
             months: ["month", "months"],
             from: "From",
             imageAlt : "Preview of the post",
+            viewMore : "Give a look.",
+            back: "Go back to list",
             list: {
                 blog1: "Blog 1",
-                descBlog1: "Esto es un blog de prueba",
+                descBlog1: "This is a blog test blog",
             }
         },
         loadingBlock: {

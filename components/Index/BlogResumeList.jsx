@@ -8,25 +8,27 @@ import { MenuContext } from "@/store/menu-context";
 
 export default function BlogResumeList() {
 
-    var { page, setPage } = useContext( MenuContext ); 
-    const blogListActual = blogList.slice( page * 3, (page * 3) + 3 );
+    var { menu, setMenu } = useContext( MenuContext ); 
+    const blogListActual = blogList.slice( menu.page * 3, (menu.page * 3) + 3 );
 
     function nextPage() {
-        if ( blogList.length / 3 > page+1) {
-            setPage( page + 1 );
+        if ( blogList.length / 3 > menu.page+1) {
+            menu.page = menu.page + 1
+            setMenu( menu );
         }
     }
 
     function lastPage() {
-        if ( page > 0 ) {
-            setPage( page - 1 );
+        if ( menu.page > 0 ) {
+            menu.page = menu.page - 1
+            setMenu( menu );
         }
     }
 
     return (
         <div className="flex flex-row items-center">           
             <div className="w-1/12 flex justify-center hover:scale-110">
-                { page > 0 &&
+                { menu.page > 0 &&
                 <ColoredButton onClick={() => { lastPage() }} >
                     <p className="text-stone-800 text-[90px] text-center -left-7 top-[-42px] absolute select-none">
                         {'<'}
@@ -44,7 +46,7 @@ export default function BlogResumeList() {
                 </ul>
             </div>
             <div className="w-1/12 flex justify-center hover:scale-110 ">
-                { ( blogList.length / 3 > page+1) &&
+                { ( blogList.length / 3 > menu.page+1) &&
                 <ColoredButton onClick={() => { nextPage() }}>
                     <p className="text-stone-800 text-[90px] text-center -right-7 top-[-42px] absolute select-none">
                         {'>'}

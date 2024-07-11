@@ -1,18 +1,18 @@
 'use client'
 
 import { createContext, useReducer } from 'react';
-import { blogList } from '@/data/blogs';
+import { usePathname } from 'next/navigation'
+import menus from '@/data/navBar';
 
 export const MenuContext = createContext({
-    menu: '#',
-    oldBlog: {},
-    blog: {},
-    page: {},
-    setMenu: () => {},
-    setBlog: () => {},
-    setOldBlog: () => {},
-    setPage: () => {}
-});
+    menu: { 
+        symbol: '#',
+        //Mainpage
+        oldBlog: {},
+        blog: {},
+        page: {},
+    }
+} );
 
 function MenuReducer(state, action) {
     
@@ -20,24 +20,21 @@ function MenuReducer(state, action) {
             state.menu = action.payload;
     }
 
-    if ( action.type == "SETOLDBLOG" ) {
-        state.oldBlog = action.payload;
-    }
-
-    if ( action.type == "SETBLOG" ) {
-        state.blog = action.payload;
-    }
-
-    if ( action.type == "SETPAGE") {
-        state.page = action.payload;
-    }
-
     return { ...state };
 }
 
 export default function MenuContextProvider( {children} ) {
+    
+    let menu = null;
+    Object.keys( menus ).forEach(key => {
+        var path = usePathname();
+        const slashIndex = path.indexOf("/", 2);
+        if ( menus[key].url == path.substring(0, slashIndex != -1 ? slashIndex : path.length ) ) {
+            menu = menus[key];
+        }
+    });
 
-    const [ menuState, menuDispatch ] = useReducer( MenuReducer, { menu: '#', oldBlog : blogList[0],  blog: blogList[0], page: 0 }, )
+    const [ menuState, menuDispatch ] = useReducer( MenuReducer, { menu : menu }, )
 
     function setMenu(menu) {
         menuDispatch({
@@ -46,36 +43,9 @@ export default function MenuContextProvider( {children} ) {
         }) 
     }
 
-    function setOldBlog(page) {
-        menuDispatch({
-            type: "SETOLDBLOG",
-            payload: page
-        }) 
-    }
-
-    function setBlog(blog) {
-        menuDispatch({
-            type: "SETBLOG",
-            payload: blog
-        }) 
-    }
-
-    function setPage(page) {
-        menuDispatch({
-            type: "SETPAGE",
-            payload: page
-        }) 
-    }
-
     const ctxValue = {
         menu: menuState.menu,
-        oldBlog: menuState.oldBlog,
-        blog: menuState.blog,
-        page: menuState.page,
-        setMenu,
-        setOldBlog,
-        setBlog,
-        setPage,
+        setMenu
     }
 
     return <MenuContext.Provider value={ctxValue}>

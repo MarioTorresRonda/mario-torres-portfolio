@@ -3,12 +3,12 @@
 import { useNavigate } from "@/hooks/useNavigate";
 import { MenuContext } from "@/store/menu-context";
 
-export default function ClientLink( { title, url, children }  ) {
+export default function ClientLink( { newMenu, url, children }  ) {
 
   const { navigate } = useNavigate( MenuContext);
 
   return (
-    <button onClick={() => navigate( title, url )}>
+    <button onClick={() => navigate( newMenu, url )}>
       <p className="text-stone-400">
         {children}
       </p>

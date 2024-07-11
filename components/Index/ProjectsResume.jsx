@@ -4,6 +4,7 @@ import { projectList } from "@/data/projects";
 import ProjectResumeItem from "./ProjectResumeItem";
 import ClientLink from "../ClientLink";
 import ClientImage from "../ClientImage";
+import { projects } from "@/data/navBar";
 
 export default function ProjectsResume() {
     return <>
@@ -21,7 +22,7 @@ export default function ProjectsResume() {
                             })}
                         </ul>
                     </div>
-                    <ClientLink title="/" url="/projects" >
+                    <ClientLink newMenu={projects} url="/projects" >
                         <Message code={["commons", "seeAll"]} />
                     </ClientLink>
                 </div>

@@ -19,7 +19,13 @@ let messages = {
             ago: "hace {1}",
             months: ["mes", "meses"],
             from: "del",
-            imageAlt : "Vista previa del Post"
+            imageAlt : "Vista previa del Post",
+            viewMore : "Mostrar entero.",
+            back: "Volver a la lista",
+            list: {
+                blog1: "Blog 1",
+                descBlog1: "Esto es un blog de prueba",
+            }
         },
         loadingBlock: {
             randomText: [
