@@ -4,8 +4,8 @@ import { useContext } from "react";
 import Message from "../Message";
 import { MenuContext } from "@/store/menu-context";
 
-    export default function BlogResumeItem( {blog} ) {
-        const { setBlog, blog : selectedBlog } = useContext( MenuContext );
+export default function BlogResumeItem( {blog} ) {
+    const { setBlog, blog : selectedBlog } = useContext( MenuContext );
 
     function onHandleSelectPost() {
         setBlog(blog);

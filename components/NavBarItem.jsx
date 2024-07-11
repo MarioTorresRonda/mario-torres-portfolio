@@ -10,7 +10,6 @@ export default function NavBarItem( {id, title, num, url} ) {
     const { navigate } = useNavigate( MenuContext);
 
     function onHandleClick() {
-        console.log( id );
         navigate( id, url )
     }
 

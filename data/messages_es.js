@@ -15,8 +15,9 @@ let messages = {
         blogs: {
             mainTitle: "Mi publicaciones",
             mainDesc: "Lista de todos las publicaciones, actualizaciones y notas de proyecto que he desarrollado.",
-            new: "Nuevo!",
+            new: "¡Nuevo!",
             ago: "hace {1}",
+            months: ["mes", "meses"],
             from: "del",
             imageAlt : "Vista previa del Post"
         },

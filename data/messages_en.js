@@ -18,6 +18,7 @@ let messages = {
             mainDesc: "List of all the post, updates and project notes i had develop.",
             new: "New!",
             ago: "{1} ago",
+            months: ["month", "months"],
             from: "From",
             imageAlt : "Preview of the post",
             list: {
