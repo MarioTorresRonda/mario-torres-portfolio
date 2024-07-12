@@ -6,6 +6,11 @@ const heightVariants = {
 }
 
 export default function ContentBox( {height, children, className} ) {
+
+    if ( !className ) {
+        className = "";
+    }
+
     return (
     <div className={`flex ${heightVariants[height]} justify-center items-center ${className}`}>
         <div className="flex w-[100svw] xl:w-[70%] h-[90%]">

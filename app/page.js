@@ -10,10 +10,10 @@ import BlogsResume from "@/components/Index/BlogsResume";
 export default function Home() {
   return (
     <main>
-      <Header className="lg:flex h-full">
+      <Header className="flex flex-col lg:flex-row h-full">
         <Localization/>
         <Hero />
-        <div className="flex flex-col md:flex-row lg:flex-col justify-around lg:h-full" >
+        <div className="flex flex-col md:flex-row lg:flex-col md:justify-around lg:h-full items-center flex-1" >
           <Socials />
           <ProjectsBlock />
         </div>

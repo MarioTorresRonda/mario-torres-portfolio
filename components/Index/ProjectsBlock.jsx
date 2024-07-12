@@ -7,7 +7,7 @@ import Link from "next/link";
 export default function ProjectsBlock() {
   return (
     <>
-      <div className="flex flex-col mt-10 lg:mt-10 md:items-center">
+      <div className="flex flex-col md:items-center my-auto md:my-0 md:mt-10">
         <p className="text-3xl w-fit mb-3">
           <Message code={["mainPage", "projects", "mainTitle"]} />:
         </p>

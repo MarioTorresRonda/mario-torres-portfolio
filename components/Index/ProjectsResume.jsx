@@ -9,8 +9,8 @@ import { projects } from "@/data/navBar";
 export default function ProjectsResume() {
     return <>
         <ContentBox height={"auto"} className="mb-10">
-            <div className="mx-6 flex w-full">
-                <div className="w-1/2">
+            <div className="mx-6 flex flex-col lg:flex-row w-full">
+                <div className="lg:w-1/2">
                     <p className="text-[30px] text-center"> <Message code={ ["mainPage", "projects", "mainTitle"] } /> </p>
                     <div>
                         <p className="text-center"> <Message code={ ["mainPage", "projects", "mainDesc"] } /> </p>
@@ -26,7 +26,7 @@ export default function ProjectsResume() {
                         <Message code={["commons", "seeAll"]} />
                     </ClientLink>
                 </div>
-                <div className="w-1/2">
+                <div className="max-w-[500px] self-center lg:w-1/2">
                     <ClientImage
                         src={projectList[0].image}
                         alt={["mainPage", "projects", "imageAlt"]}
