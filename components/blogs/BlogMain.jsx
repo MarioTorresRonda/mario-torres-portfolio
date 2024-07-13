@@ -20,7 +20,8 @@ export default function BlogMain() {
         setMenu( menu );
     }
 
-    return ( <ContentBox>
+    return ( 
+    <ContentBox>
         <div className="w-1/5"> <div className="fixed"> 
             <button onClick={onHandleClick} className="bg-stone-600 hover:bg-stone-500 py-2 px-6 h-12 text-nowrap mt-auto rounded-md"> 
                 <Message code={ ["mainPage", "blogs", "back" ] } /> 
@@ -31,5 +32,6 @@ export default function BlogMain() {
                 <Blog />
             </Suspense>
         </div>
-    </ContentBox> )
+    </ContentBox> 
+    )
 }

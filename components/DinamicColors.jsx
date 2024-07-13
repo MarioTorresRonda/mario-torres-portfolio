@@ -11,7 +11,7 @@ export default function DinamicColors() {
 
     useEffect( () => {
         const timer = setTimeout(() => {
-            if ( time == 359 ) {
+            if ( time >= 359 ) {
                 setTime( 0 );
             }else{
                 setTime( prevtime => prevtime + 1 );

@@ -1,7 +1,18 @@
 import messages_en from "@/data/messages_en";
-import messages_es from "@/data/messages_es";
 
-export function getLocale( locale ) {
+export async function getAsyncLocale( locale ) {
+    const messages = await import( "@/data/messages_"+locale );
+    if ( !messages ) {
+        return messages_en;
+    }
+    return messages.default;
+}
+
+export function getDefaultLocale() {
+    return messages_en;
+}
+
+export function getLocaleBlog( locale ) {
     if ( locale == "en" ) {
         return messages_en;
     }if ( locale == "es" ) {

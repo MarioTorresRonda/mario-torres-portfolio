@@ -1,7 +1,7 @@
 'use client'
 
-import { createContext, useReducer } from 'react';
-import { getLocale } from "@/util/Localization";
+import { createContext, useEffect, useReducer, useState } from 'react';
+import { getDefaultLocale, getAsyncLocale } from "@/util/Localization";
 
 export const LocalizationContext = createContext({
     lang: {},
@@ -9,12 +9,11 @@ export const LocalizationContext = createContext({
     setLocalization: () => {}
 });
 
-function LocalizationReducer(state, action) {
+async function LocalizationReducer(state, action) {
     if ( action.type == "SET" ) {
-        const lang = {...getLocale( action.payload )};
         return {
-            lang : lang,
-            locale : action.payload
+            lang : action.payload.lang,
+            locale : action.payload.locale
         }
     }
 
@@ -23,18 +22,28 @@ function LocalizationReducer(state, action) {
 
 export default function LocalizationContextProvider( {children} ) {
 
-    const [ localizationState, localizationDispatch ] = useReducer( LocalizationReducer, { lang : {...getLocale("en")}, locale: 'en' } )
+    const [ localizationState, localizationDispatch ] = useReducer( LocalizationReducer, { lang : {...getDefaultLocale()}, locale: 'en' } )
 
-    function setlocale(locale) {
+    const [locale, setLocale] = useState(localizationState.locale);
+    const [lang, setLang] = useState(localizationState.lang);
+
+
+    async function setlocale(locale) {
+        const lang = await getAsyncLocale( locale );
         localizationDispatch({
             type: "SET",
-            payload: locale
-        }) 
+            payload: { locale : locale, lang : lang, }
+        });
+
+        setLocale( locale );
+        setLang( lang );
     }
 
+    
+
     const ctxValue = {
-        lang: localizationState.lang,
-        locale: localizationState.locale,
+        lang: lang,
+        locale: locale,
         setLocalization : setlocale
     }
 

@@ -27,7 +27,7 @@ export default function BlogItem( {blog} ) {
     return (
         <div className="flex md:flex-row flex-col relative mb-5 md:h-52 shadow-lg shadow-stone-900" >
             <div className={`absolute top-0 bottom-0 w-[100px] color-fondo clip-highlight-l`}></div>
-            <div className="md:m-5 mx-1 flex justify-center md:my-auto hover:scale-110 transition-all" onClick={onHandleClick}>
+            <div className="md:m-5 mx-1 flex justify-center md:my-auto hover:scale-110 transition-all overflow-hidden" onClick={onHandleClick}>
                 <ClientImage width="250" className="rounded-none md:rounded-md" src={blog.image} alt={["mainPage","blogs","imageAlt"]} />
             </div>
             <div className="px-5 py-4 transition ease-linear duration-300 flex-1">

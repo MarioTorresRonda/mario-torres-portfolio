@@ -10,15 +10,6 @@
     width: 100vw;
   }
 
-  :root{
-    --myColorStart: theme(colors.orange.800);
-    --myColorEnd: theme(colors.emerald.700);
-    --myColorStartSimple: var(--myColorStart);
-    --myColorEndSimple: var(--myColorEnd);
-    --myColorStartHover: var(--myColorEnd);
-    --myColorEndHover: var(--myColorStart);
-  }
-
   .text-balance {
     text-wrap: balance;
   }
@@ -84,6 +75,10 @@
 
   .fill-mode-forwards {
     animation-fill-mode: forwards;
+  }
+
+  .animation-infinite {
+    animation-iteration-count: infinite;
   }
 
   .has-tooltip {

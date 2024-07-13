@@ -21,17 +21,22 @@ module.exports = {
       keyframes: {
         opacityLoad: {
           '0%': { "z-index": 20 },
-          '75%': { "z-index": 20, "transform": "translateX(0)"},
+          '75%': { "z-index": 20, "transform": "translateY(0)"},
           '100%': { "z-index": -10, "transform": "translateY(-100%)"},
         },
         overflowLoad: {
           '0%': { "overflow": "hidden" },
           '100%': { "overflow": "unset" },
         },
+        fromTop: {
+          '0%': { "opacity": "0%", "transform": "translateY(-30%)" },
+          '100%': { "opacity": "100%", "transform": "translateY(0)" },
+        }
       },
       animation: {
         opacityLoad: 'opacityLoad 4s',
-        overflowLoad: 'overflowLoad 4s'
+        overflowLoad: 'overflowLoad 4s',
+        fromTop: 'fromTop 400ms',
       }
     },
     variants: {

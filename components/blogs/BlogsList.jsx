@@ -19,7 +19,7 @@ export default function BlogsList() {
         <div className="sm:mx-10 w-full">
             <ul className="flex flex-col gap-6">
                 {blogList.map((item) => {    
-                    return ( <li key={item.id}> 
+                    return ( <li key={item.id} className="animate-fromTop"> 
                         <BlogItem blog={item} />
                     </li> )
                 })}

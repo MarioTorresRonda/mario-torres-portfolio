@@ -19,9 +19,9 @@ let messages = {
             new: "New!",
             ago: "{1} ago",
             months: ["month", "months"],
-            from: "From",
+            from: "date",
             imageAlt : "Preview of the post",
-            viewMore : "Give a look.",
+            viewMore : "Give a look",
             back: "Go back to list",
             list: {
                 blog1: "Blog 1",
