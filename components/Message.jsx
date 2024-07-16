@@ -13,7 +13,7 @@ export default function Message( { code } ) {
 
 export function getMessageText( code ) {
     const { lang } = useContext( LocalizationContext );
-    let message = getCodeFromArray( lang, code );
+    let message = getCodeFromArray( lang , code );
 
     return message;
 }

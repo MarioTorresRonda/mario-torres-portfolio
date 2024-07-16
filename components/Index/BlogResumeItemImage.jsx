@@ -3,7 +3,7 @@
 import { MenuContext } from "@/store/menu-context"
 import { useContext, useEffect } from "react"
 import ClientImage from "../ClientImage";
-import Message, { getDateText, getMessageText } from "../Message";
+import Message, { getMessageText } from "../Message";
 import { blog, home } from "@/data/navBar";
 import { useNavigate } from "@/hooks/useNavigate";
 

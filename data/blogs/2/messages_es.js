@@ -1,6 +1,6 @@
 let messages = {
     mainPage: { 
-        mainTitle1: "Text 2.",
+        mainTitle1: "Prueba 2.",
     }
 }
 

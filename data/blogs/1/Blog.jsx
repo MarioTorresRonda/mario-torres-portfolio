@@ -1,5 +1,7 @@
 'use client'
 
+import Message from "@/components/Message"
+
 export default function Blog() {
-    return ( <h1> Prueba </h1> )
+    return ( <h1> <Message code={ ["mainPage", "mainTitle1"] } /> </h1> )
 }

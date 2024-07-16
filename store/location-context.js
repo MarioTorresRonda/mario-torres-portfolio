@@ -1,20 +1,27 @@
 'use client'
 
-import { createContext, useEffect, useReducer, useState } from 'react';
-import { getDefaultLocale, getAsyncLocale } from "@/util/Localization";
+import { createContext, useReducer, useState } from 'react';
+import { getDefaultLocale, getAsyncLocale, getAsyncBlogLocale } from "@/util/Localization";
+import merge from '@/util/objects';
 
 export const LocalizationContext = createContext({
     lang: {},
+    mainLang: {},
+    blogLang: {},
     locale: 'en',
-    setLocalization: () => {}
+    setLocalization: async () => {},
+    setBlogLocalization : async () => {}
 });
 
-async function LocalizationReducer(state, action) {
+function LocalizationReducer(state, action) {
+
     if ( action.type == "SET" ) {
-        return {
-            lang : action.payload.lang,
-            locale : action.payload.locale
-        }
+        state.mainLang = action.payload.mainLang;
+        state.locale = action.payload.locale;
+    }
+
+    if ( action.type == "SETBLOG" ) {
+        state.blogLang = action.payload.blogLang;
     }
 
     return state;
@@ -22,29 +29,36 @@ async function LocalizationReducer(state, action) {
 
 export default function LocalizationContextProvider( {children} ) {
 
-    const [ localizationState, localizationDispatch ] = useReducer( LocalizationReducer, { lang : {...getDefaultLocale()}, locale: 'en' } )
+    const [ localizationState, localizationDispatch ] = useReducer( LocalizationReducer, { lang : {...getDefaultLocale()}, blogLang : {}, locale: 'en' } )
 
     const [locale, setLocale] = useState(localizationState.locale);
-    const [lang, setLang] = useState(localizationState.lang);
-
+    const [mainLang, setMainLang] = useState(localizationState.lang);
+    const [blogLang, setBlogLang] = useState(localizationState.blogLang);
 
     async function setlocale(locale) {
-        const lang = await getAsyncLocale( locale );
+        const mainLang = await getAsyncLocale( locale );
         localizationDispatch({
             type: "SET",
-            payload: { locale : locale, lang : lang, }
+            payload: { locale : locale, mainLang : mainLang, }
         });
-
         setLocale( locale );
-        setLang( lang );
+        setMainLang( mainLang );
+    }   
+    
+    async function setblog( blog ) {
+        const blogLang = await getAsyncBlogLocale( locale, blog );
+        localizationDispatch({
+            type: "SETBLOG",
+            payload: { blogLang : blogLang }
+        });
+        setBlogLang( blogLang );
     }
 
-    
-
     const ctxValue = {
-        lang: lang,
+        lang: merge(mainLang, blogLang),
         locale: locale,
-        setLocalization : setlocale
+        setLocalization : setlocale,
+        setBlogLocalization: setblog,
     }
 
     return <LocalizationContext.Provider value={ctxValue}>

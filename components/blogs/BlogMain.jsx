@@ -4,16 +4,18 @@ import { MenuContext } from "@/store/menu-context";
 import { lazy, Suspense, useContext } from "react";
 import ContentBox from "../Index/ContentBox";
 import Message from "../Message";
+import { LocalizationContext } from "@/store/location-context";
 
 export default function BlogMain() {
 
     const { setMenu, menu } = useContext( MenuContext );
-
+    const { setBlogLocalization } = useContext( LocalizationContext );
+    
     if ( !menu.selectedPost ) {
         return <div></div>
     }
 
-    const Blog = lazy( async() => await import( "../../data/blogs/"+menu.selectedPost.id+"/Blog" ));
+    const Blog = lazy( async() => { await setBlogLocalization( menu.selectedPost.id ); return await import( "../../data/blogs/"+menu.selectedPost.id+"/Blog" ) } );
 
     function onHandleClick() {
         menu.selectedPost = null;

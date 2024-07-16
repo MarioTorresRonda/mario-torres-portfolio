@@ -8,6 +8,11 @@ export async function getAsyncLocale( locale ) {
     return messages.default;
 }
 
+export async function getAsyncBlogLocale( locale, blog ) {
+    const messages = await import( "@/data/blogs/"+blog+"/messages_"+locale );
+    return messages.default;
+}
+
 export function getDefaultLocale() {
     return messages_en;
 }
