@@ -1,6 +1,8 @@
 let messages = {
-    mainPage: { 
-        mainTitle1: "Prueba 1.",
+    Blog: { 
+        title: "Texto 1.",
+        subtitle: "Subtexto 1.",
+        "chapter 1": "Capitulo 1.",
     }
 }
 

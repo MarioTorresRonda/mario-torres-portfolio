@@ -23,8 +23,8 @@ let messages = {
             viewMore : "Mostrar entero",
             back: "Volver a la lista",
             list: {
-                blog1: "Blog 1",
-                descBlog1: "Esto es un blog de prueba",
+                blog1: "Mi propio blog",
+                descBlog1: "Implementacion del blog dentro del portfolio, con selector de post mediante carga asincrona y sistema de traducción.",
             }
         },
         loadingBlock: {

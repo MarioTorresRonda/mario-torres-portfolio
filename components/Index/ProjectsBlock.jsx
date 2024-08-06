@@ -1,7 +1,7 @@
-import CharacterBlock from "@/components/CharacterBlock";
+import CharacterBlock from "@/components/fragments/CharacterBlock";
 
 import { projectList } from "@/data/projects";
-import Message from "../Message";
+import Message from "../fragments/Message";
 import Link from "next/link";
 
 export default function ProjectsBlock() {

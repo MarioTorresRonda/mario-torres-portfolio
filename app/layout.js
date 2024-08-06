@@ -1,10 +1,10 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Providers from "@/components/Providers";
+import Providers from "@/components/fragments/Providers";
 import LoadingBlock from "@/components/Index/LoadingBlock";
-import NavBar from "@/components/NavBar";
-import DinamicColors from "@/components/DinamicColors";
-import OnDocumentReady from "@/components/OnDocumentReady";
+import NavBar from "@/components/fragments/NavBar";
+import DinamicColors from "@/components/fragments/DinamicColors";
+import OnDocumentReady from "@/components/fragments/OnDocumentReady";
 
 const inter = Inter({ subsets: ["latin"] });
 

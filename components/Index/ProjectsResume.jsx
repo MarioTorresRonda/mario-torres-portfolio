@@ -1,9 +1,9 @@
-import Message from "../Message";
+import Message from "../fragments/Message";
 import ContentBox from "./ContentBox";
 import { projectList } from "@/data/projects";
 import ProjectResumeItem from "./ProjectResumeItem";
-import ClientLink from "../ClientLink";
-import ClientImage from "../ClientImage";
+import ClientLink from "../fragments/ClientLink";
+import ClientImage from "../fragments/ClientImage";
 import { projects } from "@/data/navBar";
 
 export default function ProjectsResume() {
@@ -28,6 +28,7 @@ export default function ProjectsResume() {
                 </div>
                 <div className="max-w-[500px] self-center lg:w-1/2">
                     <ClientImage
+                        className="w-auto"
                         src={projectList[0].image}
                         alt={["mainPage", "projects", "imageAlt"]}
                     >

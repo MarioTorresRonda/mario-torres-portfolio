@@ -1,4 +1,4 @@
-import Message from "../Message";
+import Message from "../fragments/Message";
 
 export default function ProjectResumeItem( {name, description, isOdd} ) {
 
@@ -9,7 +9,7 @@ export default function ProjectResumeItem( {name, description, isOdd} ) {
         <div className={`absolute top-0 bottom-0 w-[100px] color-fondo clip-highlight-l ${isOdd ? "" : colorInvertido }`}></div>
         <div className="px-5 py-2 w-full  hover:bg-stone-700 transition ease-linear duration-300">
             <p className="text-[20px]"> <Message code={ ["mainPage", "projects", "list", name ] } /> </p>
-            <p> <Message code={ ["mainPage", "projects", "list", description ] } />  </p>
+            <p className="text-stone-400 text-ellipsis overflow-hidden text-[14px]" > <Message code={ ["mainPage", "projects", "list", description ] } />  </p>
         </div>
     </div> 
     )

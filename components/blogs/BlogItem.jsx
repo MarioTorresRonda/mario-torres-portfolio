@@ -1,8 +1,8 @@
 'use client'
 
 import { useContext } from "react";
-import ClientImage from "../ClientImage";
-import Message, { getMessageText } from "../Message";
+import ClientImage from "../fragments/ClientImage";
+import Message, { getMessageText } from "../fragments/Message";
 import { MenuContext } from "@/store/menu-context";
 
 export default function BlogItem( {blog} ) {

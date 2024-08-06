@@ -1,4 +1,3 @@
-import portfolioImage from '@/assets/portfolio.png';
 import blogPreviewImage from '@/assets/Blog Preview.png';
 
 export const blogList = [
@@ -8,12 +7,5 @@ export const blogList = [
         subtitle: ["descBlog1"], //Subtitulo
         image: blogPreviewImage,
         date: 1720486086605
-    },
-    {
-        id: 2, //identificador
-        title: ["blog1"], //Titulo
-        subtitle: ["descBlog1"], //Subtitulo
-        image: portfolioImage,
-        date: 1710476086605
     }
 ]

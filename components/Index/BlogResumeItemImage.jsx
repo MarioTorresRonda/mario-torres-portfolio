@@ -2,8 +2,8 @@
 
 import { MenuContext } from "@/store/menu-context"
 import { useContext, useEffect } from "react"
-import ClientImage from "../ClientImage";
-import Message, { getMessageText } from "../Message";
+import ClientImage from "../fragments/ClientImage";
+import Message, { getMessageText } from "../fragments/Message";
 import { blog, home } from "@/data/navBar";
 import { useNavigate } from "@/hooks/useNavigate";
 
@@ -41,7 +41,7 @@ export default function BlogResumeItemImage() {
 
     return (<>
         <div className={ ( !isShow ? "-translate-y-80" : "" ) + " transition-all flex justify-center lg:h-[250px]" }  >
-            <ClientImage onClick={OnClickImage} height={250} className=" mt-3 mb-5 scale-100 hover:scale-110 transition-all" src={ menu.oldBlog.image } alt={["mainPage","blogs","imageAlt"]}/>
+            <ClientImage onClick={OnClickImage} height={250} className=" mt-3 mb-5 scale-100 hover:scale-110 transition-all w-auto" src={ menu.oldBlog.image } alt={["mainPage","blogs","imageAlt"]}/>
         </div>
         <p> <Message code={ ["mainPage", "blogs", "from"] } />: {  new Date( menu.oldBlog.date ).toLocaleDateString(getMessageText(["commons", "dateFormat"]))  } </p>
     </>

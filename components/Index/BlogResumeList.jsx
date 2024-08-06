@@ -1,6 +1,6 @@
 'use client'
 import { blogList } from "@/data/blogs";
-import ColoredButton from "../ColoredButton";
+import ColoredButton from "../fragments/ColoredButton";
 import BlogResumeItem from "./BlogResumeItem";
 import { useContext } from "react";
 import { MenuContext } from "@/store/menu-context";

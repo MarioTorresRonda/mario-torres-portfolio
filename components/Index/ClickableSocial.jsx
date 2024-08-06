@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
-import FAI from "../FAI";
+import FAI from "../fragments/FAI";
 
 export default function ClickableSocial({ icon, comma, className, ...props }) {
   return (

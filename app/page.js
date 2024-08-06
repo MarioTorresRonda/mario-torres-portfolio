@@ -2,7 +2,7 @@ import Header from "@/components/Index/Header.jsx";
 import Hero from "@/components/Index/Hero";
 import ProjectsBlock from "@/components/Index/ProjectsBlock";
 import Socials from "@/components/Index/Socials";
-import Localization from "@/components/localization";
+import Localization from "@/components/fragments/Localization";
 import ProjectsResume from "@/components/Index/ProjectsResume";
 import BlogsResume from "@/components/Index/BlogsResume";
 

@@ -1,6 +1,6 @@
 'use client'
 
-import SVG from "./SVG";
+import SVG from "../fragments/SVG";
 import { useState, useRef, useLayoutEffect } from 'react'
 
 export default function CharacterBlock({ className, startCharacter, endCharacter, mainClassName = "", children }) {

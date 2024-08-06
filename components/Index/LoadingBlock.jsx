@@ -3,7 +3,7 @@
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useContext, useEffect, useState } from "react";
-import Message from "../Message";
+import Message from "../fragments/Message";
 import { LocalizationContext } from "@/store/location-context";
 
 

@@ -1,4 +1,4 @@
-import CharacterBlock from "@/components/CharacterBlock";
+import CharacterBlock from "@/components/fragments/CharacterBlock";
 
 import ClickableSocial from "@/components/Index/ClickableSocial";
 

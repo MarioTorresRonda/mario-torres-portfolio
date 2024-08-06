@@ -1,5 +1,5 @@
-import HighlightedText from "@/components/HighlightedText";
-import Message from "@/components/Message";
+import HighlightedText from "@/components/fragments/HighlightedText";
+import Message from "@/components/fragments/Message";
 
 export default function Hero() {
 

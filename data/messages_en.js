@@ -24,8 +24,8 @@ let messages = {
             viewMore : "Give a look",
             back: "Go back to list",
             list: {
-                blog1: "Blog 1",
-                descBlog1: "This is a blog test blog",
+                blog1: "My own Blog",
+                descBlog1: "Working blog inside portfolio with post selector loaded asynchronous and localization implemented.",
             }
         },
         loadingBlock: {
