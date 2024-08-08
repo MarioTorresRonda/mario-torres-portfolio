@@ -2,21 +2,25 @@
 
 import { useContext } from "react";
 import ClientImage from "../fragments/ClientImage";
-import Message, { getMessageText } from "../fragments/Message";
+import Message, { useMessageText } from "../fragments/Message";
 import { MenuContext } from "@/store/menu-context";
 
 export default function BlogItem( {blog} ) {
 
     const { menu, setMenu } = useContext( MenuContext );
     
-    let ago = "" ;
+    let ago = "";
+
+    const newText = useMessageText( ["mainPage", "blogs", "new"] );
+    const agoText = useMessageText( ["mainPage", "blogs", "ago"] );
     const monthsDiff = new Date( new Date().getTime() - blog.date ).getMonth()
+    const monthsText = useMessageText( ["mainPage", "blogs", "months"] )[ monthsDiff == 1 ? 0 : 1 ];
+
     if ( monthsDiff == 0 ) {
-        ago = getMessageText( ["mainPage", "blogs", "new"] )
+        ago = newText;
     }else{
-        ago = getMessageText( ["mainPage", "blogs", "ago"] )
-        const monthSymbol = getMessageText( ["mainPage", "blogs", "months"] )[ monthsDiff == 1 ? 0 : 1 ];
-        ago = ago.replaceAll( "{1}", monthsDiff + " " + monthSymbol);
+        ago = agoText;
+        ago = ago.replaceAll( "{1}", monthsDiff + " " + monthsText);
     }
 
     function onHandleClick() {

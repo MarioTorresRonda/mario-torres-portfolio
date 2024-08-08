@@ -33,7 +33,7 @@ export default function LoadingBlock() {
     return () => {
         clearTimeout( timer );
     }
-  }, [totalTime]);
+  }, [totalTime, newTime, text]);
 
   return (
     <div className="overflow-hidden absolute top-0 left-0 bottom-0 right-0">

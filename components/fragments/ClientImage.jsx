@@ -1,7 +1,7 @@
 'use client';
 
 import Image from "next/image";
-import { getMessageText } from "./Message";
+import { useMessageText } from "./Message";
 
 export default function ClientImage( { src, alt, ...props } ) {
     return (
@@ -9,7 +9,7 @@ export default function ClientImage( { src, alt, ...props } ) {
             priority={false}
             {...props}
             src={src}
-            alt={getMessageText(alt)}
+            alt={useMessageText(alt)}
         >
         </Image>
     )

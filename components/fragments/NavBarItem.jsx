@@ -3,14 +3,14 @@
 import { MenuContext } from "@/store/menu-context";
 import { useContext } from "react";
 import { useNavigate } from "@/hooks/useNavigate";
-import { getMessageText } from "./Message";
+import { useMessageText } from "./Message";
 
 export default function NavBarItem( { newMenu } ) {
 
     const { menu } = useContext( MenuContext );
     const { navigate } = useNavigate( MenuContext);
     
-    const menuText = getMessageText( newMenu.title )
+    const menuText = useMessageText( newMenu.title )
 
     function onHandleClick() {
         navigate( newMenu );

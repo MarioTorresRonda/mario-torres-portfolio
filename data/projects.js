@@ -1,5 +1,5 @@
 import react from '@/public/react-2.svg'
-import portfolioImage from '@/assets/portfolio.png';
+import portfolioImage from '@/public/portfolio.png';
 
 export const projectList = [
     { 
