@@ -1,4 +1,5 @@
 const { transform } = require('next/dist/build/swc');
+const plugin = require('tailwindcss/plugin')
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -9,12 +10,16 @@ module.exports = {
   ],
   theme: {
     extend: {
+      textShadow: {
+        sm: '0px 1px 2px var(--tw-shadow-color)',
+        DEFAULT: '0px 2px 4px var(--tw-shadow-color)',
+        lg: '0px 8px 16px var(--tw-shadow-color)',
+      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
-      
       screens: {
         'xl-h': { 'raw': '(min-height: 700px)' },
       },
@@ -45,6 +50,16 @@ module.exports = {
       },
     },
   },
-
-  plugins: [],
+  plugins: [
+    plugin(function ({ matchUtilities, theme }) {
+      matchUtilities(
+        {
+          'text-shadow': (value) => ({
+            textShadow: value,
+          }),
+        },
+        { values: theme('textShadow') }
+      )
+    }),
+  ],
 };

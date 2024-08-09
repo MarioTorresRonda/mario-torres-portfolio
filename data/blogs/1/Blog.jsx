@@ -9,6 +9,8 @@ import Message from "@/components/fragments/Message"
 import { MenuContext } from "@/store/menu-context"
 import { useContext, useEffect } from "react"
 import { useMessageText } from "@/hooks/useMessageText";
+import BlogBackgroundImage from "@/components/blogs/blogFragments/BlogBackgroundImage"
+import headerImg from "@/public/Blog Preview.png"
 
 export default function Blog() {
     
@@ -20,8 +22,10 @@ export default function Blog() {
 
     const completeBlog = ( 
         <div className="flex flex-col gap-2">
-            <BlogTitle id={1} navBar={navBar} text={useMessageText( ["Blog", "title"] )} ></BlogTitle> 
-            <BlogSubtitle text={useMessageText( ["Blog", "subtitle"] )} ></BlogSubtitle> 
+            <BlogBackgroundImage imageSrc={headerImg}>
+                <BlogTitle id={1} navBar={navBar} text={useMessageText( ["Blog", "title"] )} ></BlogTitle> 
+                <BlogSubtitle text={useMessageText( ["Blog", "subtitle"] )} ></BlogSubtitle> 
+            </BlogBackgroundImage>
             <BlogChapter id={2} level={1} navBar={navBar} text={useMessageText( ["Blog", "chapter 1"] )} >
                 <BlogParagraph>
                     <Message code={["Blog", "chapter 1 desc"]} ></Message>

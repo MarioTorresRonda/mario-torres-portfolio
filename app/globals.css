@@ -124,3 +124,7 @@
   clip-path: inset(0px 48px 0px 48px);
   right: -48px;
 }
+
+.foto-difuminada{
+  mask-image: linear-gradient(rgba(255, 255, 255, 0.5) 30%, transparent 95%);
+}
