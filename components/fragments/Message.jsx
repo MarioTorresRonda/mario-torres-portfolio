@@ -10,10 +10,3 @@ export default function Message( { code } ) {
 
     return ( <>{message}</> )
 }
-
-export function useMessageText( code ) {
-    const { lang } = useContext( LocalizationContext );
-    let message = getCodeFromArray( lang , code );
-
-    return message;
-}

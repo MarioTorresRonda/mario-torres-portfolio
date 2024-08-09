@@ -1,7 +1,7 @@
 'use client';
 
+import { useMessageText } from "@/hooks/useMessageText";
 import Image from "next/image";
-import { useMessageText } from "./Message";
 
 export default function ClientImage( { src, alt, ...props } ) {
     return (

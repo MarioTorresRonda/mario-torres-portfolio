@@ -3,7 +3,7 @@
 import { MenuContext } from "@/store/menu-context";
 import { useContext } from "react";
 import { useNavigate } from "@/hooks/useNavigate";
-import { useMessageText } from "./Message";
+import { useMessageText } from "@/hooks/useMessageText";
 
 export default function NavBarItem( { newMenu } ) {
 

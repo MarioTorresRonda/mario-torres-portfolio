@@ -2,7 +2,7 @@
 
 import { createContext, useReducer, useState } from 'react';
 import { getDefaultLocale, getAsyncLocale, getAsyncBlogLocale } from "@/util/Localization";
-import merge from '@/util/objects';
+import merge from '@/util/Objects';
 
 export const LocalizationContext = createContext({
     lang: {},

@@ -2,8 +2,9 @@
 
 import { useContext } from "react";
 import ClientImage from "../fragments/ClientImage";
-import Message, { useMessageText } from "../fragments/Message";
+import Message from "../fragments/Message";
 import { MenuContext } from "@/store/menu-context";
+import { useMessageText } from "@/hooks/useMessageText";
 
 export default function BlogItem( {blog} ) {
 

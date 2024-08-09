@@ -5,9 +5,10 @@ import BlogList from "@/components/blogs/blogFragments/BlogList"
 import BlogParagraph from "@/components/blogs/blogFragments/BlogParagraph"
 import BlogSubtitle from "@/components/blogs/blogFragments/BlogSubtitle"
 import BlogTitle from "@/components/blogs/blogFragments/BlogTitle"
-import Message, { useMessageText } from "@/components/fragments/Message"
+import Message from "@/components/fragments/Message"
 import { MenuContext } from "@/store/menu-context"
 import { useContext, useEffect } from "react"
+import { useMessageText } from "@/hooks/useMessageText";
 
 export default function Blog() {
     
