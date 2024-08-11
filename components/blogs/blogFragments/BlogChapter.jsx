@@ -7,11 +7,13 @@ const textLevel = {
     4: "text-lg font-semibold text-stone-400"
 }
 
-export default function BlogChapter( { level, id, navBar, text, children} ) {
+export default function BlogChapter( { level, blogRef, text, children} ) {
     
+    const blogInfoRef = blogRef.current;
+    const uuid = blogInfoRef.uuid + text;
     const maxLevel = level > 4 ? 4 : level;
-
-    navBar[id] = <BlogNavBarItem level={maxLevel + 1} > {text} </BlogNavBarItem>;
+    
+    blogInfoRef.navBar[uuid] = { element : <BlogNavBarItem level={level + 1}> {text} </BlogNavBarItem> };  
 
     return(
         <div>
