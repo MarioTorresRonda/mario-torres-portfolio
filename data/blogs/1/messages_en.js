@@ -22,9 +22,13 @@ let messages = {
             title: "Ideas.",
             desc:  "Here is a bunch of ideas that had inspire me:",
             idea1: "Sean Halpin",
+            idea1Desc: "I like the notes menu he have, is simple, but direct and really pretty,",
             idea2: "Medium.com",
+            idea2Desc: "Medium blogs are a statement, a lot of infographics, with images, code, text, make this really easy to read,",
             idea3: "upstatement.com",
+            idea3Desc: "I always wanted a Code systax highlight in my portfolio as upstatements have,",
             idea4: "Brittany Chiang",
+            idea4Desc: "My first inspiration to do a portfolio was this girl, I really like her work.",
         },
     }
 }

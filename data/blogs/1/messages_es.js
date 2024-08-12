@@ -20,7 +20,15 @@ let messages = {
         },
         "chapter 4": {
             title: "Ideas.",
-            desc:  "Aquí tengo un conjunto de ideas de las cuales me he inspirado:"
+            desc:  "Aquí tengo un conjunto de ideas de las cuales me he inspirado:",
+            idea1: "Sean Halpin",
+            idea1Desc: "I like the notes menu he have, is simple, but direct and really pretty,",
+            idea2: "Medium.com",
+            idea2Desc: "Medium blogs are a statement, a lot of infographics, with images, code, text, make this really easy to read,",
+            idea3: "upstatement.com",
+            idea3Desc: "I always wanted a Code systax highlight in my portfolio as upstatements have,",
+            idea4: "Brittany Chiang",
+            idea4Desc: "My first inspiration to do a portfolio was this girl, I really like her work.",
         },
     }
 }

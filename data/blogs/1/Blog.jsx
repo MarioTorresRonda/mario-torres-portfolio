@@ -11,13 +11,13 @@ import { useContext, useEffect, useRef } from "react"
 import { useMessageText } from "@/hooks/useMessageText";
 import BlogBackgroundImage from "@/components/blogs/blogFragments/BlogBackgroundImage"
 import BlogSplit2 from "@/components/blogs/blogFragments/BlogSplit2"
-import BlogImageWIthHoverText from "@/components/blogs/blogFragments/BlogImageWIthHoverText"
 
 
 import headerImg from "@/public/Blog Preview.png"
 import Idea1Img from "@/public/Notes.png"
 import Idea2Img from "@/public/Medium.png"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import Idea3Img from "@/public/Idea3CodeText.png"
+import Idea4Img from "@/public/Idea4brittanychiang.png"
 import BlogImageUrl from "@/components/blogs/blogFragments/BlogImageUrl"
 
 export default function Blog() {
@@ -60,23 +60,23 @@ export default function Blog() {
                 <BlogSplit2>
                     <BlogImageUrl 
                         title={useMessageText( ["Blog", "chapter 4", "idea1"] )} 
-                        desc={useMessageText( ["Blog", "chapter 4", "idea1"] )} 
+                        desc={useMessageText( ["Blog", "chapter 4", "idea1Desc"] )} 
                         imageSrc={Idea1Img} 
                         />
                     <BlogImageUrl 
                         title={useMessageText( ["Blog", "chapter 4", "idea2"] )} 
-                        desc={useMessageText( ["Blog", "chapter 4", "idea2"] )} 
+                        desc={useMessageText( ["Blog", "chapter 4", "idea2Desc"] )} 
                         imageSrc={Idea2Img} 
                         />
                     <BlogImageUrl 
-                        title={useMessageText( ["Blog", "chapter 4", "idea2"] )} 
-                        desc={useMessageText( ["Blog", "chapter 4", "idea2"] )} 
-                        imageSrc={Idea2Img} 
+                        title={useMessageText( ["Blog", "chapter 4", "idea3"] )} 
+                        desc={useMessageText( ["Blog", "chapter 4", "idea3Desc"] )} 
+                        imageSrc={Idea3Img} 
                         />
                     <BlogImageUrl 
-                        title={useMessageText( ["Blog", "chapter 4", "idea2"] )} 
-                        desc={useMessageText( ["Blog", "chapter 4", "idea2"] )} 
-                        imageSrc={Idea2Img} 
+                        title={useMessageText( ["Blog", "chapter 4", "idea4"] )} 
+                        desc={useMessageText( ["Blog", "chapter 4", "idea4Desc"] )} 
+                        imageSrc={Idea4Img} 
                         />
                     
                 </BlogSplit2>
