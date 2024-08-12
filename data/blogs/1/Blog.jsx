@@ -12,13 +12,13 @@ import { useMessageText } from "@/hooks/useMessageText";
 import BlogBackgroundImage from "@/components/blogs/blogFragments/BlogBackgroundImage"
 import BlogSplit2 from "@/components/blogs/blogFragments/BlogSplit2"
 import BlogImageWIthHoverText from "@/components/blogs/blogFragments/BlogImageWIthHoverText"
-import { faShareAltSquare as icon } from "@fortawesome/free-solid-svg-icons";
 
 
 import headerImg from "@/public/Blog Preview.png"
 import Idea1Img from "@/public/Notes.png"
 import Idea2Img from "@/public/Medium.png"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import BlogImageUrl from "@/components/blogs/blogFragments/BlogImageUrl"
 
 export default function Blog() {
     
@@ -58,30 +58,27 @@ export default function Blog() {
                     <Message code={["Blog", "chapter 4", "desc"]} ></Message>
                 </BlogParagraph>
                 <BlogSplit2>
-                    <div>
-                    <div className="flex rounded-t-md bg-stone-700">
-                            <p className="flex-1 text-xl text-center"> <Message code={["Blog", "chapter 4", "idea1"]} ></Message> </p>
-                            <FontAwesomeIcon
-                                icon={icon}
-                                className="text-white h-5 m-1 z-20 duration-100 hover:scale-125 hover:text-stone-300"
-                            />
-                        </div>
-                        <BlogImageWIthHoverText className="rounded-b-md" height="h-52" imageSrc={Idea1Img}>
-                            <Message code={["Blog", "chapter 4", "idea1"]} ></Message> 
-                        </BlogImageWIthHoverText>
-                    </div>
-                    <div>
-                        <div className="flex rounded-t-md bg-stone-700">
-                            <p className="flex-1 text-xl text-center"> <Message code={["Blog", "chapter 4", "idea2"]} ></Message> </p>
-                            <FontAwesomeIcon
-                                icon={icon}
-                                className="text-white h-5 m-1 z-20 duration-100 hover:scale-125 hover:text-stone-300"
-                            />
-                        </div>
-                        <BlogImageWIthHoverText className="rounded-b-md" height="h-52" imageSrc={Idea2Img}>
-                            <Message code={["Blog", "chapter 4", "idea2"]} ></Message> 
-                        </BlogImageWIthHoverText>
-                    </div>
+                    <BlogImageUrl 
+                        title={useMessageText( ["Blog", "chapter 4", "idea1"] )} 
+                        desc={useMessageText( ["Blog", "chapter 4", "idea1"] )} 
+                        imageSrc={Idea1Img} 
+                        />
+                    <BlogImageUrl 
+                        title={useMessageText( ["Blog", "chapter 4", "idea2"] )} 
+                        desc={useMessageText( ["Blog", "chapter 4", "idea2"] )} 
+                        imageSrc={Idea2Img} 
+                        />
+                    <BlogImageUrl 
+                        title={useMessageText( ["Blog", "chapter 4", "idea2"] )} 
+                        desc={useMessageText( ["Blog", "chapter 4", "idea2"] )} 
+                        imageSrc={Idea2Img} 
+                        />
+                    <BlogImageUrl 
+                        title={useMessageText( ["Blog", "chapter 4", "idea2"] )} 
+                        desc={useMessageText( ["Blog", "chapter 4", "idea2"] )} 
+                        imageSrc={Idea2Img} 
+                        />
+                    
                 </BlogSplit2>
             </BlogChapter>
         </div>
