@@ -5,7 +5,7 @@
 @layer utilities {
 
   body {
-    @apply text-slate-100;
+    @apply text-slate-600 dark:text-slate-100;
     max-width: 100%;
     width: 100vw;
   }
@@ -86,7 +86,7 @@
   }
 
   .tooltip {
-    @apply invisible absolute bg-stone-900 rounded-lg px-5 py-0 text-lg text-center w-32 top-full left-1/2 ml-[-64px];
+    @apply invisible absolute bg-slate-200 dark:bg-stone-900 rounded-lg px-5 py-0 text-lg text-center w-32 top-full left-1/2 ml-[-64px];
   }
 
   .has-tooltip:hover .tooltip {
@@ -100,12 +100,12 @@
 
   /* Track */
   ::-webkit-scrollbar-track {
-    @apply bg-stone-800;
+    @apply bg-slate-200 dark:bg-stone-800;
   }
 
   /* Handle */
   ::-webkit-scrollbar-thumb {
-    @apply bg-stone-600;
+    @apply bg-stone-400 dark:bg-stone-600;
     @apply rounded-l-md
   }
 

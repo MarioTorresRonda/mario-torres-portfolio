@@ -17,8 +17,8 @@ export default function RootLayout({ children }) {
 
   return (
     <html lang="en">
-      <body className={`${inter.className} bg-stone-800`}>
-      <OnDocumentReady />
+      <body className={`${inter.className} bg-slate-200 dark:bg-stone-800`}>
+        <OnDocumentReady />
         <DinamicColors />
         <Providers>
           <LoadingBlock/>

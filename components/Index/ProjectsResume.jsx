@@ -26,13 +26,15 @@ export default function ProjectsResume() {
                         <Message code={["commons", "seeAll"]} />
                     </ClientLink>
                 </div>
-                <div className="max-w-[500px] self-center lg:w-1/2">
-                    <ClientImage
-                        className="w-auto"
-                        src={projectList[0].image}
-                        alt={["mainPage", "projects", "imageAlt"]}
-                    >
-                    </ClientImage>
+                <div className="flex lg:w-1/2 justify-center">
+                    <div className="max-w-[500px]">
+                        <ClientImage
+                            className="w-auto"
+                            src={projectList[0].image}
+                            alt={["mainPage", "projects", "imageAlt"]}
+                        >
+                        </ClientImage>
+                    </div>
                 </div>
             </div>
         </ContentBox>

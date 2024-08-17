@@ -9,7 +9,7 @@ export default function ClientLink( { newMenu, url, children }  ) {
 
   return (
     <button onClick={() => navigate( newMenu, url )}>
-      <p className="text-stone-400">
+      <p className="text-stone-500 dark:text-stone-400">
         {children}
       </p>
     </button>

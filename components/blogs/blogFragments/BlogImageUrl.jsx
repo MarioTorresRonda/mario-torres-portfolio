@@ -13,7 +13,7 @@ export default function BlogImageUrl( { title, desc, url, imageSrc } ) {
         </div>
         <div className="h-3 bg-stone-700/40 mx-3"></div>
         <BlogImageWIthHoverText height="h-52" imageSrc={imageSrc}>
-            <div className="mx-4 text-shadow shadow-black self-start mt-4">
+            <div className="mx-8 text-center text-shadow shadow-black">
                 {desc}
             </div>
         </BlogImageWIthHoverText>

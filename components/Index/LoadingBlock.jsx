@@ -37,11 +37,11 @@ export default function LoadingBlock() {
 
   return (
     <div className="overflow-hidden absolute top-0 left-0 bottom-0 right-0">
-      <div className="fixed z-20 top-0 left-0 bottom-0 right-0 h-[100vh] bg-stone-900 animate-opacityLoad fill-mode-forwards flex justify-center items-centers">
+      <div className="fixed z-20 top-0 left-0 bottom-0 right-0 h-[100vh] bg-stone-100 dark:bg-stone-900 animate-opacityLoad fill-mode-forwards flex justify-center items-centers">
         <div className="md:flex items-center">
           {totalTime != 2000 && (
             <>
-              <div className="animate-spin h-10 w-10 md:h-20 md:w-20 bg-slate-200 mx-auto md:mx-0"></div>
+              <div className="animate-spin h-10 w-10 md:h-20 md:w-20 bg-slate-600 dark:bg-slate-200 mx-auto md:mx-0"></div>
               <p className="text-sm md:ml-10 lg:text-base xl:text-xl text-balance mt-3 md:mt-0 ">
                 {randomText}...
               </p>
