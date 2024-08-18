@@ -19,7 +19,6 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={`${inter.className} bg-slate-200 dark:bg-stone-800`}>
         <OnDocumentReady />
-        <DinamicColors />
         <Providers>
           <LoadingBlock/>
           <NavBar />

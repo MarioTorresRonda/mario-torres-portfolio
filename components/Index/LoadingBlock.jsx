@@ -7,7 +7,7 @@ import Message from "../fragments/Message";
 import { LocalizationContext } from "@/store/location-context";
 
 
-const waitTime = 2000;
+const waitTime = 4000;
 
 function getRandomText(text) {
   return text[Math.floor(Math.random() * text.length)];
@@ -25,6 +25,7 @@ export default function LoadingBlock() {
   }
 
   useEffect(() => {
+
     const timer = setTimeout(() => {
         setRandomText( getRandomText(text) );
         setTotalTime(prevTotalTime => prevTotalTime + newTime);
@@ -36,10 +37,13 @@ export default function LoadingBlock() {
   }, [totalTime, newTime, text]);
 
   return (
+    <>
+    {totalTime < 4000 && (
+    
     <div className="overflow-hidden absolute top-0 left-0 bottom-0 right-0">
       <div className="fixed z-20 top-0 left-0 bottom-0 right-0 h-[100vh] bg-stone-100 dark:bg-stone-900 animate-opacityLoad fill-mode-forwards flex justify-center items-centers">
         <div className="md:flex items-center">
-          {totalTime != 2000 && (
+          {totalTime < 2000 && (
             <>
               <div className="animate-spin h-10 w-10 md:h-20 md:w-20 bg-slate-600 dark:bg-slate-200 mx-auto md:mx-0"></div>
               <p className="text-sm md:ml-10 lg:text-base xl:text-xl text-balance mt-3 md:mt-0 ">
@@ -47,7 +51,7 @@ export default function LoadingBlock() {
               </p>
             </>
           )}
-          {totalTime == 2000 && (
+          {totalTime >= 2000 && (
             <>
               <FontAwesomeIcon icon={faCheck} className="text-4xl" />
               <p className="text-sm md:ml-10 lg:text-base xl:text-xl text-balance mt-3 md:mt-0 ">
@@ -58,5 +62,7 @@ export default function LoadingBlock() {
         </div>
       </div>
     </div>
+    )}
+  </>
   );
 }

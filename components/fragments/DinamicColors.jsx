@@ -8,6 +8,7 @@ export default function DinamicColors() {
     const [time, setTime] = useState(0);
     const [ color1, setColor1 ] = useState( [255,0,0] );
     const [ color2, setColor2 ] = useState( [0,255,0] );
+
     updateBubbleColors( color1, color2, time );
 
     useEffect( () => {
@@ -24,19 +25,24 @@ export default function DinamicColors() {
 
     }, [time]) 
 
-    function print( param ) {
+    function changeColor( param ) {
         setTime( 0 );
-        setColor1(  [Math.trunc(Math.random() * 255), Math.trunc(Math.random() * 255), Math.trunc(Math.random() * 255)] )
-        setColor2(  [Math.trunc(Math.random() * 255), Math.trunc(Math.random() * 255), Math.trunc(Math.random() * 255)] )
-        console.log( param )
+        if ( param == 1 ) {
+            setColor1(  [Math.trunc(Math.random() * 255), Math.trunc(Math.random() * 255), Math.trunc(Math.random() * 255)] );
+        }else{
+            setColor2(  [Math.trunc(Math.random() * 255), Math.trunc(Math.random() * 255), Math.trunc(Math.random() * 255)] );
+        }
     }
-    //print(0);
 
     return (
-        <div>
-            <div onClick={() => print(3)} class="rotate-[135deg] absolute -top-[16px] left-[64px] z-30 w-0 h-0 border-[30px] border-solid border-transparent border-t-[--myColorStartSimple]">
+        <div className="w-10 h-10 mt-6 rounded-full rotate-[-45deg] bg-stone-600">
+            <div  className="rounded-t-full w-full h-1/2 bg-[--myColorStartSimple] hover:scale-125">
+                <button className="h-full w-full" onClick={() => changeColor(1)}>
+                </button>
             </div>
-            <div onClick={() => print(4)} class="rotate-[-45deg] absolute top-[26.3px] left-[106.3px] z-30 w-0 h-0 border-[30px] border-solid border-transparent border-t-[--myColorEndSimple]">
+            <div className="rounded-b-full w-full h-1/2 bg-[--myColorEndSimple] hover:scale-125">
+                <button className="h-full w-full" onClick={() => changeColor(2)}>
+                </button>
             </div>
         </div>
     )

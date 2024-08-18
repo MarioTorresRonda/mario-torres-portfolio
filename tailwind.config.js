@@ -28,7 +28,7 @@ module.exports = {
         opacityLoad: {
           '0%': { "z-index": 20 },
           '75%': { "z-index": 20, "transform": "translateY(0)"},
-          '100%': { "z-index": -10, "transform": "translateY(-100%)"},
+          '100%': { "z-index": 20, "transform": "translateY(-100%)"},
         },
         overflowLoad: {
           '0%': { "overflow": "hidden" },
