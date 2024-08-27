@@ -34,16 +34,20 @@ export default function BlogResumeItemImage() {
     }
 
     function OnClickImage() {
-      const newMenu = {...blog}
+      const newMenu = structuredClone(blog);
       newMenu.selectedPost = menu.blog;
       navigate( newMenu );
     }
 
     return (<div>
-        <div className={ ( !isShow ? "-translate-y-80" : "" ) + " transition-all flex justify-center max-w-[400px]" }  >
-            <ClientImage onClick={OnClickImage} height={250} className=" mt-3 mb-5 scale-100 hover:scale-110 transition-all w-auto" src={ menu.oldBlog.image } alt={["mainPage","blogs","imageAlt"]}/>
+        <div className="overflow-hidden max-w-[400px] ">
+          <div className={ ( !isShow ? "-translate-y-80" : "" ) + " transition-all flex justify-center" }  >
+              <ClientImage onClick={OnClickImage} height={250} className=" mt-3 mb-5 scale-100 hover:scale-110 transition-all w-auto" src={ menu.oldBlog.image } alt={["mainPage","blogs","imageAlt"]}/>
+          </div>
         </div>
+        <div className="text-center">
         <p> <Message code={ ["mainPage", "blogs", "from"] } />: {  new Date( menu.oldBlog.date ).toLocaleDateString(dateFormat)  } </p>
+        </div>
     </div>
     )
 }

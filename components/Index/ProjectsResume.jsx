@@ -9,7 +9,7 @@ import { projects } from "@/data/navBar";
 export default function ProjectsResume() {
     return <>
         <ContentBox height={"auto"} className="mb-10">
-            <div className="mx-6 flex flex-col lg:flex-row w-full">
+            <div className="px-6 flex flex-col lg:flex-row w-full">
                 <div className="lg:w-1/2">
                     <p className="text-[30px] text-center"> <Message code={ ["mainPage", "projects", "mainTitle"] } /> </p>
                     <div>
@@ -26,7 +26,7 @@ export default function ProjectsResume() {
                         <Message code={["commons", "seeAll"]} />
                     </ClientLink>
                 </div>
-                <div className="flex lg:w-1/2 justify-center">
+                <div className="lg:w-1/2 flex items-center justify-center">
                     <div className="max-w-[500px]">
                         <ClientImage
                             className="w-auto"

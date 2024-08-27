@@ -31,8 +31,8 @@ export default function Blog() {
 
     const completeBlog = ( 
         <div className="flex flex-col gap-2">
-            <BlogBackgroundImage className="relative h-60" imageSrc={headerImg} imageClass="absolute items-center h-56 overflow-hidden foto-difuminada" imageAlt={["Blog", "image"]}>
-                <div className="px-20 text-shadow-sm h-full w-full shadow-black flex flex-col items-center justify-center">
+            <BlogBackgroundImage className="h-60" imageSrc={headerImg} imageClass="absolute items-center h-56 overflow-hidden foto-difuminada" imageAlt={["Blog", "image"]}>
+                <div className="md:px-20 text-shadow-sm h-full w-full shadow-black flex flex-col items-center justify-center">
                     <BlogTitle blogRef={blogInfoRef} text={useMessageText( ["Blog", "title"] )} ></BlogTitle> 
                     <BlogSubtitle text={useMessageText( ["Blog", "subtitle"] )} ></BlogSubtitle> 
                 </div>

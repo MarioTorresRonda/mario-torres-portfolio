@@ -16,7 +16,7 @@ export default function BlogResumeItem( {blog} ) {
     }
 
     function onDblClickPost() {
-        const newMenu = {...newBlogMenu}
+        const newMenu = structuredClone(newBlogMenu);
         newMenu.selectedPost = blog;
         navigate( newMenu );
     }

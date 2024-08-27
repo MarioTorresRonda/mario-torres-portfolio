@@ -8,7 +8,7 @@ export function useNavigate( MenuContext ) {
     const { setMenu } = useContext( MenuContext );
 
     function navigate( newMenu ) {
-        setMenu(newMenu);
+        setMenu( {...newMenu} );
         router.push(newMenu.url)
     }
 

@@ -30,7 +30,7 @@ export default function BlogResumeList() {
             <div className="w-1/12 flex justify-center hover:scale-110">
                 { menu.page > 0 &&
                 <ColoredButton onClick={() => { lastPage() }} >
-                    <p className="text-slate-200 dark:text-stone-800 text-[90px] text-center -left-7 top-[-42px] absolute select-none">
+                    <p className="text-slate-200 dark:text-stone-800 text-[90px] -mt-[42px] -ml-[18px] select-none">
                         {'<'}
                     </p>
                 </ColoredButton>
@@ -48,7 +48,7 @@ export default function BlogResumeList() {
             <div className="w-1/12 flex justify-center hover:scale-110 ">
                 { ( blogList.length / 3 > menu.page+1) &&
                 <ColoredButton onClick={() => { nextPage() }}>
-                    <p className="text-slate-200 dark:text-stone-800 text-[90px] text-center -right-7 top-[-42px] absolute select-none">
+                    <p className="text-slate-200 dark:text-stone-800 text-[90px] -mt-[42px] -ml-[24px]  select-none">
                         {'>'}
                     </p>
                 </ColoredButton>

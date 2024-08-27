@@ -9,7 +9,7 @@ import BlogsResume from "@/components/Index/BlogsResume";
 
 export default function Home() {
   return (
-    <main>
+    <main className="overflow-hidden">
       <Header className="flex flex-col lg:flex-row h-full">
         <Localization/>
         <Hero />
