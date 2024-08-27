@@ -38,12 +38,12 @@ export default function BlogOptions() {
         };
     }, []);
 
-    let position = "md:fixed ";
-    position += scrollPosition <= 103 ? "static " : "fixed w-[95vw] top-0 z-30";
+    let position = " ";
+    position += scrollPosition <= 103 ? "static " : "fixed w-[95vw] md: top-0 z-30 md:md:w-1/6";
 
     return (
         <div className={`flex w-full flex-col md:w-1/4 p-2`}>
-                <div className={`flex flex-col ${position} md:w-1/4 xl:w-1/6`} >
+                <div className={`flex flex-col ${position}  `} >
                     <button onClick={onHandleBackClick} className="bg-stone-600 hover:bg-stone-500 px-2 md:px-6 h-10 text-nowrap rounded-md flex items-center"> 
                         <FontAwesomeIcon 
                             icon={icon1} 
