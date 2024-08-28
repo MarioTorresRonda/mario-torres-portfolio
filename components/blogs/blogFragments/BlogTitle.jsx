@@ -7,6 +7,6 @@ export default function BlogTitle( { blogRef, text} ) {
     blogInfoRef.navBar[uuid] = { element : <BlogNavBarItem level={0}> {text} </BlogNavBarItem> };
 
     return(
-        <p className="text-5xl mb-6"> {text} </p>
+        <p className="text-2xl md:text-5xl mb-6 text-center"> {text} </p>
     )
 }

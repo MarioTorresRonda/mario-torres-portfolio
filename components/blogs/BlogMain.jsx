@@ -39,7 +39,7 @@ export default function BlogMain() {
         <ContentBox>
             <div className="flex flex-col md:flex-row w-full">
                 <BlogOptions />
-                <div className="px-4 md:flex-auto md:w-3/4">
+                <div className="px-4 md:flex-auto md:w-3/4 pt-2 md:pt-0">
                     <Suspense fallback={<div>Loading...</div>}>
                         { Blog && <Blog /> }
                     </Suspense>
