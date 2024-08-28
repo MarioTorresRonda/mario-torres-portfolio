@@ -70,31 +70,6 @@ export default function BlogOptions() {
         };
     }, [ JSON.stringify( boxProps ), showValue ] )
 
-<<<<<<< Updated upstream
-    let position = "md:fixed ";
-    position += scrollPosition <= 103 ? "static " : "fixed w-[95vw] top-0 z-30";
-
-    return (
-        <div className={`flex w-full flex-col md:w-1/4 p-2`}>
-                <div className={`flex flex-col ${position} md:w-1/4 xl:w-1/6`} >
-                    <button onClick={onHandleBackClick} className="bg-stone-600 hover:bg-stone-500 px-2 md:px-6 h-10 text-nowrap rounded-md flex items-center"> 
-                        <FontAwesomeIcon 
-                            icon={icon1} 
-                            className={`w-[20px] h-[20px] transition-transform ease-in-out hover:scale-[1.2]`} 
-                        /> 
-                        <div className="hidden md:block"> <Message code={ ["mainPage", "blogs", "back" ] } /> </div>
-                    </button>
-                    <div className={`bg-stone-800  mx-2 overflow-y-scroll transition-all ${ extended ? "max-h-[75vh]" :  "max-h-[15vh]  md:max-h-[40vh]" } `}>
-                        <BlogNavBar navBarItems={menu.selectedPost.navBar} />
-                    </div>
-                    <button onClick={onHandleExtendClick} className="bg-stone-600 hover:bg-stone-500 px-2 md:px-6 h-10 text-nowrap rounded-md flex items-center"> 
-                        <FontAwesomeIcon 
-                            icon={icon2} 
-                            className={`w-[20px] h-[20px] transition-transform ease-in-out hover:scale-[1.2] ` + ( extended && "rotate-180" ) } 
-                        /> 
-                        
-                    </button>
-=======
 
     return (
         <div className={`flex w-full flex-col md:w-1/4 p-2 z-30`} style={{height: `${boxProps.boxHeight}px`}}>
@@ -108,7 +83,6 @@ export default function BlogOptions() {
                 </button>
                 <div className={`bg-stone-800  mx-2 overflow-y-scroll transition ${ boxProps.extended ? "max-h-[75vh]" :  "max-h-[15vh]  md:max-h-[40vh]" } `}>
                     <BlogNavBar navBarItems={menu.selectedPost.navBar} />
->>>>>>> Stashed changes
                 </div>
                 <button onClick={onHandleExtendClick} className="bg-stone-600 hover:bg-stone-500 px-2 md:px-6 h-10 text-nowrap rounded-md flex items-center"> 
                     <FontAwesomeIcon 
