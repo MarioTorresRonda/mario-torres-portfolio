@@ -10,34 +10,6 @@ export default function BlogNavBar( { navBarItems, className,  ...props } ) {
                 const value = navBarItems[key].element;
                 return ( <li key={key} > { value } </li> );
             } ) }
-            { navBarItems && Object.keys( navBarItems ).map( (key) => {
-                const value = navBarItems[key].element;
-                return ( <li key={key} > { value } </li> );
-            } ) }
-            { navBarItems && Object.keys( navBarItems ).map( (key) => {
-                const value = navBarItems[key].element;
-                return ( <li key={key} > { value } </li> );
-            } ) }
-            { navBarItems && Object.keys( navBarItems ).map( (key) => {
-                const value = navBarItems[key].element;
-                return ( <li key={key} > { value } </li> );
-            } ) }
-            { navBarItems && Object.keys( navBarItems ).map( (key) => {
-                const value = navBarItems[key].element;
-                return ( <li key={key} > { value } </li> );
-            } ) }
-            { navBarItems && Object.keys( navBarItems ).map( (key) => {
-                const value = navBarItems[key].element;
-                return ( <li key={key} > { value } </li> );
-            } ) }
-            { navBarItems && Object.keys( navBarItems ).map( (key) => {
-                const value = navBarItems[key].element;
-                return ( <li key={key} > { value } </li> );
-            } ) }
-            { navBarItems && Object.keys( navBarItems ).map( (key) => {
-                const value = navBarItems[key].element;
-                return ( <li key={key} > { value } </li> );
-            } ) }
         </ul>
     </div> 
     )

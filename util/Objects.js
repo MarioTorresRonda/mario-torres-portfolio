@@ -22,3 +22,7 @@ export default function merge (  ) {
 
    return dst;
 }
+
+export function isEmpty( obj ) {
+    return ( obj == null || Object.keys( obj ).length == 0 );
+}
