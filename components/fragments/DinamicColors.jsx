@@ -16,9 +16,9 @@ export default function DinamicColors() {
             if ( time >= 359 ) {
                 setTime( 0 );
             }else{
-                setTime( prevtime => prevtime + 1 );
+                setTime( prevtime => prevtime + 2 );
             }
-        }, 500);
+        }, 1000);
         return () => {
             clearTimeout( timer );
         }
@@ -35,14 +35,16 @@ export default function DinamicColors() {
     }
 
     return (
-        <div className="w-10 h-10 mt-6 rounded-full rotate-[-45deg] bg-stone-600">
-            <div  className="rounded-t-full w-full h-1/2 bg-[--myColorStartSimple] hover:scale-125">
-                <button className="h-full w-full" onClick={() => changeColor(1)}>
-                </button>
-            </div>
-            <div className="rounded-b-full w-full h-1/2 bg-[--myColorEndSimple] hover:scale-125">
-                <button className="h-full w-full" onClick={() => changeColor(2)}>
-                </button>
+        <div className="w-10 h-10 rounded-full bg-stone-600">
+            <div className="w-10 h-10 rotate-[-45deg] ">
+                <div  className="rounded-t-full w-full h-1/2 bg-[--myColorStartSimple] hover:scale-125">
+                    <button className="h-full w-full" onClick={() => changeColor(1)}>
+                    </button>
+                </div>
+                <div className="rounded-b-full w-full h-1/2 bg-[--myColorEndSimple] hover:scale-125">
+                    <button className="h-full w-full" onClick={() => changeColor(2)}>
+                    </button>
+                </div>
             </div>
         </div>
     )

@@ -9,6 +9,7 @@ import { useContext, useEffect, useRef, useState } from "react";
 import { isEmpty } from "@/util/Objects";
 import BlogExtendButton from "./BlogExtendButton";
 import useWindowSize from "@/hooks/useWindowSize";
+import BlogBackButton from "./BlogBackButton";
 
 export default function BlogOptions() {
 
@@ -26,13 +27,6 @@ export default function BlogOptions() {
     })
 
     const [oldWindow, setOldWindow] = useState([0,0]);
-
-    console.log( "render" );
-
-    function onHandleBackClick() {
-        menu.selectedPost = null;
-        setMenu( menu );
-    }
 
     function onHandleExtendClick() {
         const boxPropsNew = {...boxProps};
@@ -95,14 +89,8 @@ export default function BlogOptions() {
     return (
         <div className={`flex w-full flex-col md:w-1/4 p-2 z-30`} style={{height: `${boxProps.boxHeight}px`}}>
             <div className={`flex flex-col ${boxProps.position} `} ref={boxFixed}>
-                <button onClick={onHandleBackClick} className="bg-stone-600 hover:bg-stone-500 px-2 md:px-6 h-10 text-nowrap rounded-md flex items-center"> 
-                    <FontAwesomeIcon 
-                        icon={icon1} 
-                        className={`w-[20px] h-[20px] transition ease-in-out hover:scale-[1.2]`} 
-                    /> 
-                    <div className="hidden md:block"> <Message code={ ["mainPage", "blogs", "back" ] } /> </div>
-                </button>
-                <div className={`bg-stone-800  mx-2 overflow-y-scroll transition ${ boxProps.extended ? "max-h-[75vh]" :  "max-h-[15vh]  md:max-h-[40vh]" } `} ref={overflowBox}>
+                <BlogBackButton />
+                <div className={`bg-slate-200 dark:bg-stone-800  mx-2 overflow-y-scroll transition ${ boxProps.extended ? "max-h-[75vh]" :  "max-h-[15vh]  md:max-h-[40vh]" } `} ref={overflowBox}>
                     <BlogNavBar navBarItems={menu.selectedPost.navBar} />
                 </div>
                 <BlogExtendButton boxProps={boxProps} onHandleExtendClick={onHandleExtendClick} isExtended={boxProps.isExtended } overflowBox={overflowBox}/>

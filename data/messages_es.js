@@ -13,7 +13,7 @@ let messages = {
             imageAlt : "Vista previa del proyecto"
         },
         blogs: {
-            mainTitle: "Mis publicaciones",
+            mainTitle: "Publicaciones",
             mainDesc: "Lista de todos las publicaciones, actualizaciones y notas de proyecto que he desarrollado.",
             new: "¡Nuevo!",
             ago: "hace {1}",
