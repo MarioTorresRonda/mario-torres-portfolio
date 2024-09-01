@@ -22,14 +22,36 @@ let messages = {
             title: "Ideas.",
             desc:  "Aquí tengo un conjunto de ideas de las cuales me he inspirado:",
             idea1: "Sean Halpin",
-            idea1Desc: "I like the notes menu he have, is simple, but direct and really pretty,",
+            idea1Desc: "Me gusta el menú de notas que tiene, es sencillo, pero directo y bastante limpio.",
             idea2: "Medium.com",
-            idea2Desc: "Medium blogs are a statement, a lot of infographics, with images, code, text, make this really easy to read,",
+            idea2Desc: "Todo el mundo ha visto alguna vez un blog en Medium, con mucha infografía, con imágenes, código y texto, haciendo todo muy sencillo de leer.",
             idea3: "upstatement.com",
-            idea3Desc: "I always wanted a Code systax highlight in my portfolio as upstatements have,",
+            idea3Desc: "Siempre he querido subrayar la sintaxis del código en mi portafolio, parecido a cómo lo hace upstatements.",
             idea4: "Brittany Chiang",
-            idea4Desc: "My first inspiration to do a portfolio was this girl, I really like her work.",
+            idea4Desc: "Mi primera inspiración para hacer un portafolio fue esta chica, me gusta mucho su trabajo.",
         },
+        "chapter 5": {
+            title: "Diseño.",
+            desc: "Se dividirá en tres fragmentos diferentes:",
+            fragment1: {
+                title: "Fragmento de la barra de navegación.",
+                desc: "El fragmento se ubicará después de la barra de navegación del proyecto.",
+                desc2: "Cuando hagamos clic en la barra de navegación, seremos redirigidos a la URL /blogs, como en las otras barras de navegación."
+            },
+            fragment2: {
+                title: "Fragmento de la página principal.",
+                desc: "Estará compuesto por dos bloques:",
+                part1: {
+                    title: "Bloque de imagen.",
+                    desc: "Mostrará una imagen del blog que se seleccione en el segundo bloque, también contendrá la fecha en la que se subió el blog, y la imagen contendrá un enlace al blog.",
+                },
+                part2: {
+                    title: "Bloque de lista.",
+                    desc: "Será un marco, con primero, dos botones a los lados para navegar entre los blogs, y en el centro, la lista que contiene tres blogs.",
+                    desc2: "Si se hace clic en una de las filas, la imagen, la fecha y el enlace en el primer bloque cambiarán, y con doble clic, se navegará directamente al blog."
+                }
+            }
+        }
     }
 }
 

@@ -10,8 +10,8 @@ let messages = {
             desc:  "I usually develop things but never finish them, algo I never maintain, making me loss that knowledge. So I want to explain in a blog: ",
             list: [
                 "How do I develop my ideas.",
-                "How do i start building.",
-                "If i finish them, how did i finish them.", 
+                "How do I start building.",
+                "If I finish them, how did I finish them.", 
             ]
         },
         "chapter 3": {
@@ -22,13 +22,35 @@ let messages = {
             title: "Ideas.",
             desc:  "Here is a bunch of ideas that had inspire me:",
             idea1: "Sean Halpin",
-            idea1Desc: "I like the notes menu he have, is simple, but direct and really pretty,",
+            idea1Desc: "I like the notes menu he have, is simple, but direct and really pretty.",
             idea2: "Medium.com",
-            idea2Desc: "Medium blogs are a statement, a lot of infographics, with images, code, text, make this really easy to read,",
+            idea2Desc: "Medium blogs are a statement, a lot of infographics, with images, code, text, make everything really easy to read.",
             idea3: "upstatement.com",
-            idea3Desc: "I always wanted a Code systax highlight in my portfolio as upstatements have,",
+            idea3Desc: "I always wanted a Code systax highlight in my portfolio as upstatements have.",
             idea4: "Brittany Chiang",
             idea4Desc: "My first inspiration to do a portfolio was this girl, I really like her work.",
+        },
+        "chapter 5": {
+            title: "Design.",
+            desc:  "It's going to be divided in three different fragments:",
+            fragment1: {
+                title: "Navbar fragment.",
+                desc:  "the fragment will be located after Project nav",
+                desc2: "When we click on the nav, we will be redirect to the url /blogs, like the others navs "
+            },
+            fragment2: {
+                title: "Mainpage fragment.",
+                desc:  "it's gonna be made of two blocks:",
+                part1: {
+                    title: "Image Block.",
+                    desc:  "It will show an Image of the blog that is selected in the second block, also containing the date the blog was upload, the image will contain a link to the blog.",
+                },
+                part2: {
+                    title: "List Block.",
+                    desc:  "It will be a frame, with first, two buttons on the sides to navigate between the blogs, and in the middle, the list containing three blogs.",
+                    desc2: "It one of the row is clicked, the image, date and link in the first block will change, and with double click, will directly navigate to the blog.  ."
+                }
+            }
         },
     }
 }

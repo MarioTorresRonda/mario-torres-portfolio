@@ -11,7 +11,7 @@ export default function BlogImageWIthHoverText({className, height, imageSrc, chi
 			imageSrc={imageSrc}
             clientImagClass="max-w-none"
 		>
-			<button className="h-full *:translate-y-[-100%] *:hover:translate-y-0 *:focus:translate-y-0 text-white">
+			<button className="h-full *:translate-y-[-100%] *:hover:translate-y-0 *:focus:translate-y-0 text-white w-full">
 				<div className="text-md flex justify-center items-center h-full bg-black/[.6] transition-all duration-75">
 					{children}
 				</div>

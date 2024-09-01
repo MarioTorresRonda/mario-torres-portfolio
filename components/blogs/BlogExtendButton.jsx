@@ -20,17 +20,16 @@ export default function BlogExtendButton({boxProps, onHandleExtendClick, isExten
 		}
 	}, [menu.selectedPost.navBar, boxProps.boxHeight, boxProps.extended, boxProps.boxTopHeight, windowSize]);
 
-	const buttonClasses = "bg-slate-400 dark:hover:bg-slate-500 dark:bg-stone-600 dark:hover:bg-stone-500 px-2 md:px-6 h-10 rounded-md"
-
+	const buttonClasses = "bg-slate-400 dark:bg-stone-600 px-2 md:px-6 h-10 rounded-md"
 	if (!show) {
-		return <button className={buttonClasses}> </button>;
+		return <div className={buttonClasses}> </div>;
 	}
 
 
 	return (
 		<button
 			onClick={onHandleExtendClick}
-			className={`${buttonClasses} text-nowrap flex items-center`}
+			className={`${buttonClasses} hover:bg-slate-500 dark:hover:bg-stone-500 text-nowrap flex items-center`}
 		>
 			<FontAwesomeIcon
 				icon={icon}

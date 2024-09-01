@@ -11,13 +11,16 @@ import {useContext, useEffect, useRef} from "react";
 import {useMessageText} from "@/hooks/useMessageText";
 import BlogBackgroundImage from "@/components/blogs/blogFragments/BlogBackgroundImage";
 import BlogSplit2 from "@/components/blogs/blogFragments/BlogSplit2";
+import BlogImageWIthHoverText from "@/components/blogs/blogFragments/BlogImageWIthHoverText";
+import BlogImageUrl from "@/components/blogs/blogFragments/BlogImageUrl";
 
 import headerImg from "@/public/Blog Preview.png";
 import Idea1Img from "@/public/Notes.png";
 import Idea2Img from "@/public/Medium.png";
 import Idea3Img from "@/public/Idea3CodeText.png";
 import Idea4Img from "@/public/Idea4brittanychiang.png";
-import BlogImageUrl from "@/components/blogs/blogFragments/BlogImageUrl";
+import Navbar_Fragment1 from "@/public/Navbar_Fragment1.png"; 
+import ClientImage from "@/components/fragments/ClientImage";
 
 export default function Blog() {
 	const {setMenu, menu} = useContext(MenuContext);
@@ -87,6 +90,23 @@ export default function Blog() {
 					/>
 				</BlogSplit2>
 			</BlogChapter>
+			<BlogChapter blogRef={blogInfoRef} level={1} text={useMessageText(["Blog", "chapter 5", "title"])}>
+				<BlogParagraph>
+					<Message code={["Blog", "chapter 5", "desc"]}></Message>
+				</BlogParagraph>
+				<BlogChapter blogRef={blogInfoRef} level={2} text={useMessageText(["Blog", "chapter 5", "fragment1", "title"])}>
+					<BlogParagraph>
+						<Message code={["Blog", "chapter 5", "fragment1", "desc"]}></Message>
+					</BlogParagraph>
+					<ClientImage className="shadow shadow-black mb-2" src={Navbar_Fragment1} alt={[]}>
+
+					</ClientImage>
+					<BlogParagraph>
+						<Message code={["Blog", "chapter 5", "fragment1", "desc2"]}></Message>
+					</BlogParagraph>
+				</BlogChapter>
+			</BlogChapter>
+
 		</div>
 	);
 

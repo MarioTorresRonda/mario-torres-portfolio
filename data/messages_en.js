@@ -3,7 +3,7 @@ let messages = {
     mainPage: { 
         mainTitle: "Welcome.",
         mainDescription1: `I'm Mario and i'm a FullStack engineer, I had develop multiple application in various engines and frameworks, I also have knowledge on differents programming languages`,
-        mainDescription2: 'I love to be updated with the new technologies, and i prove it learning new ways, methods and stacks to always develop profesional projects',
+        mainDescription2: 'I love to be updated with the new technologies, and I prove it learning new ways, methods and stacks to always develop profesional projects',
         projects: {
             mainTitle: "Projects",
             mainDesc: "Most detailed list of my favorite projects",
@@ -15,7 +15,7 @@ let messages = {
         },
         blogs: {
             mainTitle: "My Posts",
-            mainDesc: "List of all the post, updates and project notes i had develop.",
+            mainDesc: "List of all the post, updates and project notes I had develop.",
             new: "New!",
             ago: "{1} ago",
             months: ["month", "months"],
