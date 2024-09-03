@@ -71,21 +71,25 @@ export default function Blog() {
 					<BlogImageUrl
 						title={useMessageText(["Blog", "chapter 4", "idea1"])}
 						desc={useMessageText(["Blog", "chapter 4", "idea1Desc"])}
+						url="https://www.seanhalpin.xyz/notes"
 						imageSrc={Idea1Img}
 					/>
 					<BlogImageUrl
 						title={useMessageText(["Blog", "chapter 4", "idea2"])}
 						desc={useMessageText(["Blog", "chapter 4", "idea2Desc"])}
+						url="https://medium.com/@danielkorpai/design-report-may-2019-449443e87cb3"
 						imageSrc={Idea2Img}
 					/>
 					<BlogImageUrl
 						title={useMessageText(["Blog", "chapter 4", "idea3"])}
 						desc={useMessageText(["Blog", "chapter 4", "idea3Desc"])}
+						url="https://upstatement.com/blog/integrating-algolia-search-with-wordpress-multisite/"
 						imageSrc={Idea3Img}
 					/>
 					<BlogImageUrl
 						title={useMessageText(["Blog", "chapter 4", "idea4"])}
 						desc={useMessageText(["Blog", "chapter 4", "idea4Desc"])}
+						url="https://brittanychiang.com/?ref=hackernoon.com#projects"
 						imageSrc={Idea4Img}
 					/>
 				</BlogSplit2>
@@ -99,7 +103,6 @@ export default function Blog() {
 						<Message code={["Blog", "chapter 5", "fragment1", "desc"]}></Message>
 					</BlogParagraph>
 					<ClientImage className="shadow shadow-black mb-2" src={Navbar_Fragment1} alt={[]}>
-
 					</ClientImage>
 					<BlogParagraph>
 						<Message code={["Blog", "chapter 5", "fragment1", "desc2"]}></Message>

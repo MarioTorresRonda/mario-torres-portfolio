@@ -49,7 +49,14 @@ let messages = {
         ok: 'Ok',
         cancel: 'Cancelar',
         seeAll: 'Ver todos...',
-        dateFormat: 'es-es'
+        dateFormat: 'es-es',
+        riskyUrl: {
+            title: "Ten cuidado",
+            desc: "Vas a navegar fuera de mi portfolio, hacia otro dominio. Siempre intento tener cuidado de las URL que publico, pero a veces los dominios cambian de dueño. No confies en nadie.",
+            to: "Vas a navegar a la URL: ",
+            back: "Quedarse",
+            accept: "Entendido."
+        }
     }
 }
 export default messages;
