@@ -27,9 +27,10 @@ export default function BlogMain() {
         if ( menu.selectedPost ) {
             menu.selectedPost.navBar = null;
             setMenu( menu );
+
+            
         }
     }, [menu.selectedPost])
-    
 
     if ( !menu.selectedPost ) {
         return <div></div>

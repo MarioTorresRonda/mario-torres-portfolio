@@ -40,7 +40,7 @@ let messages = {
             },
             fragment2: {
                 title: "Mainpage fragment.",
-                desc:  "it's gonna be made of two blocks:",
+                desc:  "It will be found after the list of projects in the main page. It's gonna be made of two blocks:",
                 part1: {
                     title: "Image Block.",
                     desc:  "It will show an Image of the blog that is selected in the second block, also containing the date the blog was upload, the image will contain a link to the blog.",

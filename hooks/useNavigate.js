@@ -12,9 +12,5 @@ export function useNavigate( MenuContext ) {
         router.push(newMenu.url)
     }
 
-
-
     return { navigate };
-
-
 }

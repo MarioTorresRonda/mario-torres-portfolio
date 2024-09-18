@@ -115,6 +115,24 @@
   }
 }
 
+.clip-highlight-l{
+    clip-path: inset(0px 48px 0px 48px);
+    left: -48px;
+}
+
+.clip-highlight-r{
+  clip-path: inset(0px 48px 0px 48px);
+  right: -48px;
+}
+
+.transparent-gradient{
+  mask-image: linear-gradient(rgba(255, 255, 255, 1) 80%, transparent 100%);
+}
+
+.dark .transparent-gradient{
+    mask-image: linear-gradient(rgba(255, 255, 255, 1) 30%, transparent 95%);
+}
+
 @keyframes backdrop-fade-in {
   0% {
     opacity: 0;
@@ -132,24 +150,6 @@ dialog::backdrop {
 
 dialog[open]::backdrop {
   animation: backdrop-fade-in 0.7s ease-out forwards;
-}
-
-.clip-highlight-l{
-    clip-path: inset(0px 48px 0px 48px);
-    left: -48px;
-}
-
-.clip-highlight-r{
-  clip-path: inset(0px 48px 0px 48px);
-  right: -48px;
-}
-
-.transparent-gradient{
-  mask-image: linear-gradient(rgba(255, 255, 255, 1) 80%, transparent 100%);
-}
-
-.dark .transparent-gradient{
-    mask-image: linear-gradient(rgba(255, 255, 255, 1) 30%, transparent 95%);
 }
 
 

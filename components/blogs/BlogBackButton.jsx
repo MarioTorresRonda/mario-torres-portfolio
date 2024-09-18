@@ -5,13 +5,16 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretLeft as icon } from "@fortawesome/free-solid-svg-icons"
 import { MenuContext } from "@/store/menu-context";
 import { useContext } from "react";
+import useUtilsSearchParam from "@/hooks/useUtilsSearchParam";
 
 export default function BlogBackButton() {
     
     const { setMenu, menu } = useContext( MenuContext );
+	const { removeAllQuery } = useUtilsSearchParam();
 
     function onHandleBackClick() {
         menu.selectedPost = null;
+        removeAllQuery();
         setMenu( {...menu} );
     }
 
