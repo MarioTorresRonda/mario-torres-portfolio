@@ -3,9 +3,6 @@ import BlogsList from "@/components/blogs/BlogsList";
 
 export default function page(){
     return (
-        <div>
-            <BlogMain />
-            <BlogsList />
-        </div>
+        <BlogsList />
     )
 }

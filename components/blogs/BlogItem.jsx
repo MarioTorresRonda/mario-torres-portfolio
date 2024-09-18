@@ -5,10 +5,12 @@ import ClientImage from "../fragments/ClientImage";
 import Message from "../fragments/Message";
 import { MenuContext } from "@/store/menu-context";
 import { useMessageText } from "@/hooks/useMessageText";
+import { useNavigate } from "@/hooks/useNavigate";
+
+import {blog as blogMenu} from "@/data/navBar"
 
 export default function BlogItem( {blog} ) {
-
-    const { menu, setMenu } = useContext( MenuContext );
+    const { navigate } = useNavigate( MenuContext );
     
     let ago = "";
 
@@ -25,8 +27,7 @@ export default function BlogItem( {blog} ) {
     }
 
     function onHandleClick() {
-        menu.selectedPost = blog;
-        setMenu( menu );
+        navigate(blogMenu, blog.id); 
     }
 
     return (

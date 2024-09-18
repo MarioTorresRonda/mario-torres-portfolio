@@ -6,35 +6,29 @@ import ContentBox from "../Index/ContentBox";
 import { LocalizationContext } from "@/store/location-context";
 import BlogOptions from "./BlogOptions";
 
-function loadBlog( menu, setBlogLocalization ) {
+function loadBlog( blogId, setBlogLocalization ) {
 
     return lazy( asyncLoad );
 
     async function asyncLoad() {
-        await setBlogLocalization( menu.selectedPost.id );
-        return await import( "../../data/blogs/"+menu.selectedPost.id+"/Blog" );
+        await setBlogLocalization( blogId );
+        return await import( "../../data/blogs/"+blogId+"/Blog" );
     }
 }
 
-export default function BlogMain() {
+export default function BlogMain( {blogId} ) {
 
-    const { setMenu, menu } = useContext( MenuContext );
     const { setBlogLocalization } = useContext( LocalizationContext );
     const [ Blog, setBlog ] = useState( null )
-
+    const { menu } = useContext( MenuContext );
+    
     useEffect(() => {
-        setBlog( loadBlog( menu, setBlogLocalization ) );
-        if ( menu.selectedPost ) {
-            menu.selectedPost.navBar = null;
-            setMenu( menu );
-
-            
-        }
-    }, [menu.selectedPost])
+        setBlog( loadBlog( blogId, setBlogLocalization ) );
+    }, [])
 
     if ( !menu.selectedPost ) {
         return <div></div>
-    }   
+    }
 
     return ( 
         <ContentBox>

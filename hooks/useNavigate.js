@@ -4,12 +4,14 @@ import { useContext } from "react";
 
 export function useNavigate( MenuContext ) {
 
+    
     const router = useRouter();
     const { setMenu } = useContext( MenuContext );
-
-    function navigate( newMenu ) {
+    
+    function navigate( newMenu, extraRoute ) {
+        extraRoute = extraRoute ? extraRoute : "";
         setMenu( {...newMenu} );
-        router.push(newMenu.url)
+        router.push(newMenu.url +"/"+ extraRoute );
     }
 
     return { navigate };
