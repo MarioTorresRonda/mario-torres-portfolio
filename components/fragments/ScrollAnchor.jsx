@@ -1,30 +1,31 @@
-import useHash from "@/hooks/useHash";
-import { useCallback, useEffect, useRef } from "react";
+import useUtilsSearchParam from "@/hooks/useUtilsSearchParam";
+import { MenuContext } from "@/store/menu-context";
+import { useSearchParams } from "next/navigation";
+import { useContext, useEffect, useState } from "react";
 
 
 export default function ScrollAnchor( {anchor, children} ) {
 
-    const ref = useRef();
-    const hash = useHash();
+    const { getQuery } = useUtilsSearchParam()
+    const queryValue = getQuery( "chapter" );
+    const [hightlight, setHightlight] = useState(false)
+    const {menu} = useContext(MenuContext);
+    
+    const classes = `transition-all duration-500 ${ hightlight ? "animate-hightlight" : "" } `;
 
-    const handleHashChange = useCallback(() => {
-        if (hash.substring(1) === anchor && ref.current) {
-            // Smoothly scroll to the div
-            ref.current.scrollIntoView({ behavior: 'smooth' });
+    useEffect(() =>  {
+        if ( queryValue == anchor ) {
+            setHightlight( queryValue == anchor )
+            const timeout = setTimeout(() => {
+                setHightlight( false );
+            }, 500);
+            
+            return () => {
+                setHightlight( false );
+                clearTimeout( timeout );
+            }
         }
-    }, [anchor, hash, ref]);
+    }, [queryValue, menu.selectedPost.scroll]);
 
-    useEffect(() => {
-        // Initial check
-        handleHashChange();
-        // Listen for hash changes
-        window.addEventListener('hashchange', handleHashChange);
-        return () => {
-            // Cleanup
-            window.removeEventListener('hashchange', handleHashChange);
-        };
-    }, [handleHashChange]);
-
-
-    return <div ref={ref} id={anchor} key={anchor}> {children} </div>
+    return <div className={classes} id={anchor} key={anchor}> {children} </div>
 }

@@ -3,6 +3,7 @@ import { useSearchParams } from "next/navigation";
 import { useContext, useEffect } from "react";
 
 export default function BlogRef( {blogInfoRef, children} ) {
+
     const {setMenu, menu} = useContext(MenuContext);
 	const searchParams = useSearchParams();
 
@@ -20,10 +21,16 @@ export default function BlogRef( {blogInfoRef, children} ) {
 
 	useEffect(() => {
 		try{
-
 			document.getElementById(searchParams.get("chapter")).scrollIntoView();
+			if ( menu.selectedPost.scroll ) {
+				const newSelectedPost = {...menu.selectedPost}
+				newSelectedPost.scroll = false;
+				const newMenu = {...menu}
+				newMenu.selectedPost = newSelectedPost;
+				setMenu( newMenu )
+			}
 		}catch(e) {}
-	}, [searchParams]);
+	}, [searchParams, menu.selectedPost.scroll]);
 
 	return completeBlog; 
 }

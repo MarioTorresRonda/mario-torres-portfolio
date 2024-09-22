@@ -1,4 +1,6 @@
 import useUtilsSearchParam from "@/hooks/useUtilsSearchParam";
+import { MenuContext } from "@/store/menu-context";
+import { useContext } from "react";
 
 const levels = {
 	1: "pl-0",
@@ -10,13 +12,20 @@ const levels = {
 
 export default function BlogNavBarItem( {id, children, level} ) {
 
+
 	const {addQuery} = useUtilsSearchParam();
+    const {setMenu, menu} = useContext(MenuContext);
 
 	function handleOnClick() {
 		addQuery( { 
-				queryId : "chapter",
-				queryValue : id
+			queryId : "chapter",
+			queryValue : id
 		} );
+		const newMenu = {...menu}
+		const newSelectedPost = {...menu.selectedPost}
+		newSelectedPost.scroll = true;
+		newMenu.selectedPost = newSelectedPost;
+		setMenu( newMenu )
 	}
 
 	return (

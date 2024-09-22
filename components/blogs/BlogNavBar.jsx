@@ -8,7 +8,7 @@ export default function BlogNavBar({navBarItems, className, ...props}) {
 					Object.keys(navBarItems).map((key) => {
 						const value = navBarItems[key].element;
 						return (
-							<li className="transition-all duration-150 hover:bg-gradient-to-r pl-3 hover:pl-4 from-stone-600 to-transparent w-full"  key={key} >
+							<li className="transition-all duration-150 hover:bg-gradient-to-r pl-3 hover:pl-4 from-stone-300 dark:from-stone-600 to-transparent w-full"  key={key} >
 								{value}	
 							</li>
 						);

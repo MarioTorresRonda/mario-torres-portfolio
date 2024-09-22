@@ -6,6 +6,10 @@ export default function useUtilsSearchParam(  ) {
 	const pathName = usePathname();
     const searchParams = useSearchParams();
 
+    function getQuery(queryId) {
+        return searchParams.get(queryId);
+    }
+
     function addQuery( { queryId, queryValue } ) {
 
         var searchParamsString = "?";
@@ -29,10 +33,26 @@ export default function useUtilsSearchParam(  ) {
         router.push( completePath, { scroll: false } );
     }
 
+    function removeQuery( { queryId } ) {
+        var searchParamsString = "?";
+        searchParams.forEach((value, key) => {
+            if ( key == queryId ) {
+                searchParamsString += ``;
+            }else{
+                searchParamsString += `${key}=${value}&`;
+            }
+        })
+
+        searchParamsString = searchParamsString.substring( 0, searchParamsString.length - 1 );
+
+        var completePath = pathName + searchParamsString;
+        router.push( completePath, { scroll: false } );
+    }
+
     function removeAllQuery() {
         router.push( pathName, { scroll: false } );
     }
 
-    return { addQuery, removeAllQuery }
+    return { getQuery, addQuery, removeQuery, removeAllQuery }
 
 }

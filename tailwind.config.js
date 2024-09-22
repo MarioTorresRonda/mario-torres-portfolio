@@ -38,12 +38,18 @@ module.exports = {
         fromTop: {
           '0%': { "opacity": "0%", "transform": "translateY(-30%)" },
           '100%': { "opacity": "100%", "transform": "translateY(0)" },
+        },
+        hightlight: {
+          '0%': { "background-color" : "transparent", "transform": "scale(1)" },
+          '50%': { "background-color" : "var(--myColorStartSimple)", "transform": "scale(103%)" },
+          '100%': { "background-color" : "transparent", "transform": "scale(1)" }
         }
       },
       animation: {
         opacityLoad: 'opacityLoad 4s',
         overflowLoad: 'overflowLoad 4s',
         fromTop: 'fromTop 400ms',
+        hightlight : 'hightlight 700ms'
       }
     },
     variants: {

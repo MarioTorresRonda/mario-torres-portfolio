@@ -87,7 +87,7 @@ export default function BlogOptions() {
     }, [ JSON.stringify( boxProps ), menu.selectedPost.navBar, showValue]);
 
     return (
-        <div className={`flex w-full flex-col md:w-1/4 p-2 z-30`} style={{height: `${boxProps.boxHeight}px`}}>
+        <div className={`flex w-full flex-col md:w-1/4 p-2 z-10`} style={{height: `${boxProps.boxHeight}px`}}>
             <div className={`flex flex-col ${boxProps.position} `} ref={boxFixed}>
                 <BlogBackButton />
                 <div className={`bg-slate-200 dark:bg-stone-800  mx-2 overflow-y-scroll transition ${ boxProps.extended ? "max-h-[75vh]" :  "max-h-[15vh]  md:max-h-[40vh]" } `} ref={overflowBox}>

@@ -48,9 +48,37 @@ let messages = {
                 part2: {
                     title: "List Block.",
                     desc:  "It will be a frame, with first, two buttons on the sides to navigate between the blogs, and in the middle, the list containing three blogs.",
-                    desc2: "It one of the row is clicked, the image, date and link in the first block will change, and with double click, will directly navigate to the blog.  ."
+                    desc2: "If one of the row is clicked, the image, date and link in the first block will change, and with double click, will directly navigate to the blog.  ."
                 }
-            }
+            },
+            fragment3: {
+                title: "Main fragment.",
+                desc:  "It will be divided in two states:",
+                part1: {
+                    title: "Not selected post.",
+                    desc:  "It will be made of a main list with an infinite scroll with every post shown in a format like:",
+                    list: [
+                        "Simple image, with rounded borders.",
+                        "Title of the post.",
+                        "Subtitle of the post.", 
+                        "How long have been since the post had been made, if it have less than 1 month, it will be \"new\".", 
+                    ]
+                },
+                part2: {
+                    title: "With selected post.",
+                    desc:  "It will be made of multiple parts, a sum of: ",
+                    list: [
+                        "Auxiliary navBar with the title and chapters of the post.",
+                        "Title of the post.",
+                        "Subtitle of the post.", 
+                        "Multiple chapters, with then, also being able to have multiple chapters too.", 
+                        "Images, with different distributions and effects, like zoom, collage or carrousel.", 
+                        "Text blocks / Code blocks, with them having the option to copy the text quickly.", 
+                        "Text with links, with a warning before navigating to other website.", 
+                        "General text, with custom size, color and effects.", 
+                    ]
+                },
+            },
         },
     }
 }

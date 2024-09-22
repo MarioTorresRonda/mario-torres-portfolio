@@ -46,11 +46,39 @@ let messages = {
                     desc: "Mostrará una imagen del blog que se seleccione en el segundo bloque, también contendrá la fecha en la que se subió el blog, y la imagen contendrá un enlace al blog.",
                 },
                 part2: {
-                    title: "Bloque de lista.",
+                    title: "Bloqueee de lista.",
                     desc: "Será un marco, con primero, dos botones a los lados para navegar entre los blogs, y en el centro, la lista que contiene tres blogs.",
                     desc2: "Si se hace clic en una de las filas, la imagen, la fecha y el enlace en el primer bloque cambiarán, y con doble clic, se navegará directamente al blog."
                 }
-            }
+            },
+            fragment3: {
+                title: "Fragmento principal.",
+                desc:  "Se diviira en dos estados:",
+                part1: {
+                    title: "Sin post seleccionado.",
+                    desc:  "Se mostrará una ventana con una lista, la lista contendrá un scroll infinito de todo los post que hay actualmente, el cual estará por:",
+                    list: [
+                        "Una imagen sencilla, con bordes redondeados.",
+                        "El título del post.",
+                        "El subtítulo del post.", 
+                        "Y cuánto tiempo ha pasado desde que se creó con una badge, si es menor a un mes, deberá de ser \“nuevo\”.", 
+                    ]
+                },
+                part2: {
+                    title: "Con post seleccionado.",
+                    desc:  "Cual estara formado de multiples partes, una suma de: ",
+                    list: [
+                        "Un navbar auxiliar a la derecha de la ventana con los capitulos del blog.",
+                        "El Título del post.",
+                        "El subtítulo del post.", 
+                        "Múltiples capítulos, con ellos, siendo capaces de tener múltiples capítulos tambien.", 
+                        "Imagenes, con diferentes distribuciones y efectos, como zoom, collage o carrusel.", 
+                        "Bloques de texto / Bloqes de codigo, teniendo la opción de copiar rapidamente el texto.", 
+                        "Texto con enlaces, con un aviso al navegar a otra página.", 
+                        "Texto general, con tamaño, color y efectos personalizables.", 
+                    ]
+                },
+            },
         }
     }
 }
