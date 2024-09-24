@@ -1,10 +1,11 @@
 'use client'
 
 import { MenuContext } from "@/store/menu-context";
-import { lazy, Suspense, useContext, useEffect, useState } from "react";
+import { lazy, Suspense, useContext, useEffect, useRef, useState } from "react";
 import ContentBox from "../Index/ContentBox";
 import { LocalizationContext } from "@/store/location-context";
 import BlogOptions from "./BlogOptions";
+import useUtilsSearchParam from "@/hooks/useUtilsSearchParam";
 
 function loadBlog( blogId, setBlogLocalization ) {
 
@@ -18,13 +19,36 @@ function loadBlog( blogId, setBlogLocalization ) {
 
 export default function BlogMain( {blogId} ) {
 
-    const { setBlogLocalization } = useContext( LocalizationContext );
+    const { setBlogLocalization, locale } = useContext( LocalizationContext );
     const [ Blog, setBlog ] = useState( null )
-    const { menu } = useContext( MenuContext );
+    const { menu, setMenu } = useContext( MenuContext );
+    const { removeAllQuery } = useUtilsSearchParam();
+
+    let blogInfoRef = useRef({
+		navBar: [],
+		uuid: crypto.randomUUID(),
+        menu : null,
+        setMenu : setMenu,
+        addItemNavBar : function( key, item ) {
+            this.menu.blogInfo.current.navBar[key] = item;
+        },
+        removeNavBar : function () {
+            this.menu.blogInfo.current.navBar = []
+            this.setMenu( menu )
+        }
+	});
+
+    if ( !menu.blogInfo ) {
+        menu.blogInfo = blogInfoRef;
+        menu.blogInfo.current.menu = menu;
+        setMenu( menu );
+    }
     
     useEffect(() => {
+        removeAllQuery();
+        menu.blogInfo.current.removeNavBar();
         setBlog( loadBlog( blogId, setBlogLocalization ) );
-    }, [])
+    }, [locale])
 
     if ( !menu.selectedPost ) {
         return <div></div>

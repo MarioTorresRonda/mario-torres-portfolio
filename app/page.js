@@ -11,7 +11,7 @@ export default function Home() {
   return (
     <main className="overflow-hidden">
       <Header className="flex flex-col lg:flex-row h-full">
-        <Localization/>
+        <Localization absolute={true}/>
         <Hero />
         <div className="flex flex-col md:flex-row lg:flex-col md:justify-around lg:h-full items-center flex-1" >
           <Socials />

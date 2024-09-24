@@ -13,20 +13,14 @@ import Design from "./Fragments/Design";
 import BlogRef from "@/components/blogs/BlogRef";
 
 export default function Blog() {
-	
-	let blogInfoRef = useRef({
-		navBar: [],
-		uuid: crypto.randomUUID(),
-	});;
-
-	return <BlogRef blogInfoRef={blogInfoRef} > 
+	return <BlogRef> 
 		<div className="flex flex-col gap-2">
-			<MainImage blogRef={blogInfoRef} />
-			<WorkPlan blogRef={blogInfoRef} />
-			<Reason blogRef={blogInfoRef} />
-			<Where blogRef={blogInfoRef} />
-			<Ideas blogRef={blogInfoRef} />
-			<Design blogRef={blogInfoRef} />
+			<MainImage/>
+			<WorkPlan />
+			<Reason />
+			<Where />
+			<Ideas />
+			<Design />
 		</div>
 	</BlogRef>
 }

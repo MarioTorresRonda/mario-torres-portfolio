@@ -5,7 +5,7 @@ import { useMessageText } from "@/hooks/useMessageText";
 
 import headerImg from "@/public/Blog Preview.png";
 
-export default function MainImage( { blogRef } ) {
+export default function MainImage() {
     return (
     <BlogBackgroundImage
         className="h-60"
@@ -14,7 +14,7 @@ export default function MainImage( { blogRef } ) {
         imageAlt={["Blog", "image"]}
     >
         <div className="md:px-20 h-full w-full shadow-black text-shadow dark:text-shadow-sm flex flex-col items-center justify-center">
-            <BlogTitle blogRef={blogRef} text={useMessageText(["Blog", "title"])}></BlogTitle>
+            <BlogTitle text={useMessageText(["Blog", "title"])}></BlogTitle>
             <BlogSubtitle text={useMessageText(["Blog", "subtitle"])}></BlogSubtitle>
         </div>
     </BlogBackgroundImage>

@@ -10,9 +10,9 @@ import Idea2Img from "@/public/Medium.png";
 import Idea3Img from "@/public/Idea3CodeText.png";
 import Idea4Img from "@/public/Idea4brittanychiang.png";
 
-export default function Ideas({blogRef}) {
+export default function Ideas() {
     return (
-    <BlogChapter blogRef={blogRef} level={1} text={useMessageText(["Blog", "chapter 4", "title"])}>
+    <BlogChapter level={1} text={useMessageText(["Blog", "chapter 4", "title"])}>
         <BlogParagraph>
             <Message code={["Blog", "chapter 4", "desc"]}></Message>
         </BlogParagraph>

@@ -3,9 +3,9 @@ import BlogParagraph from "@/components/blogs/blogFragments/BlogParagraph";
 import Message from "@/components/fragments/Message";
 import { useMessageText } from "@/hooks/useMessageText";
 
-export default function Where( { blogRef } ) {
+export default function Where() {
     return (
-        <BlogChapter blogRef={blogRef} level={1} text={useMessageText(["Blog", "chapter 3", "title"])}>
+        <BlogChapter level={1} text={useMessageText(["Blog", "chapter 3", "title"])}>
             <BlogParagraph>
                 <Message code={["Blog", "chapter 3", "desc"]}></Message>
             </BlogParagraph>

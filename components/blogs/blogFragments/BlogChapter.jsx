@@ -1,7 +1,8 @@
 import { useReducedMotion } from "framer-motion";
 import BlogNavBarItem from "./BlogNavBarItem"
-import { useRef } from "react";
+import { useContext, useRef } from "react";
 import ScrollAnchor from "@/components/fragments/ScrollAnchor";
+import { MenuContext } from "@/store/menu-context";
 
 const textLevel = {
     1: "text-2xl  md:text-3xl font-semibold text-slate-800 dark:text-stone-300",
@@ -10,14 +11,15 @@ const textLevel = {
     4: "text-lg md:text-lg font-semibold text-slate-600 dark:text-stone-400"
 }
 
-export default function BlogChapter( { level, blogRef, text, children} ) {
+export default function BlogChapter( { level, text, children} ) {
     
-    const blogInfoRef = blogRef.current;
+    const { menu } = useContext( MenuContext );
+
     const id = text.replaceAll(" ", "");
     const maxLevel = level > 4 ? 4 : level;
 
     const element = <BlogNavBarItem id={id} level={level + 1}> {text} </BlogNavBarItem>; 
-    blogInfoRef.navBar[id] = { element };  
+    menu.blogInfo.current.addItemNavBar( id, {element} );
 
     return(
         <ScrollAnchor anchor={id}>

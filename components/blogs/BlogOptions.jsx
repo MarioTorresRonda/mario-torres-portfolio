@@ -1,19 +1,17 @@
 'use client'
 
-import Message from "../fragments/Message";
 import BlogNavBar from "./BlogNavBar";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCaretLeft as icon1 } from "@fortawesome/free-solid-svg-icons"
 import { MenuContext } from "@/store/menu-context";
 import { useContext, useEffect, useRef, useState } from "react";
 import { isEmpty } from "@/util/Objects";
 import BlogExtendButton from "./BlogExtendButton";
 import useWindowSize from "@/hooks/useWindowSize";
 import BlogBackButton from "./BlogBackButton";
+import Localization from "../fragments/Localization";
 
 export default function BlogOptions() {
 
-    const { setMenu, menu, showValue } = useContext( MenuContext );
+    const { menu, showValue } = useContext( MenuContext );
     const boxFixed = useRef();
     const overflowBox = useRef();
     const windowSize = useWindowSize()
@@ -60,13 +58,9 @@ export default function BlogOptions() {
             setOldWindow([windowSize[0], windowSize[1]])
             setBoxProps( {...boxPropsNew} );
         }
-
-        
-
     }, [windowSize[0], windowSize[1]])
 
     useEffect(() => {
-        
         if ( isEmpty( menu.selectedPost.navBar) ) {
             return () => {};
         }
@@ -93,7 +87,9 @@ export default function BlogOptions() {
                 <div className={`bg-slate-200 dark:bg-stone-800  mx-2 overflow-y-scroll transition ${ boxProps.extended ? "max-h-[75vh]" :  "max-h-[15vh]  md:max-h-[40vh]" } `} ref={overflowBox}>
                     <BlogNavBar navBarItems={menu.selectedPost.navBar} />
                 </div>
-                <BlogExtendButton boxProps={boxProps} onHandleExtendClick={onHandleExtendClick} isExtended={boxProps.isExtended } overflowBox={overflowBox}/>
+                <BlogExtendButton boxProps={boxProps} onHandleExtendClick={onHandleExtendClick} isExtended={boxProps.extended } overflowBox={overflowBox}> 
+                    <Localization className=""/>
+                </BlogExtendButton>
             </div>
         </div>
     )

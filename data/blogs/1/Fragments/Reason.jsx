@@ -4,9 +4,9 @@ import BlogParagraph from "@/components/blogs/blogFragments/BlogParagraph";
 import Message from "@/components/fragments/Message";
 import { useMessageText } from "@/hooks/useMessageText";
 
-export default function Reason( { blogRef } ) {
+export default function Reason() {
     return (
-        <BlogChapter blogRef={blogRef} level={1} text={useMessageText(["Blog", "chapter 2", "title"])}>
+        <BlogChapter level={1} text={useMessageText(["Blog", "chapter 2", "title"])}>
             <BlogParagraph>
                 <Message code={["Blog", "chapter 2", "desc"]}></Message>
             </BlogParagraph>

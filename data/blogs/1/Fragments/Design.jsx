@@ -8,13 +8,13 @@ import ProjectList_Fragment2 from "@/public/ProjectList_Fragment2.png";
 import ClientImage from "@/components/fragments/ClientImage";
 import BlogList from "@/components/blogs/blogFragments/BlogList";
 
-export default function Design( { blogRef } ) {
+export default function Design( ) {
     return (
-        <BlogChapter blogRef={blogRef} level={1} text={useMessageText(["Blog", "chapter 5", "title"])}>
+        <BlogChapter level={1} text={useMessageText(["Blog", "chapter 5", "title"])}>
             <BlogParagraph>
                 <Message code={["Blog", "chapter 5", "desc"]}></Message>
             </BlogParagraph>
-            <BlogChapter blogRef={blogRef} level={2} text={useMessageText(["Blog", "chapter 5", "fragment1", "title"])}>
+            <BlogChapter level={2} text={useMessageText(["Blog", "chapter 5", "fragment1", "title"])}>
                 <BlogParagraph>
                     <Message code={["Blog", "chapter 5", "fragment1", "desc"]}></Message>
                 </BlogParagraph>
@@ -24,29 +24,29 @@ export default function Design( { blogRef } ) {
                     <Message code={["Blog", "chapter 5", "fragment1", "desc2"]}></Message>
                 </BlogParagraph>
             </BlogChapter>
-            <BlogChapter blogRef={blogRef} level={2} text={useMessageText(["Blog", "chapter 5", "fragment2", "title"])}>
+            <BlogChapter level={2} text={useMessageText(["Blog", "chapter 5", "fragment2", "title"])}>
                 <BlogParagraph>
                     <Message code={["Blog", "chapter 5", "fragment2", "desc"]}></Message>
                 </BlogParagraph>
                 <ClientImage className="shadow shadow-black mb-2" src={ProjectList_Fragment2} alt={[]}>
                 </ClientImage>
-                <BlogChapter blogRef={blogRef} level={3} text={useMessageText(["Blog", "chapter 5", "fragment2", "part1", "title"])}>
+                <BlogChapter level={3} text={useMessageText(["Blog", "chapter 5", "fragment2", "part1", "title"])}>
                     <BlogParagraph>
                         <Message code={["Blog", "chapter 5", "fragment2", "part1", "desc"]}></Message>
                     </BlogParagraph>
                 </BlogChapter>
-                <BlogChapter blogRef={blogRef} level={3} text={useMessageText(["Blog", "chapter 5", "fragment2", "part2", "title"])}>
+                <BlogChapter level={3} text={useMessageText(["Blog", "chapter 5", "fragment2", "part2", "title"])}>
                     <BlogParagraph>
                         <Message code={["Blog", "chapter 5", "fragment2", "part2", "desc"]}></Message>
                     </BlogParagraph>
                 </BlogChapter>
             </BlogChapter>
-            <BlogChapter blogRef={blogRef} level={2} text={useMessageText(["Blog", "chapter 5", "fragment3", "title"])}>
+            <BlogChapter level={2} text={useMessageText(["Blog", "chapter 5", "fragment3", "title"])}>
                 <BlogParagraph>
                     <Message code={["Blog", "chapter 5", "fragment3", "desc"]}></Message>
                 </BlogParagraph>
                 
-                <BlogChapter blogRef={blogRef} level={3} text={useMessageText(["Blog", "chapter 5", "fragment3", "part1", "title"])}>
+                <BlogChapter level={3} text={useMessageText(["Blog", "chapter 5", "fragment3", "part1", "title"])}>
                     <BlogParagraph>
                         <Message code={["Blog", "chapter 5", "fragment3", "part1", "desc"]}></Message>
                     </BlogParagraph>
@@ -56,7 +56,7 @@ export default function Design( { blogRef } ) {
                         })}
                     />
                 </BlogChapter>
-                <BlogChapter blogRef={blogRef} level={3} text={useMessageText(["Blog", "chapter 5", "fragment3", "part2", "title"])}>
+                <BlogChapter level={3} text={useMessageText(["Blog", "chapter 5", "fragment3", "part2", "title"])}>
                     <BlogParagraph>
                         <Message code={["Blog", "chapter 5", "fragment3", "part2", "desc"]}></Message>
                     </BlogParagraph>

@@ -22,7 +22,8 @@ const blog = {
     num:"03",
     url:"/blogs",
     symbol: "&",
-    selectedPost : null
+    selectedPost : null,
+    blogInfo : null
 }
 
 const navVarList = { home, projects, blog }

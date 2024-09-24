@@ -4,20 +4,29 @@ import { faGlobe } from "@fortawesome/free-solid-svg-icons";
 import { LocalizationContext } from "@/store/location-context";
 import { useContext } from "react";
 import FAI from "./FAI";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-export default function Localization() {
+export default function Localization( { className, absolute } ) {
 
+  className = className ? className : "";
   const { locale, lang, setLocalization } = useContext( LocalizationContext );
 
-  function setLocale() {
+  function setLocale(e) {
+    e.stopPropagation();
     const newLocale = ( locale == 'en' ? 'es' : 'en')
     setLocalization( newLocale );
   }
 
+  const absoluteClasses = "absolute top-5 right-5 w-[20px] h-[20px] md:w-[35px] md:h-[35px] lg:w-[50px] lg:h-[50px] text-slate-500 dark:text-stone-700 hover:text-slate-700 dark:hover:text-stone-500"
+  const initialClasses = "h-7 w-7"
+
   return (
-      <div className="absolute top-5 right-5">
-        <button onClick={setLocale} >
-          <FAI icon={faGlobe} />
+      <div className={`${ absolute ? absoluteClasses : initialClasses }`}>
+        <button onClick={setLocale} className="w-full h-full" >
+          <FontAwesomeIcon
+              icon={faGlobe}
+              className={`h-full transition-transform ease-in-out hover:scale-[1.2]  ${className}`}
+            />
         </button>
       </div>
   );
