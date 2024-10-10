@@ -38,11 +38,15 @@ export default function BlogMain( {blogId} ) {
         }
 	});
 
-    if ( !menu.blogInfo ) {
-        menu.blogInfo = blogInfoRef;
-        menu.blogInfo.current.menu = menu;
-        setMenu( menu );
-    }
+    useEffect(() => {
+        if ( !menu.blogInfo ) {
+            menu.blogInfo = blogInfoRef;
+            menu.blogInfo.current.menu = menu;
+            setMenu( menu );
+        }
+    }, [menu.blogInfo])
+
+
     
     useEffect(() => {
         removeAllQuery();
