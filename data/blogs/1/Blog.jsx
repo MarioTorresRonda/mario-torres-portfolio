@@ -27,7 +27,7 @@ export default function Blog() {
 			<Where />
 			<Ideas />
 			<Design />
-			<CodeBox codeText={ formatMount } />
+			<CodeBox codeText={ formatMount } fromRow={15} toRow={57}/>
 		</div>
 	</BlogRef>
 }

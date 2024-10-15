@@ -95,18 +95,24 @@
 
     /* width */
   ::-webkit-scrollbar {
-    width: 10px;
+    width: 15px;
+    height: 15px;
   }
 
   /* Track */
   ::-webkit-scrollbar-track {
-    @apply bg-slate-200 dark:bg-stone-800;
+    @apply bg-slate-200 dark:bg-stone-900/50;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-corner {
+    @apply bg-slate-200 dark:bg-stone-900/50;
   }
 
   /* Handle */
   ::-webkit-scrollbar-thumb {
     @apply bg-stone-400 dark:bg-stone-600;
-    @apply rounded-l-md
+    @apply rounded-md;
   }
 
   /* Handle on hover */

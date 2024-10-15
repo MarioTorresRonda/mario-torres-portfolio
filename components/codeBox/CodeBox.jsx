@@ -1,4 +1,4 @@
-import { useRef, useEffect, useState, Suspense } from "react";
+import {useRef, useEffect, useState, Suspense} from "react";
 import CodeBoxRow from "./CodeBoxRow";
 
 let isInsideQuotation = false;
@@ -8,18 +8,22 @@ let lastCharBackSlash = false;
 var isInsideSimpleComment = false;
 
 const variableObject = {
-	nextWordVariable : false,
-	nextWordFunction : false
-}
+	nextWordVariable: false,
+	nextWordFunction: false,
+};
 
-export default function CodeBox({codeText}) {
+export default function CodeBox({codeText, fromRow, toRow}) {
 	//Formateamos el codeText
-    
-    const [codeTextRows, setCodeTextRows] = useState();
-    const line = useRef(0)
+
+	const notExpandedObj = {value: false, from: fromRow, to: toRow};
+	const expandedObj = {value: true};
+
+	const [codeTextRows, setCodeTextRows] = useState();
+	const [expanded, setExpanded] = useState(notExpandedObj);
+	const line = useRef(0);
 	line.current = 0;
-	
-    useEffect(() => {
+
+	useEffect(() => {
 		line.current = 0;
 
 		isInsideQuotation = false;
@@ -31,41 +35,66 @@ export default function CodeBox({codeText}) {
 		variableObject.nextWordVariable = false;
 		variableObject.nextWordFunction = false;
 
-
 		const before = performance.now();
 
-        setCodeTextRows( formatCodeText(codeText.split("\n")) )
+		setCodeTextRows(formatCodeText(codeText.split("\n")));
 
-		console.log( (performance.now() - before) + " miliseconds" )
+		console.log(performance.now() - before + " miliseconds");
+	}, [codeText]);
 
-    }, [codeText])
-    
+	if (!codeTextRows) {
+		return <div> Loading... </div>;
+	}
+
 	return (
-		<div className="w-full h-[400px] bg-stone-900 whitespace-pre-wrap overflow-auto flex flex-col mb-10 tracking-widest">
-			{codeTextRows && codeTextRows.map((row) => {
+		<div className="w-full h-[400px] bg-slate-950 whitespace-pre-wrap overflow-auto flex flex-col mb-10 tracking-widest">
+			{!expanded.value && expanded.from != 0 && <CodeBoxRow key="-" rowText={"..."} />}
+			{codeTextRows.map((row) => {
 				line.current++;
-				return <CodeBoxRow key={line.current} rowNum={line.current} rowText={row} />;
+				if (expanded.value || (line.current >= expanded.from && line.current <= expanded.to)) {
+					return <CodeBoxRow key={line.current} rowNum={line.current} rowText={row} />;
+				}
 			})}
+			{!expanded.value && expanded.to != codeTextRows.length && <CodeBoxRow key="+" rowText={"..."} />}
 		</div>
 	);
 }
 
-const splitChars = ["=", "\"", "'", "\\", "/", "(", ")", "{", "}", "[", "]", ".", ";", " ", ",", "+", "-"];
+const splitChars = [
+	"=",
+	'"',
+	"'",
+	"\\",
+	"/",
+	"(",
+	")",
+	"{",
+	"}",
+	"[",
+	"]",
+	".",
+	";",
+	" ",
+	",",
+	"+",
+	"-",
+	"!",
+	"<",
+	">",
+];
 function formatCodeText(codeTextRows) {
-
 	const newCodeTextRows = [];
-	
+
 	codeTextRows.forEach((row) => {
 		let newCodeTextRow = "";
 		let startPosition = 0;
 		const rowChars = [...row];
-		
+
 		for (let index = 0; index < rowChars.length; index++) {
 			const letter = rowChars[index];
 			for (const splitChar of splitChars) {
-				if ( splitChar == letter ) {
-
-					const word = row.substr(startPosition, index - startPosition );
+				if (splitChar == letter) {
+					const word = row.substr(startPosition, index - startPosition);
 					newCodeTextRow += colorWord(word, false);
 
 					const splitter = row.substr(index, 1);
@@ -73,131 +102,128 @@ function formatCodeText(codeTextRows) {
 
 					startPosition = index + 1;
 					break;
-				} 
+				}
 			}
 		}
-		
+
 		let word = row.substr(startPosition, row.length - startPosition);
 		newCodeTextRow += colorWord(word, true);
+		console.log(newCodeTextRow);
 		newCodeTextRows.push(newCodeTextRow);
 	});
 	return newCodeTextRows;
 }
 
-const wordColors = { 
-	"$#179DFC" : { text: ["[", "]"], variables: []  },
-	"$#225589" : { text : [ "export", "default", "=", "+", "-" ], variables: [] },
-	"$#225588" : { text : [ "import" ], variables: [ "nextWordVariable" ] },
-	"$#22558A" : { text : [ "from" ], variables: [ "!nextWordVariable" ] },
-	"$#9966B8" : { text : [ "function" ], variables: ["nextWordFunction"] },
-	"$#9966B9" : { text : [ "." ], variables: ["!nextWordFunction"] },
-	"$#9966BA" : { text : [ "(", ")" ], variables: ["!nextWordFunction"] },
-	"$#9966BB" : { text : [ "var", "const", "let" ], variables: [""] },
-	"$#F280D0" : { text : [ "false", "true", "{", "}" ], variables: [""] },
-	
-}
+const wordColors = {
+	"$#179DFC": {text: ["[", "]"], variables: []},
+	"$#225589": {text: ["export", "default", "=", "+", "-", "!"], variables: []},
+	"$#225588": {text: ["import"], variables: ["nextWordVariable"]},
+	"$#22558A": {text: ["from"], variables: ["!nextWordVariable"]},
+	"$#9966B8": {text: ["function"], variables: ["nextWordFunction"]},
+	"$#9966B9": {text: ["."], variables: ["!nextWordFunction"]},
+	"$#9966BA": {text: ["(", ")"], variables: ["!nextWordFunction"]},
+	"$#9966BB": {text: ["var", "const", "let"], variables: [""]},
+	"$#F280D0": {text: ["false", "true", "{", "}"], variables: [""]},
+};
 
 function colorWord(coloredWord, lastSegment) {
-	if ( coloredWord.trim() == "" && !lastSegment ) {
+	if (coloredWord.trim() == "" && !lastSegment) {
 		return coloredWord;
 	}
 	const wordTrimmed = coloredWord.trim();
 
 	//comments
-	if ( isInsideSimpleComment ) {
-		if ( lastSegment ) {
+	if (isInsideSimpleComment) {
+		if (lastSegment) {
 			isInsideSimpleComment = false;
 			lastCharSlash = false;
 			return coloredWord + "#$";
-		}else{
+		} else {
 			return coloredWord;
 		}
 	}
-	if ( wordTrimmed == '/' ) {
-		if ( lastCharSlash ) {
+	if (wordTrimmed == "/") {
+		if (lastCharSlash) {
 			isInsideSimpleComment = true;
-			return '$#384887' + coloredWord;			
-		}else{
+			return "$#384887" + coloredWord;
+		} else {
 			lastCharSlash = true;
 			return coloredWord;
 		}
-	}else{
+	} else {
 		lastCharSlash = false;
 	}
 
-	if ( lastCharBackSlash ) {
+	if (lastCharBackSlash) {
 		lastCharBackSlash = false;
-		if ( isInsideQuotation || isInsideSemiColon ) {
+		if (isInsideQuotation || isInsideSemiColon) {
 			return coloredWord + "#$$#22AA44";
 		}
 		return coloredWord + "#$";
 	}
-	if ( wordTrimmed == '\\' ) {
+	if (wordTrimmed == "\\") {
 		lastCharBackSlash = true;
-		if ( isInsideQuotation || isInsideSemiColon ) {
-			return '#$$#F280D0' + coloredWord ;
+		if (isInsideQuotation || isInsideSemiColon) {
+			return "#$$#F280D0" + coloredWord;
 		}
-		return '$#F280D0' + coloredWord ;
+		return "$#F280D0" + coloredWord;
 	}
 
 	//""
-	if ( !isInsideSemiColon ) { 
-		if ( isInsideQuotation ) {
-			if ( wordTrimmed == '\"' || lastSegment) {
+	if (!isInsideSemiColon) {
+		if (isInsideQuotation) {
+			if (wordTrimmed == '"' || lastSegment) {
 				isInsideQuotation = false;
 				return coloredWord + "#$";
 			}
 			return coloredWord;
 		}
-		if ( wordTrimmed == '\"' ) {
+		if (wordTrimmed == '"') {
 			isInsideQuotation = true;
 			return "$#22AA44" + coloredWord;
 		}
 	}
-		
+
 	//''
-	if ( isInsideSemiColon ) {
-		if ( wordTrimmed == "'" || lastSegment) {
+	if (isInsideSemiColon) {
+		if (wordTrimmed == "'" || lastSegment) {
 			isInsideSemiColon = false;
 			return coloredWord + "#$";
 		}
 		return coloredWord;
 	}
 
-	if ( wordTrimmed == "'" ) {
+	if (wordTrimmed == "'") {
 		isInsideSemiColon = true;
-		return '$#22AA44' + coloredWord;
+		return "$#22AA44" + coloredWord;
 	}
 
-
 	let returnWord = "";
-	Object.keys( wordColors ).forEach( (color) => {
+	Object.keys(wordColors).forEach((color) => {
 		const wordColor = wordColors[color];
-		wordColor.text.forEach( ( word ) => {
-			if ( wordTrimmed == word ) {
-				returnWord =  color + coloredWord + "#$";
-				wordColor.variables.forEach( ( variable ) => {
-					if ( variable.startsWith("!") ) {
+		wordColor.text.forEach((word) => {
+			if (wordTrimmed == word) {
+				returnWord = color + coloredWord + "#$";
+				wordColor.variables.forEach((variable) => {
+					if (variable.startsWith("!")) {
 						variableObject[variable.substr(1)] = false;
-					}else{
+					} else {
 						variableObject[variable] = true;
 					}
 				});
 				return;
 			}
-		} )
+		});
 		return;
-	} )
-	if ( returnWord != "" ) {
+	});
+	if (returnWord != "") {
 		return returnWord;
 	}
 
 	if (variableObject.nextWordVariable) {
 		coloredWord = "$#6688CC" + coloredWord + "#$";
-	}else if (variableObject.nextWordFunction) {
+	} else if (variableObject.nextWordFunction) {
 		coloredWord = "$#DDBB88" + coloredWord + "#$";
 	}
 	return coloredWord;
 }
-
-

@@ -34,9 +34,9 @@ function getRowColors( rowText ) {
 		const char1 = chars[index];
 		const char2 = chars[index + 1];
 
-		if ( char1 == "$" && char2 == "#"  && !insideColor ) {
+		if ( char1 == "$" && char2 == "#" && !insideColor ) {
 			if ( index != lastIndex ) {
-				if ( lastClose <= lastIndex ) {
+				if ( lastClose <= lastIndex) {
 					insideColor = true
 					rowColors.push( rowText.substr(lastIndex, index - lastIndex) );
 				}else{
@@ -44,10 +44,12 @@ function getRowColors( rowText ) {
 					if ( lastClose != index ) { 
 						rowColors.push( rowText.substr(lastClose, index - lastClose) );
 					}
+					insideColor = true;
 				}
+				lastIndex = index;
 			}
-			lastIndex = index;
 		}
+
 		if ( char1 == "#" && char2 == "$" ) {
 			lastClose = index + 2;
 			insideColor = false;
@@ -60,7 +62,6 @@ function getRowColors( rowText ) {
 		rowColors.push( rowText.substr(lastIndex, lastClose - lastIndex) );
 		rowColors.push( rowText.substr(lastClose) );
 	}
-
 
 	return rowColors;
 }
