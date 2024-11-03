@@ -1,229 +1,93 @@
-import {useRef, useEffect, useState, Suspense} from "react";
-import CodeBoxRow from "./CodeBoxRow";
+import {useRef, useEffect, useState} from "react";
 
-let isInsideQuotation = false;
-let isInsideSemiColon = false;
-let lastCharSlash = false;
-let lastCharBackSlash = false;
-var isInsideSimpleComment = false;
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faExpandAlt as expandIcon, faCompressAlt as shrinkIcon} from "@fortawesome/free-solid-svg-icons";
+import CodeBoxPage from "./CodeBoxPage";
+import CodeBoxNavBar from "./CodeBoxNavBar";
+import {formatCodeText} from "@/util/CodeFormatter";
 
-const variableObject = {
-	nextWordVariable: false,
-	nextWordFunction: false,
-};
+export default function CodeBox({files}) {
+	const notMinimizedObj = {value: false, icon: { svg : shrinkIcon, class : "bg-slate-900 border-t-[1px] border-slate-700" } };
+	const minimizedObj = {value: true, icon : {svg: expandIcon, class : ""}};
 
-export default function CodeBox({codeText, fromRow, toRow}) {
-	//Formateamos el codeText
-
-	const notExpandedObj = {value: false, from: fromRow, to: toRow};
-	const expandedObj = {value: true};
-
-	const [codeTextRows, setCodeTextRows] = useState();
-	const [expanded, setExpanded] = useState(notExpandedObj);
-	const line = useRef(0);
-	line.current = 0;
+	const [loadedFiles, setLoadedFiles] = useState({});
+	const [selectedFile, setSelectedFile] = useState(
+		files.find((file) => {
+			return file.selected;
+		})
+	);
+	const [minimized, setMinimized] = useState(minimizedObj);
+	const navBar = useRef();
 
 	useEffect(() => {
-		line.current = 0;
+		const loadFiles = async () => {
+			const tiempoAntes = performance.now();
+			const newLoadedFiles = {};
+			await files.forEach(async (file) => {
+				const response = await file.importFile;
+				newLoadedFiles[file.name] = formatCodeText(response.default.split("\n"));
+			});
+			setLoadedFiles({...newLoadedFiles});
+			console.log( ( performance.now() - tiempoAntes ) + " milisegundos");
+		};
+		loadFiles();
+	}, [files]);
 
-		isInsideQuotation = false;
-		isInsideSemiColon = false;
-		lastCharSlash = false;
-		lastCharBackSlash = false;
-		isInsideSimpleComment = false;
+	function onExpandButtonClicked() {
+		if (!minimized.value) {
+			onSelectFile(
+				files.find((file) => {
+					return file.selected;
+				}).name
+			);
+		}
+		setMinimized(minimized.value ? notMinimizedObj : minimizedObj);
+	}
 
-		variableObject.nextWordVariable = false;
-		variableObject.nextWordFunction = false;
+	function onSelectFile(key) {
+		setSelectedFile(
+			files.find((file) => {
+				if (file.name == key) {
+					return file;
+				}
+			})
+		);
+	}
 
-		const before = performance.now();
-
-		setCodeTextRows(formatCodeText(codeText.split("\n")));
-
-		console.log(performance.now() - before + " miliseconds");
-	}, [codeText]);
-
-	if (!codeTextRows) {
+	if (!loadedFiles) {
 		return <div> Loading... </div>;
 	}
 
 	return (
-		<div className="w-full h-[400px] bg-slate-950 whitespace-pre-wrap overflow-auto flex flex-col mb-10 tracking-widest">
-			{!expanded.value && expanded.from != 0 && <CodeBoxRow key="-" rowText={"..."} />}
-			{codeTextRows.map((row) => {
-				line.current++;
-				if (expanded.value || (line.current >= expanded.from && line.current <= expanded.to)) {
-					return <CodeBoxRow key={line.current} rowNum={line.current} rowText={row} />;
-				}
-			})}
-			{!expanded.value && expanded.to != codeTextRows.length && <CodeBoxRow key="+" rowText={"..."} />}
+		<div className="relative mb-10 w-full tracking-widest">
+			<div className="h-full w-full bg-slate-950 flex flex-col max-h-[400px]">
+				<CodeBoxNavBar
+					ref={navBar}
+					className={minimized.value ? "hidden" : ""}
+					selectedName={selectedFile.name}
+					onSelectFile={onSelectFile}
+				/>
+				{Object.keys(loadedFiles).map((key) => {
+					return (
+						<CodeBoxPage
+							pageName={key}
+							pageText={loadedFiles[key]}
+							minimized={{...minimized, from: selectedFile.from, to: selectedFile.to}}
+							show={selectedFile.name == key}
+							navBar={navBar}
+						/>
+					);
+				})}
+			</div>
+			<div className={`absolute h-10 top-0 py-2 px-4 right-0 flex gap-2 ${minimized.icon.class}`}>
+				<div className="w-6 h-6">
+					<FontAwesomeIcon
+						icon={minimized.icon.svg}
+						className={`h-full transition-transform ease-in-out hover:scale-[1.2] text-[#6688CC]`}
+						onClick={onExpandButtonClicked}
+					/>
+				</div>
+			</div>
 		</div>
 	);
-}
-
-const splitChars = [
-	"=",
-	'"',
-	"'",
-	"\\",
-	"/",
-	"(",
-	")",
-	"{",
-	"}",
-	"[",
-	"]",
-	".",
-	";",
-	" ",
-	",",
-	"+",
-	"-",
-	"!",
-	"<",
-	">",
-];
-function formatCodeText(codeTextRows) {
-	const newCodeTextRows = [];
-
-	codeTextRows.forEach((row) => {
-		let newCodeTextRow = "";
-		let startPosition = 0;
-		const rowChars = [...row];
-
-		for (let index = 0; index < rowChars.length; index++) {
-			const letter = rowChars[index];
-			for (const splitChar of splitChars) {
-				if (splitChar == letter) {
-					const word = row.substr(startPosition, index - startPosition);
-					newCodeTextRow += colorWord(word, false);
-
-					const splitter = row.substr(index, 1);
-					newCodeTextRow += colorWord(splitter, false);
-
-					startPosition = index + 1;
-					break;
-				}
-			}
-		}
-
-		let word = row.substr(startPosition, row.length - startPosition);
-		newCodeTextRow += colorWord(word, true);
-		console.log(newCodeTextRow);
-		newCodeTextRows.push(newCodeTextRow);
-	});
-	return newCodeTextRows;
-}
-
-const wordColors = {
-	"$#179DFC": {text: ["[", "]"], variables: []},
-	"$#225589": {text: ["export", "default", "=", "+", "-", "!"], variables: []},
-	"$#225588": {text: ["import"], variables: ["nextWordVariable"]},
-	"$#22558A": {text: ["from"], variables: ["!nextWordVariable"]},
-	"$#9966B8": {text: ["function"], variables: ["nextWordFunction"]},
-	"$#9966B9": {text: ["."], variables: ["!nextWordFunction"]},
-	"$#9966BA": {text: ["(", ")"], variables: ["!nextWordFunction"]},
-	"$#9966BB": {text: ["var", "const", "let"], variables: [""]},
-	"$#F280D0": {text: ["false", "true", "{", "}"], variables: [""]},
-};
-
-function colorWord(coloredWord, lastSegment) {
-	if (coloredWord.trim() == "" && !lastSegment) {
-		return coloredWord;
-	}
-	const wordTrimmed = coloredWord.trim();
-
-	//comments
-	if (isInsideSimpleComment) {
-		if (lastSegment) {
-			isInsideSimpleComment = false;
-			lastCharSlash = false;
-			return coloredWord + "#$";
-		} else {
-			return coloredWord;
-		}
-	}
-	if (wordTrimmed == "/") {
-		if (lastCharSlash) {
-			isInsideSimpleComment = true;
-			return "$#384887" + coloredWord;
-		} else {
-			lastCharSlash = true;
-			return coloredWord;
-		}
-	} else {
-		lastCharSlash = false;
-	}
-
-	if (lastCharBackSlash) {
-		lastCharBackSlash = false;
-		if (isInsideQuotation || isInsideSemiColon) {
-			return coloredWord + "#$$#22AA44";
-		}
-		return coloredWord + "#$";
-	}
-	if (wordTrimmed == "\\") {
-		lastCharBackSlash = true;
-		if (isInsideQuotation || isInsideSemiColon) {
-			return "#$$#F280D0" + coloredWord;
-		}
-		return "$#F280D0" + coloredWord;
-	}
-
-	//""
-	if (!isInsideSemiColon) {
-		if (isInsideQuotation) {
-			if (wordTrimmed == '"' || lastSegment) {
-				isInsideQuotation = false;
-				return coloredWord + "#$";
-			}
-			return coloredWord;
-		}
-		if (wordTrimmed == '"') {
-			isInsideQuotation = true;
-			return "$#22AA44" + coloredWord;
-		}
-	}
-
-	//''
-	if (isInsideSemiColon) {
-		if (wordTrimmed == "'" || lastSegment) {
-			isInsideSemiColon = false;
-			return coloredWord + "#$";
-		}
-		return coloredWord;
-	}
-
-	if (wordTrimmed == "'") {
-		isInsideSemiColon = true;
-		return "$#22AA44" + coloredWord;
-	}
-
-	let returnWord = "";
-	Object.keys(wordColors).forEach((color) => {
-		const wordColor = wordColors[color];
-		wordColor.text.forEach((word) => {
-			if (wordTrimmed == word) {
-				returnWord = color + coloredWord + "#$";
-				wordColor.variables.forEach((variable) => {
-					if (variable.startsWith("!")) {
-						variableObject[variable.substr(1)] = false;
-					} else {
-						variableObject[variable] = true;
-					}
-				});
-				return;
-			}
-		});
-		return;
-	});
-	if (returnWord != "") {
-		return returnWord;
-	}
-
-	if (variableObject.nextWordVariable) {
-		coloredWord = "$#6688CC" + coloredWord + "#$";
-	} else if (variableObject.nextWordFunction) {
-		coloredWord = "$#DDBB88" + coloredWord + "#$";
-	}
-	return coloredWord;
 }
