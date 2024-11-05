@@ -1,10 +1,12 @@
 import {useRef, useEffect, useState} from "react";
 
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faExpandAlt as expandIcon, faCompressAlt as shrinkIcon} from "@fortawesome/free-solid-svg-icons";
+import {faExpandAlt as expandIcon, faCompressAlt as shrinkIcon, faCopy as copyIcon} from "@fortawesome/free-solid-svg-icons";
 import CodeBoxPage from "./CodeBoxPage";
 import CodeBoxNavBar from "./CodeBoxNavBar";
 import {formatCodeText} from "@/util/CodeFormatter";
+import Tooltip from "../fragments/Tooltip";
+import { isEmpty } from "@/util/Objects";
 
 export default function CodeBox({files}) {
 	const notMinimizedObj = {value: false, icon: { svg : shrinkIcon, class : "bg-slate-900 border-t-[1px] border-slate-700" } };
@@ -21,14 +23,13 @@ export default function CodeBox({files}) {
 
 	useEffect(() => {
 		const loadFiles = async () => {
-			const tiempoAntes = performance.now();
 			const newLoadedFiles = {};
+			await new Promise(r => setTimeout(r, 10000));
 			await files.forEach(async (file) => {
 				const response = await file.importFile;
 				newLoadedFiles[file.name] = formatCodeText(response.default.split("\n"));
 			});
 			setLoadedFiles({...newLoadedFiles});
-			console.log( ( performance.now() - tiempoAntes ) + " milisegundos");
 		};
 		loadFiles();
 	}, [files]);
@@ -54,38 +55,53 @@ export default function CodeBox({files}) {
 		);
 	}
 
-	if (!loadedFiles) {
-		return <div> Loading... </div>;
+	let body = <div className="h-20 p-2"> Loading... </div>;
+
+	if ( !isEmpty( loadedFiles ) ) {
+		body = <>
+			<CodeBoxNavBar
+				ref={navBar}
+				className={minimized.value ? "hidden" : ""}
+				selectedName={selectedFile.name}
+				onSelectFile={onSelectFile}
+				/>
+			{Object.keys(loadedFiles).map((key) => {
+				return (
+					<CodeBoxPage
+					pageName={key}
+					pageText={loadedFiles[key]}
+					minimized={{...minimized, from: selectedFile.from, to: selectedFile.to}}
+					show={selectedFile.name == key}
+					navBar={navBar}
+					/>
+				);
+			})}
+		</>
 	}
 
 	return (
 		<div className="relative mb-10 w-full tracking-widest">
 			<div className="h-full w-full bg-slate-950 flex flex-col max-h-[400px]">
-				<CodeBoxNavBar
-					ref={navBar}
-					className={minimized.value ? "hidden" : ""}
-					selectedName={selectedFile.name}
-					onSelectFile={onSelectFile}
-				/>
-				{Object.keys(loadedFiles).map((key) => {
-					return (
-						<CodeBoxPage
-							pageName={key}
-							pageText={loadedFiles[key]}
-							minimized={{...minimized, from: selectedFile.from, to: selectedFile.to}}
-							show={selectedFile.name == key}
-							navBar={navBar}
-						/>
-					);
-				})}
+				{body}
 			</div>
-			<div className={`absolute h-10 top-0 py-2 px-4 right-0 flex gap-2 ${minimized.icon.class}`}>
+			<div className={`absolute h-10 top-0 py-2 px-4 right-0 flex gap-4 ${minimized.icon.class}`}>
 				<div className="w-6 h-6">
-					<FontAwesomeIcon
-						icon={minimized.icon.svg}
-						className={`h-full transition-transform ease-in-out hover:scale-[1.2] text-[#6688CC]`}
-						onClick={onExpandButtonClicked}
-					/>
+					<Tooltip text={"Copiar"}>
+						<FontAwesomeIcon
+							icon={copyIcon}
+							className={`h-full transition-transform ease-in-out hover:scale-[1.2] text-[#6688CC]`}
+						/>
+					</Tooltip>
+				</div>
+				<div className="w-6 h-6">
+					<Tooltip text={"Copiar"}>
+						<FontAwesomeIcon
+							icon={minimized.icon.svg}
+							className={`h-full transition-transform ease-in-out hover:scale-[1.2] text-[#6688CC]`}
+							onClick={onExpandButtonClicked}
+						/>
+					</Tooltip>
+					
 				</div>
 			</div>
 		</div>

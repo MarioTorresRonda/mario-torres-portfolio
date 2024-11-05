@@ -26,7 +26,7 @@ const CodeBoxNavBar = forwardRef(function CodeBoxNavBar({className, onSelectFile
 
 	return (
 		<div className={`bg-slate-900 flex  ${className ? className : ""}`}>
-			<div className="bg-slate-700 flex pl-[1px] pt-[1px] gap-[1px] h-full w-full overflow-x-auto pr-14">
+			<div className="bg-slate-700 flex pl-[1px] pt-[1px] gap-[1px] h-full w-full overflow-x-hidden hover:overflow-x-scroll pr-20">
 				{pageList.map((element) => {
 					return (
 						<div

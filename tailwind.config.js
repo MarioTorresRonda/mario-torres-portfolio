@@ -39,17 +39,24 @@ module.exports = {
           '0%': { "opacity": "0%", "transform": "translateY(-30%)" },
           '100%': { "opacity": "100%", "transform": "translateY(0)" },
         },
-        hightlight: {
+        highlight: {
           '0%': { "background-color" : "transparent", "transform": "scale(1)" },
           '50%': { "background-color" : "var(--myColorStartSimple)", "transform": "scale(103%)" },
           '100%': { "background-color" : "transparent", "transform": "scale(1)" }
-        }
+        },
+        tooltipAnimation: {
+          '0%': { "transform": "scale(0)" },
+          '70%': { "transform": "scale(0)" },
+          '90%': { "transform": "scale(105%)" },
+          '100%': { "transform": "scale(1)" }
+        },
       },
       animation: {
         opacityLoad: 'opacityLoad 4s',
         overflowLoad: 'overflowLoad 4s',
         fromTop: 'fromTop 400ms',
-        hightlight : 'hightlight 700ms'
+        highlight : 'highlight 700ms',
+        tooltipAnimation : 'tooltipAnimation 800ms',
       }
     },
     variants: {

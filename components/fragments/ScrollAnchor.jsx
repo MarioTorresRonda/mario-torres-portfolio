@@ -8,20 +8,20 @@ export default function ScrollAnchor( {anchor, children} ) {
 
     const { getQuery } = useUtilsSearchParam()
     const queryValue = getQuery( "chapter" );
-    const [hightlight, setHightlight] = useState(false)
+    const [highlight, setHighlight] = useState(false)
     const {menu} = useContext(MenuContext);
     
-    const classes = `transition-all duration-500 ${ hightlight ? "animate-hightlight" : "" } `;
+    const classes = `transition-all duration-500 ${ highlight ? "animate-highlight" : "" } `;
 
     useEffect(() =>  {
         if ( queryValue == anchor ) {
-            setHightlight( queryValue == anchor )
+            setHighlight( queryValue == anchor )
             const timeout = setTimeout(() => {
-                setHightlight( false );
+                setHighlight( false );
             }, 500);
             
             return () => {
-                setHightlight( false );
+                setHighlight( false );
                 clearTimeout( timeout );
             }
         }
