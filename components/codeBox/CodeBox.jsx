@@ -7,10 +7,23 @@ import CodeBoxNavBar from "./CodeBoxNavBar";
 import {formatCodeText} from "@/util/CodeFormatter";
 import Tooltip from "../fragments/Tooltip";
 import { isEmpty } from "@/util/Objects";
+import { useMessageText } from "@/hooks/useMessageText";
 
 export default function CodeBox({files}) {
-	const notMinimizedObj = {value: false, icon: { svg : shrinkIcon, class : "bg-slate-900 border-t-[1px] border-slate-700" } };
-	const minimizedObj = {value: true, icon : {svg: expandIcon, class : ""}};
+	const notMinimizedObj = {
+		value: false,
+		icon: {
+			svg: shrinkIcon,
+			text: useMessageText(["commons", "codeBox", "shrinkCode"]),
+		},
+	};
+	const minimizedObj = {
+		value: true,
+		icon: {
+			svg: expandIcon,
+			text: useMessageText(["commons", "codeBox", "expandCode"]),
+		},
+	};
 
 	const [loadedFiles, setLoadedFiles] = useState({});
 	const [selectedFile, setSelectedFile] = useState(
@@ -27,6 +40,7 @@ export default function CodeBox({files}) {
 			await new Promise(r => setTimeout(r, 10000));
 			await files.forEach(async (file) => {
 				const response = await file.importFile;
+				file.plainText = response;
 				newLoadedFiles[file.name] = formatCodeText(response.default.split("\n"));
 			});
 			setLoadedFiles({...newLoadedFiles});
@@ -55,13 +69,28 @@ export default function CodeBox({files}) {
 		);
 	}
 
+	function onCopyCode() {
+		let textToCopy = selectedFile.plainText.default;
+
+		if ( minimized.value ) {
+			const fromToRows = [];
+			const allRows = textToCopy.split("\n");
+			for (let index = selectedFile.from - 1; index < selectedFile.to; index++) {
+				fromToRows.push( allRows[index] );
+			}
+			textToCopy = fromToRows.join("\n");
+		}
+
+		navigator.clipboard.writeText( textToCopy );
+	}
+
 	let body = <div className="h-20 p-2"> Loading... </div>;
 
 	if ( !isEmpty( loadedFiles ) ) {
 		body = <>
 			<CodeBoxNavBar
 				ref={navBar}
-				className={minimized.value ? "hidden" : ""}
+				minimized={minimized.value}
 				selectedName={selectedFile.name}
 				onSelectFile={onSelectFile}
 				/>
@@ -84,17 +113,18 @@ export default function CodeBox({files}) {
 			<div className="h-full w-full bg-slate-950 flex flex-col max-h-[400px]">
 				{body}
 			</div>
-			<div className={`absolute h-10 top-0 py-2 px-4 right-0 flex gap-4 ${minimized.icon.class}`}>
+			<div className={`absolute h-10 top-0 py-2 px-4 right-0 flex gap-4 bg-slate-900 border-t-[1px] border-slate-700 `}>
 				<div className="w-6 h-6">
-					<Tooltip text={"Copiar"}>
+					<Tooltip text={useMessageText(["commons", "codeBox", "copyCode"])}>
 						<FontAwesomeIcon
 							icon={copyIcon}
 							className={`h-full transition-transform ease-in-out hover:scale-[1.2] text-[#6688CC]`}
+							onClick={onCopyCode}
 						/>
 					</Tooltip>
 				</div>
 				<div className="w-6 h-6">
-					<Tooltip text={"Copiar"}>
+					<Tooltip text={minimized.icon.text}>
 						<FontAwesomeIcon
 							icon={minimized.icon.svg}
 							className={`h-full transition-transform ease-in-out hover:scale-[1.2] text-[#6688CC]`}

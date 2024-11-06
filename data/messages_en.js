@@ -26,7 +26,7 @@ let messages = {
             list: {
                 blog1: "My own Blog",
                 descBlog1: "Working blog inside portfolio with post selector loaded asynchronous and localization implemented.",
-            }
+            },
         },
         loadingBlock: {
             randomText: [
@@ -57,6 +57,11 @@ let messages = {
             to: "You are going to navigate to URL: ",
             back: "Stay.",
             accept: "I understand."
+        },
+        codeBox: {
+            copyCode: "Copy code to the clipboard.",
+            expandCode: "Show whole file.",
+            shrinkCode: "Show only the sauce."
         }
     }
 }

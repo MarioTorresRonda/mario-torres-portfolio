@@ -56,6 +56,11 @@ let messages = {
             to: "Vas a navegar a la URL: ",
             back: "Quedarse",
             accept: "Entendido."
+        },
+        codeBox: {
+            copyCode: "Copiar codigo al portapapeles.",
+            expandCode: "Mostrar fichero completo.",
+            shrinkCode: "Mostrar solo lo importante."
         }
     }
 }
