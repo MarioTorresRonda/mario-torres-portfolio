@@ -7,7 +7,7 @@ import { useContext, useEffect, useState } from "react";
 export default function ScrollAnchor( {anchor, children} ) {
 
     const { getQuery } = useUtilsSearchParam()
-    const queryValue = getQuery( "chapter" );
+    const queryValue = encodeURIComponent( getQuery( "chapter" ) );
     const [highlight, setHighlight] = useState(false)
     const {menu} = useContext(MenuContext);
     
@@ -25,7 +25,7 @@ export default function ScrollAnchor( {anchor, children} ) {
                 clearTimeout( timeout );
             }
         }
-    }, [queryValue, menu.selectedPost.scroll]);
+    }, [queryValue]);
 
     return <div className={classes} id={anchor} key={anchor}> {children} </div>
 }

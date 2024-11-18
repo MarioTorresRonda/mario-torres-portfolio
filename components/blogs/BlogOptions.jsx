@@ -2,7 +2,7 @@
 
 import BlogNavBar from "./BlogNavBar";
 import { MenuContext } from "@/store/menu-context";
-import { useContext, useEffect, useRef, useState } from "react";
+import { useCallback, useContext, useEffect, useRef, useState } from "react";
 import { isEmpty } from "@/util/Objects";
 import BlogExtendButton from "./BlogExtendButton";
 import useWindowSize from "@/hooks/useWindowSize";
@@ -32,7 +32,7 @@ export default function BlogOptions() {
         setBoxProps( {...boxPropsNew} );
     }
     
-    function handleScroll() {
+    const handleScroll = useCallback( () => {
         const boxPropsNew = {...boxProps};
         boxPropsNew.scrollPosition = window.pageYOffset;
         boxPropsNew.position = boxPropsNew.scrollPosition <= boxPropsNew.boxTopHeight ? "static" : "fixed w-[95vw] md:w-1/4 md:pr-4 top-0 xl:pr-1 xl:w-1/6";
@@ -42,13 +42,14 @@ export default function BlogOptions() {
         }
 
         setBoxProps( {...boxPropsNew} );
-    }
+    }, [boxProps]);
 
-    function calculateTopHeight() {
+
+    const calculateTopHeight = useCallback( () => {
         const boxPropsNew = {...boxProps};
         boxPropsNew.boxTopHeight = boxPropsNew.scrollPosition + boxFixed.current.getBoundingClientRect().top;
         setBoxProps( {...boxPropsNew} );
-    }
+    }, [boxProps]);
 
     useEffect(() => {
 
@@ -58,7 +59,7 @@ export default function BlogOptions() {
             setOldWindow([windowSize[0], windowSize[1]])
             setBoxProps( {...boxPropsNew} );
         }
-    }, [windowSize[0], windowSize[1]])
+    }, [boxProps, oldWindow, windowSize])
 
     useEffect(() => {
         if ( isEmpty( menu.selectedPost.navBar) ) {
@@ -78,7 +79,7 @@ export default function BlogOptions() {
             clearTimeout( timer );
             window.removeEventListener('scroll', handleScroll);
         };
-    }, [ JSON.stringify( boxProps ), menu.selectedPost.navBar, showValue]);
+    }, [boxProps.position, menu.selectedPost.navBar, showValue]);
 
     return (
         <div className={`flex w-full flex-col md:w-1/4 p-2 z-10`} style={{height: `${boxProps.boxHeight}px`}}>

@@ -1,4 +1,3 @@
-import { blogList } from "@/data/blogs";
 import { useRouter } from "next/navigation";
 import { useContext } from "react";
 

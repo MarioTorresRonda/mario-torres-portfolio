@@ -26,3 +26,7 @@ export default function merge (  ) {
 export function isEmpty( obj ) {
     return ( obj == null || Object.keys( obj ).length == 0 );
 }
+
+export function isObject( object ) {
+    return typeof object === 'object' && object !== null
+}
