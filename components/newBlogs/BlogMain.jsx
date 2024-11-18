@@ -62,11 +62,19 @@ export default function BlogMain( { Blog } ) {
     const [builtBlog, setBuiltBlog] = useState(null);
 
     useEffect(() => {
-        setBuiltBlog( createBlogComponent( Blog, null, -1, "" ) );
+        if ( Blog ) {
+            const time = performance.now();
+            setBuiltBlog( createBlogComponent( Blog, null, -1, "" ) );
+            console.log( performance.now() - time + "ms" );
+        }
     }, [Blog])
 
     useEffect(() => {
-        setNavBar( createNavBar( {}, builtBlog ) );
+        if ( builtBlog ) {
+            const time = performance.now();
+            setNavBar( createNavBar( {}, builtBlog ) );
+            console.log( performance.now() - time + "ms" );
+        }
     }, [builtBlog])
 
     return <>
