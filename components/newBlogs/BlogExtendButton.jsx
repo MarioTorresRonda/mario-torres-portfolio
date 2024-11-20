@@ -3,16 +3,7 @@ import {faCaretDown as icon} from "@fortawesome/free-solid-svg-icons";
 
 import { useEffect, useState } from "react";
 
-export default function BlogExtendButton({ onHandleExtendClick, isExtended, overflowBox, children}) {
-
-	const [show, setShow] = useState(true);
-
-	//extendedButton - if the component {overflowBox} is smaller than children, is should be hidden
-	useEffect(() => {
-		if (!isExtended) {
-			setShow(overflowBox.current.offsetHeight < overflowBox.current.children[0].offsetHeight);
-		}
-	}, [isExtended, overflowBox]);
+export default function BlogExtendButton({ onHandleExtendClick, isExtended, show, children}) {
 
 	const buttonClasses = "bg-slate-400 dark:bg-stone-600 px-2 md:px-6 h-10 rounded-md flex items-center"
 	if (!show) {

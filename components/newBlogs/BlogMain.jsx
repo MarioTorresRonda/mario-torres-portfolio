@@ -3,83 +3,61 @@ import BlogSideBar from "./BlogSideBar";
 import { useMessageText } from "@/hooks/useMessageText";
 import Message from "../fragments/Message";
 import BlogNavBarItem from "./blogNavBar/BlogNavBarItem";
-import LZString from 'lz-string';
+import crypto from 'crypto';
 
-function createBlogComponent( layer, builtBlog, level, parentName ) {
+function createBlogComponent( layer, level, parentName ) {
     if ( layer != null ) {
-        const name = parentName + "_" + layer.jsx.type.name;
+
+        const isChapter = ( layer.type.name == "BlogTitle" || layer.type.name == "BlogChapter" );
+        let finalKey = null;
         let childrenObj = null;
-        if ( layer.children ) {
-            const childrenArray = [];
-            if ( layer.jsx.props.children ) {
-                childrenArray.push( Array.isArray( layer.jsx.props.children ) ?  [...layer.jsx.props.children] : layer.jsx.props.children );
-            }
-            if ( layer.children ) {
-                childrenArray.push( ...layer.children.map( element => createBlogComponent( element, layer.jsx.props.children, level + 1, name ) ) );
-            }
-            let iterator = 0;
-            childrenObj = <Fragment>
+        let name = parentName.join("_");
+        if ( isChapter ) {
+            parentName = [...parentName, layer.type.name];
+            name = parentName.join("_");
+            level = level + 1; 
+            const unCompressedKey = name + "_" + layer.props.code.map( code => code.replaceAll(" ", "") ).join("_");
+            const compressedKey = crypto.createHash('sha1').update(unCompressedKey).digest( 'base64' );
+            finalKey = encodeURIComponent( compressedKey.substring(0, 15) );
+        }
+
+        if ( layer.props.children ) {
+            if ( Array.isArray( layer.props.children ) ) {
+                const childrenArray = [];
+                childrenArray.push( ...layer.props.children.map( element => createBlogComponent( element, level, parentName ) ) );
+                let iterator = 0;
+                childrenObj = <Fragment>
                 { childrenArray.map( element => {
-                    return <Fragment key={iterator++}> { element } </Fragment>;
+                    return <Fragment key={name + iterator++}> { element } </Fragment>;
                 } ) }
             </Fragment>;
+            }else{
+                childrenObj = createBlogComponent( layer.props.children,level + 1, parentName );
+            }
         }
 
-        let key = null;
-        if ( layer.jsx.props.code ) {
-            key = LZString.compressToEncodedURIComponent( name + "_" + layer.jsx.props.code.map( code => code.replaceAll(" ", "") ).join("_") );
-            key = encodeURIComponent( key );
-        }
-        builtBlog = cloneElement( layer.jsx, {...layer.jsx.props, level, id :key }, childrenObj );
-        return builtBlog;
+        const newLayer = cloneElement( layer, {...layer.props, level, id : finalKey }, childrenObj );
+        return newLayer;
     }
     return null;
 }
 
-function createNavBar( navBar, builtBlog ) {
-    
-    if ( builtBlog && typeof builtBlog === "object" ) {
-        const { id, code, level, children } = builtBlog.props;
-        if ( id ) {
-            navBar[id] = <BlogNavBarItem level={level} id={id}> <Message code={code} /> </BlogNavBarItem>;
-        }
-        if ( children ) {
-            if ( Array.isArray( children ) ) {
-                children.forEach(element => {
-                    navBar = createNavBar( navBar, element )
-                });
-            }else{
-                navBar = createNavBar( navBar, children );
-            }
-        }
-    }
-    return navBar;
-}
 
 export default function BlogMain( { Blog } ) {
 
-    const [navBar, setNavBar] = useState({});
     const [builtBlog, setBuiltBlog] = useState(null);
 
     useEffect(() => {
         if ( Blog ) {
             const time = performance.now();
-            setBuiltBlog( createBlogComponent( Blog, null, -1, "" ) );
+            setBuiltBlog( createBlogComponent( Blog, -1, [] ) );
             console.log( performance.now() - time + "ms" );
         }
     }, [Blog])
 
-    useEffect(() => {
-        if ( builtBlog ) {
-            const time = performance.now();
-            setNavBar( createNavBar( {}, builtBlog ) );
-            console.log( performance.now() - time + "ms" );
-        }
-    }, [builtBlog])
-
     return <>
             <Suspense fallback={<div>Loading...</div>}>
-                <BlogSideBar navBar={navBar} />
+                <BlogSideBar blog={builtBlog} />
                 <div className="px-4 md:flex-auto md:w-3/4 pt-2 md:pt-0">
                     { builtBlog && builtBlog }
                 </div>
