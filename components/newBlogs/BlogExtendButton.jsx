@@ -3,7 +3,7 @@ import {faCaretDown as icon} from "@fortawesome/free-solid-svg-icons";
 
 import { useEffect, useState } from "react";
 
-export default function BlogExtendButton({ onHandleExtendClick, isExtended, show, children}) {
+export default function BlogExtendButton({ onHandleExtendClick, scrollExpanded, show, children}) {
 
 	const buttonClasses = "bg-slate-400 dark:bg-stone-600 px-2 md:px-6 h-10 rounded-md flex items-center"
 	if (!show) {
@@ -20,7 +20,7 @@ export default function BlogExtendButton({ onHandleExtendClick, isExtended, show
 			<button>
 				<FontAwesomeIcon
 					icon={icon}
-					className={`w-[20px] h-[20px] transition ease-in-out hover:scale-[1.2] ` + (isExtended && "rotate-180")}
+					className={`w-[20px] h-[20px] transition ease-in-out hover:scale-[1.2] ` + (scrollExpanded && "rotate-180")}
 				/>
 			</button>
 			{children}

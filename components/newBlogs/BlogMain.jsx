@@ -7,7 +7,6 @@ import crypto from 'crypto';
 
 function createBlogComponent( layer, level, parentName ) {
     if ( layer != null ) {
-
         const isChapter = ( layer.type.name == "BlogTitle" || layer.type.name == "BlogChapter" );
         let finalKey = null;
         let childrenObj = null;

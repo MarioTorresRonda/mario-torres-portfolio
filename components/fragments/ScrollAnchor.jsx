@@ -9,7 +9,6 @@ export default function ScrollAnchor( {anchor, children} ) {
     const { getQuery } = useUtilsSearchParam()
     const queryValue = encodeURIComponent( getQuery( "chapter" ) );
     const [highlight, setHighlight] = useState(false)
-    const {menu} = useContext(MenuContext);
     
     const classes = `transition-all duration-500 ${ highlight ? "animate-highlight" : "" } `;
 

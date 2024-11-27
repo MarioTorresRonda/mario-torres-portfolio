@@ -8,7 +8,6 @@ import Ideas from "./Fragments/Ideas";
 import Design from "./Fragments/Design";
 import BlogRef from "@/components/blogs/BlogRef";
 import CodeBox from "@/components/codeBox/CodeBox.jsx";
-import { lazy, useEffect, useState } from "react";
 
 const files = [ 
 	{
