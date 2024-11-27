@@ -1,10 +1,10 @@
 "use client";
 
-import BlogTitle from "@/components/newBlogs/blogFragments/BlogTitle";
-import BlogSubtitle from "@/components/newBlogs/blogFragments/BlogSubtitle";
-import BlogChapter from "@/components/newBlogs/blogFragments/BlogChapter";
+import BlogTitle from "@/components/blogs/blogFragments/BlogTitle";
+import BlogSubtitle from "@/components/blogs/blogFragments/BlogSubtitle";
+import BlogChapter from "@/components/blogs/blogFragments/BlogChapter";
 
-import BlogInit from "@/components/newBlogs/BlogInit";
+import BlogInit from "@/components/blogs/BlogInit";
 import MainImage from "./Fragments/MainImage";
 import Reason from "./Fragments/Reason";
 import WorkPlan from "./Fragments/WorkPlan";

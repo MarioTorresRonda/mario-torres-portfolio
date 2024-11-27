@@ -1,4 +1,4 @@
-import BlogChapter from "@/components/newBlogs/blogFragments/BlogChapter";
+import BlogChapter from "@/components/blogs/blogFragments/BlogChapter";
 import BlogList from "@/components/blogs/blogFragments/BlogList";
 import BlogParagraph from "@/components/blogs/blogFragments/BlogParagraph";
 import Message from "@/components/fragments/Message";

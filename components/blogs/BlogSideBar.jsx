@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import BlogNavBarItem from "./blogNavBar/BlogNavBarItem";
+import BlogNavBarItem from "../blogs/blogNavBar/BlogNavBarItem";
 import Message from "../fragments/Message";
-import BlogNavBar from "./blogNavBar/BlogNavBar";
-import BlogBagNavBox from "./blogNavBar/BlogNavBarBox";
+import BlogNavBar from "../blogs/blogNavBar/BlogNavBar";
+import BlogBagNavBox from "../blogs/blogNavBar/BlogNavBarBox";
 
 function createNavBar( navBar, builtBlog ) {
     if ( builtBlog && typeof builtBlog === "object" ) {

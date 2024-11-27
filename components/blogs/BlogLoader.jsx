@@ -1,4 +1,6 @@
-import { lazy, useContext, useEffect, useState } from "react";
+'use client'
+
+import { useContext, useEffect, useState } from "react";
 import ContentBox from "../Index/ContentBox";
 import { LocalizationContext } from "@/store/location-context";
 import BlogMain from "./BlogMain";

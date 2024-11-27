@@ -1,29 +1,20 @@
-import { useReducedMotion } from "framer-motion";
-import BlogNavBarItem from "./BlogNavBarItem"
-import { useContext, useRef } from "react";
+import Message from "@/components/fragments/Message";
 import ScrollAnchor from "@/components/fragments/ScrollAnchor";
-import { MenuContext } from "@/store/menu-context";
 
 const textLevel = {
-    1: "text-2xl  md:text-3xl font-semibold text-slate-800 dark:text-stone-300",
-    2: "text-xl md:text-2xl font-semibold text-slate-700 dark:text-stone-400",
-    3: "text-xl md:text-xl font-semibold text-slate-600 dark:text-stone-400",
-    4: "text-lg md:text-lg font-semibold text-slate-600 dark:text-stone-400"
+    0: "text-2xl md:text-3xl font-semibold text-slate-800 dark:text-stone-300",
+    1: "text-xl md:text-2xl font-semibold text-slate-700 dark:text-stone-400",
+    2: "text-xl md:text-xl font-semibold text-slate-600 dark:text-stone-400",
+    3: "text-lg md:text-lg font-semibold text-slate-600 dark:text-stone-400"
 }
 
-export default function BlogChapter( { level, text, children} ) {
+export default function BlogChapter( { level, code, children, id} ) {
     
-    const { menu } = useContext( MenuContext );
-
-    const id = text.replaceAll(" ", "");
     const maxLevel = level > 4 ? 4 : level;
-
-    const element = <BlogNavBarItem id={id} level={level + 1}> {text} </BlogNavBarItem>; 
-    menu.blogInfo.current.addItemNavBar( id, {element} );
 
     return(
         <ScrollAnchor anchor={id}>
-            <p className={` ${ textLevel[maxLevel] } mb-4`}> {text} </p>
+            <p className={` ${ textLevel[maxLevel] } mb-4`}> <Message code={code} /> </p>
             <div className="ml-3" >
                 {children}
             </div>

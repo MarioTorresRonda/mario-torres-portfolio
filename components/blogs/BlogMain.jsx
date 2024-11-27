@@ -1,73 +1,63 @@
 'use client'
 
-import { MenuContext } from "@/store/menu-context";
-import { lazy, Suspense, useContext, useEffect, useRef, useState } from "react";
-import ContentBox from "../Index/ContentBox";
-import { LocalizationContext } from "@/store/location-context";
-import BlogOptions from "./BlogOptions";
-import useUtilsSearchParam from "@/hooks/useUtilsSearchParam";
+import { Suspense, useState, cloneElement, Fragment, useEffect } from "react";
+import BlogSideBar from "./BlogSideBar";
+import crypto from 'crypto';
 
-function loadBlog( blogId, setBlogLocalization ) {
+function createBlogComponent( layer, level, parentName ) {
+    if ( layer != null ) {
+        const isChapter = ( layer.type.name == "BlogTitle" || layer.type.name == "BlogChapter" );
+        let finalKey = null;
+        let childrenObj = null;
+        let name = parentName.join("_");
+        if ( isChapter ) {
+            parentName = [...parentName, layer.type.name];
+            name = parentName.join("_");
+            level = level + 1; 
+            const unCompressedKey = name + "_" + layer.props.code.map( code => code.replaceAll(" ", "") ).join("_");
+            const compressedKey = crypto.createHash('sha1').update(unCompressedKey).digest( 'base64' );
+            finalKey = encodeURIComponent( compressedKey.substring(0, 15) );
+        }
 
-    return lazy( asyncLoad );
+        if ( layer.props.children ) {
+            if ( Array.isArray( layer.props.children ) ) {
+                const childrenArray = [];
+                childrenArray.push( ...layer.props.children.map( element => createBlogComponent( element, level, parentName ) ) );
+                let iterator = 0;
+                childrenObj = <Fragment>
+                { childrenArray.map( element => {
+                    return <Fragment key={name + iterator++}> { element } </Fragment>;
+                } ) }
+            </Fragment>;
+            }else{
+                childrenObj = createBlogComponent( layer.props.children,level + 1, parentName );
+            }
+        }
 
-    async function asyncLoad() {
-        await setBlogLocalization( blogId );
-        return await import( "../../data/blogs/"+blogId+"/Blog" );
+        const newLayer = cloneElement( layer, {...layer.props, level, id : finalKey }, childrenObj );
+        return newLayer;
     }
+    return null;
 }
 
-export default function BlogMain( {blogId} ) {
+export default function BlogMain( { Blog } ) {
 
-    const { setBlogLocalization, locale } = useContext( LocalizationContext );
-    const [ Blog, setBlog ] = useState( null )
-    const { menu, setMenu } = useContext( MenuContext );
-    const { removeAllQuery } = useUtilsSearchParam();
-
-    let blogInfoRef = useRef({
-		navBar: [],
-		uuid: crypto.randomUUID(),
-        menu : null,
-        setMenu : setMenu,
-        addItemNavBar : function( key, item ) {
-            this.menu.blogInfo.current.navBar[key] = item;
-        },
-        removeNavBar : function () {
-            this.menu.blogInfo.current.navBar = []
-            this.setMenu( menu )
-        }
-	});
+    const [builtBlog, setBuiltBlog] = useState(null);
 
     useEffect(() => {
-        if ( !menu.blogInfo ) {
-            menu.blogInfo = blogInfoRef;
-            menu.blogInfo.current.menu = menu;
-            setMenu( menu );
+        if ( Blog ) {
+            const time = performance.now();
+            setBuiltBlog( createBlogComponent( Blog, -1, [] ) );
+            console.log( performance.now() - time + "ms" );
         }
-    }, [menu.blogInfo])
+    }, [Blog])
 
-
-    
-    useEffect(() => {
-        removeAllQuery();
-        menu.blogInfo.current.removeNavBar();
-        setBlog( loadBlog( blogId, setBlogLocalization ) );
-    }, [locale])
-
-    if ( !menu.selectedPost ) {
-        return <div></div>
-    }
-
-    return ( 
-        <ContentBox>
-            <div className="flex flex-col md:flex-row w-full">
-                <BlogOptions />
+    return <>
+            <Suspense fallback={<div>Loading...</div>}>
+                <BlogSideBar blog={builtBlog} />
                 <div className="px-4 md:flex-auto md:w-3/4 pt-2 md:pt-0">
-                    <Suspense fallback={<div>Loading...</div>}>
-                        { Blog && <Blog /> }
-                    </Suspense>
+                    { builtBlog && builtBlog }
                 </div>
-            </div>
-        </ContentBox> 
-    )   
+            </Suspense>
+    </>
 }

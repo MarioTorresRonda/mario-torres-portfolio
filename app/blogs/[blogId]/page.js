@@ -1,6 +1,4 @@
-'use client'
-
-import BlogLoader from "@/components/newBlogs/BlogLoader"
+import BlogLoader from "@/components/blogs/BlogLoader"
 
 export default function page({params}){  
     return (

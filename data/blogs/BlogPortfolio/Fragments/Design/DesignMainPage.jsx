@@ -1,6 +1,6 @@
 import ClientImage from "@/components/fragments/ClientImage";
 import Message from "@/components/fragments/Message";
-import BlogParagraph from "@/components/newBlogs/blogFragments/BlogParagraph";
+import BlogParagraph from "@/components/blogs/blogFragments/BlogParagraph";
 
 import ProjectList_Fragment2 from "@/public/ProjectList_Fragment2.png"; 
 

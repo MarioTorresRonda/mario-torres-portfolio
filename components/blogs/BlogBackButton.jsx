@@ -4,18 +4,16 @@ import Message from "../fragments/Message";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretLeft as icon } from "@fortawesome/free-solid-svg-icons"
 import { MenuContext } from "@/store/menu-context";
-import { useContext } from "react";
-import useUtilsSearchParam from "@/hooks/useUtilsSearchParam";
+import { useNavigate } from "@/hooks/useNavigate";
+
+import {blog as blogMenu} from "@/data/navBar"
 
 export default function BlogBackButton() {
     
-    const { setMenu, menu } = useContext( MenuContext );
-	const { removeAllQuery } = useUtilsSearchParam();
+    const { navigate } = useNavigate( MenuContext );
 
     function onHandleBackClick() {
-        menu.selectedPost = null;
-        removeAllQuery();
-        setMenu( {...menu} );
+        navigate(blogMenu);
     }
 
     return ( <button onClick={onHandleBackClick} className="bg-slate-400 hover:bg-slate-500  dark:bg-stone-600 dark:hover:bg-stone-500 px-2 md:px-6 h-10 text-nowrap rounded-md flex items-center"> 

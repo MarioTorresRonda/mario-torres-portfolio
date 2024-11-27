@@ -1,6 +1,6 @@
 import BlogList from "@/components/blogs/blogFragments/BlogList";
 import Message from "@/components/fragments/Message";
-import BlogParagraph from "@/components/newBlogs/blogFragments/BlogParagraph";
+import BlogParagraph from "@/components/blogs/blogFragments/BlogParagraph";
 import { useMessageText } from "@/hooks/useMessageText";
 
 export default function DesignMainNS() {
