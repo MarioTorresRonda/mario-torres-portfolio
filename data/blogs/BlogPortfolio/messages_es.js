@@ -79,7 +79,12 @@ let messages = {
                     ]
                 },
             },
-        }
+        },
+        "chapter 6": {
+            title: "Plan de desarrollo",
+            desc: "Parecido al funcionamiento de proyectos, creare un archivo con una lista de blogs, donde cada blog será un objeto JSON con formato:",
+            desc2: "Con lo que tiene la lista de blogs, crearemos el Fragmento mainpage, donde mostrará los campos título, subtítulo, una fecha  la imagen con la descripción dada en el diseño por cada línea objeto de la lista",
+        },
     }
 }
 

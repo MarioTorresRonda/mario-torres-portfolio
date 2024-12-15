@@ -34,15 +34,19 @@ export default function CodeBox({files}) {
 	const [minimized, setMinimized] = useState(minimizedObj);
 	const navBar = useRef();
 
+	async function processFile( file ) {
+		const response = await file.importFile;
+		file.plainText = response;
+		return formatCodeText(response.default.split("\n"));
+	
+	}
+
 	useEffect(() => {
 		const loadFiles = async () => {
 			const newLoadedFiles = {};
-			await new Promise(r => setTimeout(r, 10000));
-			await files.forEach(async (file) => {
-				const response = await file.importFile;
-				file.plainText = response;
-				newLoadedFiles[file.name] = formatCodeText(response.default.split("\n"));
-			});
+			for (const file of files) {
+				 newLoadedFiles[file.name] = await processFile(file);
+			}
 			setLoadedFiles({...newLoadedFiles});
 		};
 		loadFiles();
@@ -97,6 +101,7 @@ export default function CodeBox({files}) {
 			{Object.keys(loadedFiles).map((key) => {
 				return (
 					<CodeBoxPage
+					key={key}
 					pageName={key}
 					pageText={loadedFiles[key]}
 					minimized={{...minimized, from: selectedFile.from, to: selectedFile.to}}
@@ -109,7 +114,7 @@ export default function CodeBox({files}) {
 	}
 
 	return (
-		<div className="relative mb-10 w-full tracking-widest">
+		<div className="relative mb-4 w-full tracking-widest">
 			<div className="h-full w-full bg-slate-950 flex flex-col max-h-[400px]">
 				{body}
 			</div>
