@@ -7,21 +7,20 @@ import CodeBoxNavBar from "./CodeBoxNavBar";
 import {formatCodeText} from "@/util/CodeFormatter";
 import Tooltip from "../fragments/Tooltip";
 import { isEmpty } from "@/util/Objects";
-import { useMessageText } from "@/hooks/useMessageText";
 
 export default function CodeBox({files}) {
 	const notMinimizedObj = {
 		value: false,
 		icon: {
 			svg: shrinkIcon,
-			text: useMessageText(["commons", "codeBox", "shrinkCode"]),
+			text: ["commons", "codeBox", "shrinkCode"],
 		},
 	};
 	const minimizedObj = {
 		value: true,
 		icon: {
 			svg: expandIcon,
-			text: useMessageText(["commons", "codeBox", "expandCode"]),
+			text: ["commons", "codeBox", "expandCode"],
 		},
 	};
 
@@ -120,7 +119,7 @@ export default function CodeBox({files}) {
 			</div>
 			<div className={`absolute h-10 top-0 py-2 px-4 right-0 flex gap-4 bg-slate-900 border-t-[1px] border-slate-700 `}>
 				<div className="w-6 h-6">
-					<Tooltip text={useMessageText(["commons", "codeBox", "copyCode"])}>
+					<Tooltip text={["commons", "codeBox", "copyCode"]}>
 						<FontAwesomeIcon
 							icon={copyIcon}
 							className={`h-full transition-transform ease-in-out hover:scale-[1.2] text-[#6688CC]`}

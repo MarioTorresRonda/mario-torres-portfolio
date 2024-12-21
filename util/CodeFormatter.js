@@ -1,8 +1,11 @@
+import { color } from "framer-motion";
+
 let isInsideQuotation = false;
 let isInsideSemiColon = false;
 let lastCharSlash = false;
 let lastCharBackSlash = false;
-var isInsideSimpleComment = false;
+let isInsideSimpleComment = false;
+let isInsideComplexComment = false;
 
 const variableObject = {
 	nextWordVariable: false,
@@ -31,6 +34,7 @@ const splitChars = [
 	"!",
 	"<",
 	">",
+	"*"
 ];
 
 // key - Color used on the HTML tag
@@ -44,16 +48,16 @@ const wordColors = {
 	"$#9966B8": {text: ["function"], variables: ["nextWordFunction"]},
 	"$#9966B9": {text: ["."], variables: ["!nextWordFunction"]},
 	"$#9966BA": {text: ["(", ")"], variables: ["!nextWordFunction"]},
-	"$#9966BB": {text: ["var", "const", "let"], variables: [""]},
+	"$#9966BB": {text: ["var", "const", "let", "return"], variables: [""]},
 	"$#F280D0": {text: ["false", "true", "{", "}"], variables: [""]},
 };
 
 export function formatCodeText(codeTextRows) {
-
-    //resetting all variables
+	const time = performance.now();
+    
+	//resetting all variables
     isInsideQuotation = false;
 	isInsideSemiColon = false;
-	lastCharSlash = false;
 	lastCharBackSlash = false;
 	isInsideSimpleComment = false;
     
@@ -64,41 +68,53 @@ export function formatCodeText(codeTextRows) {
 
 	codeTextRows.forEach((row) => {
 		let newCodeTextRow = "";
-		let startPosition = 0;
-		const rowChars = [...row];
-
-		for (let index = 0; index < rowChars.length; index++) {
-			const letter = rowChars[index];
-			for (const splitChar of splitChars) {
-				if (splitChar == letter) {
-					const word = row.substr(startPosition, index - startPosition);
-					newCodeTextRow += colorWord(word, false);
-
-					const splitter = row.substr(index, 1);
-					newCodeTextRow += colorWord(splitter, false);
-
-					startPosition = index + 1;
-					break;
-				}
+		const splitRow = splitRowByChars( row );
+		for (let index = 0; index < splitRow.length; index++) {
+			const word = splitRow[index];
+			let nextWord = false;
+			if ( index + 1 != splitRow.length ) {
+				nextWord = splitRow[index + 1]
 			}
+			newCodeTextRow += colorWord(word, nextWord);
 		}
-
-		let word = row.substr(startPosition, row.length - startPosition);
-		newCodeTextRow += colorWord(word, true);
 		newCodeTextRows.push(newCodeTextRow);
 	});
+	
+	console.log( performance.now() - time + "ms" );
 	return newCodeTextRows;
 }
 
-function colorWord(coloredWord, lastSegment) {
-	if (coloredWord.trim() == "" && !lastSegment) {
+function splitRowByChars( row ) {
+	const splittedRow = [];
+	const rowChars = [...row];
+	let startPosition = 0;
+
+	for (let index = 0; index < rowChars.length; index++) {
+		const letter = rowChars[index];
+		if ( splitChars.indexOf( letter ) != -1 ) {
+			//if the last also was a splitChar
+			if ( index - startPosition != 0) {
+				splittedRow.push( row.substr(startPosition, index - startPosition) );
+			}
+			splittedRow.push( letter );
+			startPosition = index + 1;
+		}		
+	}
+
+	splittedRow.push( row.substr(startPosition) );
+
+	return splittedRow;
+}
+
+function colorWord(coloredWord, nextWord) {
+	if (coloredWord.trim() == "" && nextWord) {
 		return coloredWord;
 	}
 	const wordTrimmed = coloredWord.trim();
-
+	
 	//comments
 	if (isInsideSimpleComment) {
-		if (lastSegment) {
+		if ( !nextWord ) {
 			isInsideSimpleComment = false;
 			lastCharSlash = false;
 			return coloredWord + "#$";
@@ -106,17 +122,29 @@ function colorWord(coloredWord, lastSegment) {
 			return coloredWord;
 		}
 	}
+	if ( isInsideComplexComment ) {
+		if ( wordTrimmed == "*" ) {
+			const nextWordTrimmed = nextWord ? nextWord.trim() : "";
+			if ( nextWordTrimmed == "/" ) {
+				isInsideComplexComment = false;
+				return coloredWord + "#$";
+			}
+		}
+		return coloredWord;
+	}
 	if (wordTrimmed == "/") {
-		if (lastCharSlash) {
+		const nextWordTrimmed = nextWord ? nextWord.trim() : "";
+		console.log( nextWordTrimmed );
+		if (nextWordTrimmed == "/") {
 			isInsideSimpleComment = true;
 			return "$#384887" + coloredWord;
-		} else {
-			lastCharSlash = true;
-			return coloredWord;
 		}
-	} else {
-		lastCharSlash = false;
+		if ( nextWordTrimmed == "*" ) {
+			isInsideComplexComment = true;
+			return "$#384887" + coloredWord;
+		}
 	}
+	
 
 	if (lastCharBackSlash) {
 		lastCharBackSlash = false;
@@ -136,7 +164,7 @@ function colorWord(coloredWord, lastSegment) {
 	//""
 	if (!isInsideSemiColon) {
 		if (isInsideQuotation) {
-			if (wordTrimmed == '"' || lastSegment) {
+			if (wordTrimmed == '"' || !nextWord) {
 				isInsideQuotation = false;
 				return coloredWord + "#$";
 			}
@@ -150,7 +178,7 @@ function colorWord(coloredWord, lastSegment) {
 
 	//''
 	if (isInsideSemiColon) {
-		if (wordTrimmed == "'" || lastSegment) {
+		if (wordTrimmed == "'" || !nextWord) {
 			isInsideSemiColon = false;
 			return coloredWord + "#$";
 		}

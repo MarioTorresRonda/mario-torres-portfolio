@@ -12,8 +12,9 @@ export default function BlogResumeItemImage() {
 
     var { menu, setMenu } = useContext( MenuContext );
     const { navigate } = useNavigate( MenuContext );
+    const getText = useMessageText();
     var isShow = menu.oldBlog == menu.blog;
-    const dateFormat = useMessageText(["commons", "dateFormat"]);
+    const dateFormat = getText(["commons", "dateFormat"]);
 
     useEffect(() => {
       let timeout = null;

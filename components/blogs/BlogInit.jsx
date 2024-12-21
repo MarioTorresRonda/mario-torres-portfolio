@@ -8,7 +8,7 @@ import useWindowSize from "@/hooks/useWindowSize";
 export default function BlogInit({children}) {
 
 
-    const { getQuery } = useUtilsSearchParam()
+    const { getQuery, removeQuery } = useUtilsSearchParam()
     const queryValue = encodeURIComponent( getQuery( "chapter" ) );
 
 	const [ yOffset, setYOffset ] = useState( -20 );
@@ -18,6 +18,10 @@ export default function BlogInit({children}) {
 	useEffect(() => {
 		if ( queryValue && queryValue != "null" ) {
 			const element = document.getElementById(queryValue);
+			if ( !element ) {
+				removeQuery({ queryId: "chapter"});
+				return;
+			}
 			const y = element.getBoundingClientRect().top + window.scrollY + yOffset;
 			
 			window.scrollTo({top: y, behavior: 'smooth'});

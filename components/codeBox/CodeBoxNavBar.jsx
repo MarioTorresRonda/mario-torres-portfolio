@@ -22,8 +22,6 @@ const CodeBoxNavBar = forwardRef(function CodeBoxNavBar({minimized, onSelectFile
 		onSelectFile(key);
 	}
 
-    console.log( pageList )
-
 	return (
 		<div className={`bg-slate-900 flex`}>
 			<div className="bg-slate-700 flex pl-[1px] pt-[1px] gap-[1px] h-full w-full overflow-x-hidden hover:overflow-x-auto pr-20">
@@ -34,6 +32,7 @@ const CodeBoxNavBar = forwardRef(function CodeBoxNavBar({minimized, onSelectFile
 
 					return (
 						<div
+							key={element}
 							onClick={() => {
 								onHandleClickNavBarItem(element);
 							}}

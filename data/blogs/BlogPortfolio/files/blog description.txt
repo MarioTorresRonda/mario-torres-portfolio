@@ -1,8 +1,8 @@
 {
-    id: 1, //identificador
-    titulo: ["textoLenguaje1"], //Titulo
-    subtítulo: ["textoLenguaje2"], //Subtitulo
-    imagen: "url",
-    fecha: unix,
-    file: "@/data/blogs/blog1.js" //Ruta del archivo
+    id: 1, //identification
+    title: ["text", "localization", "code"], //Title
+    subtitle: ["text", "localization", "code", "2"], //Subtitle
+    img: "...", //File route
+    createDate: new Date(),
+    file: "..." //File route
 }

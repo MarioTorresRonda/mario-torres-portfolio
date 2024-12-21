@@ -11,13 +11,14 @@ import {blog as blogMenu} from "@/data/navBar"
 
 export default function BlogItem( {blog} ) {
     const { navigate } = useNavigate( MenuContext );
+    const getText = useMessageText();
     
     let ago = "";
 
-    const newText = useMessageText( ["mainPage", "blogs", "new"] );
-    const agoText = useMessageText( ["mainPage", "blogs", "ago"] );
+    const newText = getText( ["mainPage", "blogs", "new"] );
+    const agoText = getText( ["mainPage", "blogs", "ago"] );
     const monthsDiff = new Date( new Date().getTime() - blog.date ).getMonth()
-    const monthsText = useMessageText( ["mainPage", "blogs", "months"] )[ monthsDiff == 1 ? 0 : 1 ];
+    const monthsText = getText( ["mainPage", "blogs", "months"] )[ monthsDiff == 1 ? 0 : 1 ];
 
     if ( monthsDiff == 0 ) {
         ago = newText;

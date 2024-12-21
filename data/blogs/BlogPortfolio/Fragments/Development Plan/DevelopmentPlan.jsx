@@ -10,8 +10,27 @@ const files = [
         selected: true,
         from: 0,
         to: 8
+    },
+    {
+        importFile : import( "!!raw-loader!@/data/blogs/BlogPortfolio/files/blogExample.jsx" ),
+        name : "Blog example",
     }
 ]
+
+const files2 = [ 
+    {
+        importFile : import( "!!raw-loader!@/data/blogs/BlogPortfolio/files/blog description.txt" ),
+        name : "Blog description"
+    },
+    {
+        importFile : import( "!!raw-loader!@/data/blogs/BlogPortfolio/files/blogExample.jsx" ),
+        name : "Blog example",
+        selected: true,
+        from: 3,
+        to: 14
+    }
+]
+
 
 export default function DevelopmentPlan() {
     return <BlogChapter code={["Blog", "chapter 6", "title"]}>
@@ -21,6 +40,10 @@ export default function DevelopmentPlan() {
         <CodeBox files={files}></CodeBox>    
         <BlogParagraph>
             <Message code={["Blog", "chapter 6", "desc2"]}></Message>
-        </BlogParagraph>   
+        </BlogParagraph>      
+        <BlogParagraph>
+            <Message code={["Blog", "chapter 6", "desc3"]}></Message>
+        </BlogParagraph>  
+        <CodeBox files={files2}></CodeBox>    
     </BlogChapter>
 }

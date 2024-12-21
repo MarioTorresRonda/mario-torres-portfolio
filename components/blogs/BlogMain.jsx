@@ -3,10 +3,18 @@
 import { Suspense, useState, cloneElement, Fragment, useEffect } from "react";
 import BlogSideBar from "./BlogSideBar";
 import crypto from 'crypto';
+import BlogTitle from "./blogFragments/BlogTitle";
+import BlogChapter from "./blogFragments/BlogChapter";
+
+const chapterTypes = [
+    BlogTitle,
+    BlogChapter
+]
 
 function createBlogComponent( layer, level, parentName ) {
     if ( layer != null ) {
-        const isChapter = ( layer.type.name == "BlogTitle" || layer.type.name == "BlogChapter" );
+        //This types indicates when chapter start, chapters are shown in navbar.
+        const isChapter = chapterTypes.indexOf( layer.type ) != -1;
         let finalKey = null;
         let childrenObj = null;
         let name = parentName.join("_");
@@ -24,11 +32,9 @@ function createBlogComponent( layer, level, parentName ) {
                 const childrenArray = [];
                 childrenArray.push( ...layer.props.children.map( element => createBlogComponent( element, level, parentName ) ) );
                 let iterator = 0;
-                childrenObj = <Fragment>
-                { childrenArray.map( element => {
-                    return <Fragment key={name + iterator++}> { element } </Fragment>;
-                } ) }
-            </Fragment>;
+                childrenObj = childrenArray.map( element => {
+                        return <Fragment key={name + iterator++}> { element } </Fragment>;
+                } );
             }else{
                 childrenObj = createBlogComponent( layer.props.children,level + 1, parentName );
             }
@@ -46,9 +52,7 @@ export default function BlogMain( { Blog } ) {
 
     useEffect(() => {
         if ( Blog ) {
-            const time = performance.now();
             setBuiltBlog( createBlogComponent( Blog, -1, [] ) );
-            console.log( performance.now() - time + "ms" );
         }
     }, [Blog])
 

@@ -6,18 +6,20 @@ import { useRouter } from 'next/navigation'
 export default function RiskyModal( {url, modalRef} ) {
     
     const router = useRouter()
+    const getText = useMessageText();
+    
 
     function onHandleSubmit() {
         router.push(url, { scroll: false })
 	}
     
     return ( <Modal
-        title={useMessageText(["commons", "riskyUrl", "title"])}
+        title={getText(["commons", "riskyUrl", "title"])}
         submit={true}
         onSubmit={onHandleSubmit}
         ref={modalRef}
-        cancelText={useMessageText(["commons", "riskyUrl", "back"])}
-        submitText={useMessageText(["commons", "riskyUrl", "accept"])}
+        cancelText={getText(["commons", "riskyUrl", "back"])}
+        submitText={getText(["commons", "riskyUrl", "accept"])}
     >
         <>
             <Message code={["commons", "riskyUrl", "desc"]}></Message>

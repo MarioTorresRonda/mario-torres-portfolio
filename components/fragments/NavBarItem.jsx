@@ -9,8 +9,9 @@ export default function NavBarItem( { newMenu } ) {
 
     const { menu } = useContext( MenuContext );
     const { navigate } = useNavigate( MenuContext);
+    const getText = useMessageText();
     
-    const menuText = useMessageText( newMenu.title )
+    const menuText = getText( newMenu.title )
 
     function onHandleClick() {
         navigate( newMenu );

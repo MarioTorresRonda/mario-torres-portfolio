@@ -1,7 +1,4 @@
 import BlogBackgroundImage from "@/components/blogs/blogFragments/BlogBackgroundImage";
-import BlogSubtitle from "@/components/blogs/blogFragments/BlogSubtitle";
-import BlogTitle from "@/components/blogs/blogFragments/BlogTitle";
-import { useMessageText } from "@/hooks/useMessageText";
 
 
 

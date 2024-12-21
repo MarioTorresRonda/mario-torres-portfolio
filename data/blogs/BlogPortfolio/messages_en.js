@@ -83,7 +83,8 @@ let messages = {
         "chapter 6": {
             title: "Development Plan",
             desc: "Same as done with the projects, I'll create a file with a list of blogs, were every blog will be in a JSON format.",
-            desc2: "With the list on blogs, the mainpage Fragment will be made, every blog filling his title, subtitle, date and an Image in the blog description of the file."
+            desc2: "With the list on blogs, the mainpage Fragment will be made, every blog filling his title, subtitle, date and an Image in the blog description of the file.",
+            desc3: "the file field will redirect to an JSX archive that will be load asynchronously, having a similar structure of: "
         }
     }
 }

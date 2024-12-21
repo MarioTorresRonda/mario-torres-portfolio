@@ -8,7 +8,7 @@ function createNavBar( navBar, builtBlog ) {
     if ( builtBlog && typeof builtBlog === "object" ) {
         const { id, code, level, children } = builtBlog.props;
         if ( id ) {
-            navBar[id] = <BlogNavBarItem    level={level} id={id}> <Message code={code} /> </BlogNavBarItem>;
+            navBar[id] = <BlogNavBarItem level={level} id={id}> <Message code={code} /> </BlogNavBarItem>;
         }
         if ( children ) {
             if ( Array.isArray( children ) ) {

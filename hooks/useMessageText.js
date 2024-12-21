@@ -2,9 +2,12 @@ import { LocalizationContext } from "@/store/location-context";
 import { getCodeFromArray } from "@/util/Localization";
 import { useContext } from "react";
 
-export function useMessageText( code ) {
+export function useMessageText() {
     const { lang } = useContext( LocalizationContext );
-    let message = getCodeFromArray( lang , code );
 
-    return message;
+    function getText( code ) {
+        return getCodeFromArray( lang, code )
+    }
+
+    return getText;
 }
