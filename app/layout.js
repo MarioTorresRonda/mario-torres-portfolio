@@ -3,7 +3,6 @@ import "./globals.css";
 import Providers from "@/components/fragments/Providers";
 import LoadingBlock from "@/components/Index/LoadingBlock";
 import NavBar from "@/components/fragments/NavBar";
-import DinamicColors from "@/components/fragments/DinamicColors";
 import OnDocumentReady from "@/components/fragments/OnDocumentReady";
 
 const inter = Inter({ subsets: ["latin"] });

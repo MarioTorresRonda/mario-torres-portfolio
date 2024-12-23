@@ -39,22 +39,30 @@ const splitChars = [
 
 // key - Color used on the HTML tag
 // text - word to color
-// variable - change the value of that variable inside variableObject, if start with !, is turn to false, if not, to true 
-const wordColors = {
-	"$#179DFC": {text: ["[", "]"], variables: []},
-	"$#225589": {text: ["export", "default", "=", "+", "-", "!"], variables: []},
-	"$#225588": {text: ["import"], variables: ["nextWordVariable"]},
-	"$#22558A": {text: ["from"], variables: ["!nextWordVariable"]},
-	"$#9966B8": {text: ["function"], variables: ["nextWordFunction"]},
-	"$#9966B9": {text: ["."], variables: ["!nextWordFunction"]},
-	"$#9966BA": {text: ["(", ")"], variables: ["!nextWordFunction"]},
-	"$#9966BB": {text: ["var", "const", "let", "return"], variables: [""]},
-	"$#F280D0": {text: ["false", "true", "{", "}"], variables: [""]},
+// conditionals - variables needed to add the color, if start with !, is turn to false, if not, to true 
+// variables - change the value of that variable inside variableObject, if start with !, is turn to false, if not, to true 
+const formats = {
+	JSX: [
+		{ color : "$#179DFC", text: ["[", "]"]},
+		{ color: "$#225589", text: ["export", "default", "=", "+", "-", "/", "*", "!", "return"], variables: []},
+		{ color: "$#225588", text: ["import"], variables: ["nextWordVariable"]},
+		{ color: "$#22558A", text: ["from"], variables: ["!nextWordVariable"]},
+		{ color: "$#9966B8", text: ["function"], variables: ["nextWordFunction"]},
+		{ color: "$#9966B9", text: ["."], variables: ["!nextWordFunction"]},
+		{ color: "$#9966BA", text: ["(", ")"], variables: ["!nextWordFunction"]},
+		{ color: "$#9966BB", text: ["var", "const", "let"]},
+		{ color: "$#F280D0", text: ["{"], conditions:[ "insideElement"], variables : ["insideElementJSX"] },
+		{ color: "$#F280D0", text: ["}"], variables:[ "!insideElementJSX"] },
+		{ color: "$#F280D0", text: ["false", "true", "{", "}"]},
+		{ color: "$#9966B8", text: null, conditions:[ "nextWordElement"], variables: ["!nextWordElement"] },
+		{ color: null, text: ["<"], variables : ["nextWordElement", "insideElement"]},
+		{ color: null, text: [">"], variables : ["!insideElement"]},
+		{ color: null, text: null, conditions:[ "insideElement", "insideElementJSX"] },
+		{ color: "$#DDBB88", text: null, conditions:[ "insideElement"], variables: [""] },
+	]
 };
 
-export function formatCodeText(codeTextRows) {
-	const time = performance.now();
-    
+export function formatCodeText(codeTextRows, archiveType) {
 	//resetting all variables
     isInsideQuotation = false;
 	isInsideSemiColon = false;
@@ -71,16 +79,11 @@ export function formatCodeText(codeTextRows) {
 		const splitRow = splitRowByChars( row );
 		for (let index = 0; index < splitRow.length; index++) {
 			const word = splitRow[index];
-			let nextWord = false;
-			if ( index + 1 != splitRow.length ) {
-				nextWord = splitRow[index + 1]
-			}
-			newCodeTextRow += colorWord(word, nextWord);
+			newCodeTextRow += colorWord(word, index, splitRow);
 		}
 		newCodeTextRows.push(newCodeTextRow);
 	});
 	
-	console.log( performance.now() - time + "ms" );
 	return newCodeTextRows;
 }
 
@@ -106,46 +109,20 @@ function splitRowByChars( row ) {
 	return splittedRow;
 }
 
-function colorWord(coloredWord, nextWord) {
-	if (coloredWord.trim() == "" && nextWord) {
+function colorWord(coloredWord, index, row) {
+	if (coloredWord.trim() == "" && row[index + 1]) {
 		return coloredWord;
 	}
 	const wordTrimmed = coloredWord.trim();
 	
-	//comments
-	if (isInsideSimpleComment) {
-		if ( !nextWord ) {
-			isInsideSimpleComment = false;
-			lastCharSlash = false;
-			return coloredWord + "#$";
-		} else {
-			return coloredWord;
-		}
-	}
-	if ( isInsideComplexComment ) {
-		if ( wordTrimmed == "*" ) {
-			const nextWordTrimmed = nextWord ? nextWord.trim() : "";
-			if ( nextWordTrimmed == "/" ) {
-				isInsideComplexComment = false;
-				return coloredWord + "#$";
-			}
-		}
-		return coloredWord;
-	}
-	if (wordTrimmed == "/") {
-		const nextWordTrimmed = nextWord ? nextWord.trim() : "";
-		console.log( nextWordTrimmed );
-		if (nextWordTrimmed == "/") {
-			isInsideSimpleComment = true;
-			return "$#384887" + coloredWord;
-		}
-		if ( nextWordTrimmed == "*" ) {
-			isInsideComplexComment = true;
-			return "$#384887" + coloredWord;
-		}
-	}
-	
 
+	let newValue = colorComment( coloredWord, wordTrimmed, index, row )
+	if ( newValue ) {
+		return newValue;
+	}
+
+	//\
+	//TODO IMPROVE
 	if (lastCharBackSlash) {
 		lastCharBackSlash = false;
 		if (isInsideQuotation || isInsideSemiColon) {
@@ -164,7 +141,7 @@ function colorWord(coloredWord, nextWord) {
 	//""
 	if (!isInsideSemiColon) {
 		if (isInsideQuotation) {
-			if (wordTrimmed == '"' || !nextWord) {
+			if (wordTrimmed == '"' || !row[index + 1]) {
 				isInsideQuotation = false;
 				return coloredWord + "#$";
 			}
@@ -178,7 +155,7 @@ function colorWord(coloredWord, nextWord) {
 
 	//''
 	if (isInsideSemiColon) {
-		if (wordTrimmed == "'" || !nextWord) {
+		if (wordTrimmed == "'" || !row[index + 1]) {
 			isInsideSemiColon = false;
 			return coloredWord + "#$";
 		}
@@ -190,32 +167,115 @@ function colorWord(coloredWord, nextWord) {
 		return "$#22AA44" + coloredWord;
 	}
 
-	let returnWord = "";
-	Object.keys(wordColors).forEach((color) => {
-		const wordColor = wordColors[color];
-		wordColor.text.forEach((word) => {
-			if (wordTrimmed == word) {
-				returnWord = color + coloredWord + "#$";
-				wordColor.variables.forEach((variable) => {
-					if (variable.startsWith("!")) {
-						variableObject[variable.substr(1)] = false;
-					} else {
-						variableObject[variable] = true;
-					}
-				});
-				return;
-			}
-		});
-		return;
-	});
+	let returnWord = colorFormats( coloredWord, wordTrimmed );
 	if (returnWord != "") {
 		return returnWord;
 	}
 
-	if (variableObject.nextWordVariable) {
-		coloredWord = "$#6688CC" + coloredWord + "#$";
-	} else if (variableObject.nextWordFunction) {
-		coloredWord = "$#DDBB88" + coloredWord + "#$";
-	}
 	return coloredWord;
+}
+
+function colorFormats( coloredWord, wordTrimmed ) {
+
+	let returnWord = "";
+
+	formats.JSX.every((wordColor) => {
+
+		let conditionsFulfilled = true;
+		let wordFound = false;
+
+		if ( !wordColor.text ) {
+			wordFound = true;
+		}else{
+			wordColor.text.forEach((word) => {
+				if (wordTrimmed == word) {
+					wordFound = true;
+					return;
+				}
+			});
+		}
+		
+		if ( !wordFound ) {
+			return true;;
+		}
+
+		if ( wordColor.conditions ) {
+			wordColor.conditions.forEach((condition) => {
+				if (condition.startsWith("!")) {
+					if ( variableObject[condition.substr(1)] ) {
+						conditionsFulfilled = false;
+						return;
+					}
+				} else {
+					if ( !variableObject[condition] ) {
+						conditionsFulfilled = false;
+						return;
+					}
+				}
+			})
+		}		
+
+		if ( !conditionsFulfilled ) {
+			return true;
+		}
+
+		if ( wordColor.color ) {
+			returnWord = wordColor.color + coloredWord + "#$";
+		}
+		if ( wordColor.variables ) {
+			wordColor.variables.forEach((variable) => {
+				if (variable.startsWith("!")) {
+					variableObject[variable.substr(1)] = false;
+				} else {
+					variableObject[variable] = true;
+				}
+			});
+		}
+
+		return false;
+	});
+
+	return returnWord;
+}
+
+function colorComment( coloredWord, wordTrimmed, index, row ) {
+
+	//comments
+	if (isInsideSimpleComment) {
+		if ( !row[index + 1] ) {
+			isInsideSimpleComment = false;
+			lastCharSlash = false;
+			return coloredWord + "#$";
+		} else {
+			return coloredWord;
+		}
+	}
+	if ( isInsideComplexComment ) {
+		if ( wordTrimmed == "/" ) {
+			let lastWordTrimmed = "";
+			if ( row[index - 1] ) {
+				lastWordTrimmed = row[index - 1].trim();
+			}
+			if ( lastWordTrimmed == "*" ) {
+				isInsideComplexComment = false;
+				return coloredWord + "#$";
+			}
+		}
+		return coloredWord;
+	}
+	if (wordTrimmed == "/") {
+		let nextWordTrimmed = "";
+		if ( row[index + 1] ) {
+			nextWordTrimmed = row[index + 1].trim();
+		}
+		if (nextWordTrimmed == "/") {
+			isInsideSimpleComment = true;
+			return "$#384887" + coloredWord;
+		}
+		if ( nextWordTrimmed == "*" ) {
+			isInsideComplexComment = true;
+			return "$#384887" + coloredWord;
+		}
+	}
+
 }

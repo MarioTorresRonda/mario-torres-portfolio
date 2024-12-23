@@ -36,7 +36,8 @@ export default function CodeBox({files}) {
 	async function processFile( file ) {
 		const response = await file.importFile;
 		file.plainText = response;
-		return formatCodeText(response.default.split("\n"));
+		file.extension = file.name.substr( file.name.lastIndexOf(".") + 1 );
+		return formatCodeText( response.default.split("\n"), file.extension );
 	
 	}
 
@@ -113,7 +114,7 @@ export default function CodeBox({files}) {
 	}
 
 	return (
-		<div className="relative mb-4 w-full tracking-widest">
+		<div className="relative mb-4 w-full font-fira font-medium">
 			<div className="h-full w-full bg-slate-950 flex flex-col max-h-[400px]">
 				{body}
 			</div>

@@ -11,6 +11,9 @@ module.exports = {
     "./data/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    fontFamily: {
+      'fira' : ['"Fira Code"', "serif"]
+    },
     extend: {
       textShadow: {
         sm: '0px 1px 2px var(--tw-shadow-color)',

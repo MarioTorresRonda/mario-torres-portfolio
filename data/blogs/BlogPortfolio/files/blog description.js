@@ -1,4 +1,4 @@
-{
+blogItem = {
     id: 1, //identification
     title: ["text", "localization", "code"], //Title
     subtitle: ["text", "localization", "code", "2"], //Subtitle
