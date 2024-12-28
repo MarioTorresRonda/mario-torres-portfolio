@@ -11,6 +11,10 @@ const files = [
     {
         importFile : import( "!!raw-loader!@/data/blogs/BlogPortfolio/files/blogExample.jsx" ),
         name : "Blog Example.jsx",
+    },
+    {
+        importFile : import( "!!raw-loader!@/util/CodeFormatter.js" ),
+        name : "CodeFormatter.js",
     }
 ]
 const files1 = [...files]
