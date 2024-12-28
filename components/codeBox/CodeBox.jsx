@@ -37,7 +37,7 @@ export default function CodeBox({files}) {
 		const response = await file.importFile;
 		file.plainText = response;
 		file.extension = file.name.substr( file.name.lastIndexOf(".") + 1 );
-		return formatCodeText( response.default.split("\n"), file.extension );
+		return formatCodeText( response.default, file.extension );
 	
 	}
 
@@ -46,6 +46,7 @@ export default function CodeBox({files}) {
 			const newLoadedFiles = {};
 			for (const file of files) {
 				 newLoadedFiles[file.name] = await processFile(file);
+				 //console.log( newLoadedFiles[file.name] );
 			}
 			setLoadedFiles({...newLoadedFiles});
 		};
