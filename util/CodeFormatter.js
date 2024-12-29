@@ -107,24 +107,29 @@ export function formatCodeText(completeFile, archiveType) {
 		}
 		//we sum two bc \r and \n are ignored every lane
 		globalIndex += splitRow.length + 2;
-
 		coloredRow = fixNewLines( coloredRow );
 		if ( Array.isArray( coloredRow ) ) {
 			newSplitCompleteFile.push( ...coloredRow);
 		}else{
-			newSplitCompleteFile.push( coloredRow);
+			newSplitCompleteFile.push( coloredRow );
 		}
 	});
-
-
+	
+	
 	console.log(performance.now() - time + "ms");
 	return newSplitCompleteFile;
 }
 
+
+//If the row contains newLine \n, we should create individual rows for each newLine, if is inside a color, we should extend the color
 function fixNewLines( coloredRow ) {
 
 	let newColoredRow = [];
 	let lines = 0;
+
+	if ( coloredRow.length == 0 ) {
+		return coloredRow.join("");
+	}
 
 	coloredRow.forEach( (split) => {
 		let tempSplit = split
@@ -150,10 +155,8 @@ function fixNewLines( coloredRow ) {
 			newColoredRow[lines] = [];
 		}
 		newColoredRow[lines].push( tempSplit )
-
 	});
-
-	return newColoredRow.map( row => row.join("") );
+	return newColoredRow.map( row => { return ( row.length == 0 ) ? "" : row.join("") });
 }
 
 //Split the row each time it find a value on splitChars
@@ -270,7 +273,7 @@ function splitFileByChars(text, archiveType) {
 }
 
 //Split file in rows.
-//Every row ends when /r/n is found .1
+//Every row ends when /r/n is found 
 ///r/n is not inside the rows that are return.
 function splitFileToRows(splitCompleteFile) {
 	const rows = [];
@@ -297,10 +300,9 @@ function splitFileToRows(splitCompleteFile) {
 //Function that analyze the coloredWord with the format of the file
 //and then add a code to color later, the color code is $#hexcolor #$
 function colorWord(coloredWord, index, row) {
-	if (coloredWord.trim() == "" && row[index + 1]) {
+	if (coloredWord.trim() == "") {
 		return coloredWord;
 	}
-	const wordTrimmed = coloredWord.trim();
 
 	let returnWord = colorFormats(coloredWord, index, row);
 	if (returnWord != "") {
