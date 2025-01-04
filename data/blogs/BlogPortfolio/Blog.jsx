@@ -10,9 +10,10 @@ import WorkPlan from "./Fragments/WorkPlan";
 import Where from "./Fragments/Where";
 import Ideas from "./Fragments/Ideas";
 
-import headerImg from "@/public/Blog Preview.png";
+import headerImg from '@/public/posts/BlogPortfolio/Blog Preview.png';
 import Design from "./Fragments/Design/Design";
 import DevelopmentPlan from "./Fragments/Development Plan/DevelopmentPlan";
+import Work from "./Fragments/Work/Work";
 
 export function Blog() {
 	return (
@@ -27,6 +28,7 @@ export function Blog() {
 			{ Ideas() }
 			{ Design() }
 			{ DevelopmentPlan() }	
+			{ Work() }
 		</BlogInit>
 	);
 }

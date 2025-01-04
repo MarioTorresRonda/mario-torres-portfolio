@@ -21,9 +21,7 @@ const blog = {
     title:["mainPage", "blogs", "mainTitle"],
     num:"03",
     url:"/blogs",
-    symbol: "&",
-    selectedPost : null,
-    blogInfo : null
+    symbol: "&"
 }
 
 const navVarList = { home, projects, blog }

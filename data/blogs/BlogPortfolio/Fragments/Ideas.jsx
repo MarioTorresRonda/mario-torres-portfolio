@@ -3,10 +3,10 @@ import BlogParagraph from "@/components/blogs/blogFragments/BlogParagraph";
 import BlogSplit2 from "@/components/blogs/blogFragments/BlogSplit2";
 import Message from "@/components/fragments/Message";
 
-import Idea1Img from "@/public/Notes.png";
-import Idea2Img from "@/public/Medium.png";
-import Idea3Img from "@/public/Idea3CodeText.png";
-import Idea4Img from "@/public/Idea4brittanychiang.png";
+import Idea1Img from "@/public/posts/BlogPortfolio/Notes.png";
+import Idea2Img from "@/public/posts/BlogPortfolio/Medium.png";
+import Idea3Img from "@/public/posts/BlogPortfolio/Idea3CodeText.png";
+import Idea4Img from "@/public/posts/BlogPortfolio/Idea4brittanychiang.png";
 import BlogChapter from "@/components/blogs/blogFragments/BlogChapter";
 
 export default function Ideas() {

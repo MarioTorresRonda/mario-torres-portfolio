@@ -11,10 +11,6 @@ const files = [
     {
         importFile : import( "!!raw-loader!@/data/blogs/BlogPortfolio/files/blogExample.jsx" ),
         name : "Blog Example.jsx",
-    },
-    {
-        importFile : import( "!!raw-loader!@/util/CodeFormatter.js" ),
-        name : "CodeFormatter.js",
     }
 ]
 const files1 = [...files]
@@ -35,5 +31,11 @@ export default function DevelopmentPlan() {
             <Message code={["Blog", "chapter 6", "desc3"]}></Message>
         </BlogParagraph>  
         <CodeBox files={files2}></CodeBox>    
+        <BlogParagraph>
+            <Message code={["Blog", "chapter 6", "desc4"]}></Message>
+        </BlogParagraph>  
+        <BlogParagraph>
+            <Message code={["Blog", "chapter 6", "desc5"]}></Message>
+        </BlogParagraph>  
     </BlogChapter>
 }

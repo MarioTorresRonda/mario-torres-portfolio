@@ -2,7 +2,7 @@ import BlogParagraph from "@/components/blogs/blogFragments/BlogParagraph";
 import ClientImage from "@/components/fragments/ClientImage";
 import Message from "@/components/fragments/Message";
 
-import Navbar_Fragment1 from "@/public/Navbar_Fragment1.png"; 
+import Navbar_Fragment1 from "@/public/posts/BlogPortfolio/Navbar_Fragment1.png"; 
 
 export default function DesignNavBar() {
     return <>
