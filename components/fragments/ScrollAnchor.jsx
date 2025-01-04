@@ -24,7 +24,7 @@ export default function ScrollAnchor( {anchor, children} ) {
                 clearTimeout( timeout );
             }
         }
-    }, [queryValue]);
+    }, [queryValue, anchor]);
 
     return <div className={classes} id={anchor} key={anchor}> {children} </div>
 }

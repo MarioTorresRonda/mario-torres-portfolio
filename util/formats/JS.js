@@ -1,6 +1,6 @@
 export const JS = {
+	slashComment: true,
     colors: [
-        
         //Comments        
         { color: "$#384887", search: [/^\/\//g] },
         { color: "$#384887", search: [/^\/\*/g] },

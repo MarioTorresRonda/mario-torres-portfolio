@@ -22,6 +22,7 @@ export default function CodeBoxRow({rowNum, rowText}) {
 	);
 }
 
+//Divide the string in an array with the color codes
 function getRowColors( rowText ) {
 	var rowColors = [];
 	var chars = [...rowText];
@@ -34,25 +35,30 @@ function getRowColors( rowText ) {
 		const char1 = chars[index];
 		const char2 = chars[index + 1];
 
+		//if it was outside color and starts a color
 		if ( char1 == "$" && char2 == "#" && !insideColor ) {
+			//if color is first character, we should not create a empty string
 			if ( index != lastIndex ) {
+				//if is space between the last close and the last index
 				if ( lastClose <= lastIndex) {
-					insideColor = true
 					rowColors.push( rowText.substr(lastIndex, index - lastIndex) );
 				}else{
 					rowColors.push( rowText.substr(lastIndex, lastClose - lastIndex) );
 					if ( lastClose != index ) { 
 						rowColors.push( rowText.substr(lastClose, index - lastClose) );
 					}
-					insideColor = true;
 				}
 				lastIndex = index;
 			}
+			insideColor = true;
 		}
 
 		if ( char1 == "#" && char2 == "$" ) {
 			lastClose = index + 2;
 			insideColor = false;
+			//we add one to the index so we skip characters we already know.
+			//it also fix a bug when the sequence $#$# appears
+			index++;
 		}
 	}
 
@@ -62,6 +68,5 @@ function getRowColors( rowText ) {
 		rowColors.push( rowText.substr(lastIndex, lastClose - lastIndex) );
 		rowColors.push( rowText.substr(lastClose) );
 	}
-
 	return rowColors;
 }

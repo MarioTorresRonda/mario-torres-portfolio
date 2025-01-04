@@ -1,4 +1,4 @@
-import blogPreviewImage from '@/public/Blog Preview.png';
+import blogPreviewImage from '@/public/posts/BlogPortfolio/Blog Preview.png';
 
 export const blogList = [
     {

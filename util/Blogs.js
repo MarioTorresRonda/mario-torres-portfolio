@@ -37,7 +37,7 @@ export const levels = {
 
 export function capLevel( level ) {	
 
-	//if number is larger than 5, we hardcap to 5
+	//if number is larger than 5, we cap to 5
 	if ( !isNaN(Number(level)) && level > 5 ) {
 		level = 5;
 	}

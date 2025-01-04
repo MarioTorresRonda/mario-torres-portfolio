@@ -1,5 +1,4 @@
-import { JSX } from "./formats/JSX";
-import { JS } from "./formats/JS";
+import { formats } from "./formats/main";
 
 const variableObject = {};
 
@@ -10,6 +9,8 @@ const splitChars = [
 	"=",
 	'"',
 	"'",
+	"`",
+	"´",
 	"\\",
 	"(",
 	")",
@@ -32,42 +33,7 @@ const splitChars = [
 	"*",
 ];
 
-//languages that use slash to create a comment (also /*)
-const slashCommentTypes = ["js", "java", "cs", "jsx", "html", "css"];
-
-/* 
-	formats to apply for each archive type (JS, JSX, HTML, ...)
-	
-	colors - an Array of object that apply the color if the search and conditions are fulfilled, also can update variables of variableObject
-		key - Color used on the HTML tag
-		search - word to color, can be array or regex
-		searchPos - update pointer position on search, always number,  look the split section in the index altered by the searchPos,
-			example: if is 1, we search the split that is next, if is -1, it search the split before
-		conditionals - variables needed to add the color, if start with !, is turn to false, if not, to true 
-		variables - change the value of that variable inside variableObject, if start with !, is turn to false, if not, to true 
-
-	usedVariables - an Array os string, each string being the variable on variableObject that are used, to reset each time we start
-		
-	onInit - an Array of object containing a string with the name of a variable and a function,
-	on the start of execution, update the variable on variableObject by the return of the function, passing an object with:
-		splitCompleteFile : completeFile with all the splits, it contains also \n and \r
-		variableObject : object with all the variables
-
-	onEach - an Array of object containing a string with the name of a variable and a function,
-	on each split, update the variable on variableObject by the return of the function, passing an object with:
-		splitCompleteFile : completeFile with all the splits, it contains also \n and \r
-		variableObject : object with all the variables,
-		word : actual split
-		rowIndex : the actual row index
-		globalIndex : the global index associate with splitCompleteFile
- */
-const formats = {
-	JSX,
-	JS
-};
-
 export function formatCodeText(completeFile, archiveType) {
-	const time = performance.now();
 	actualFormat = formats[archiveType.toUpperCase()];
 	const splitCompleteFile = splitFileByChars(completeFile);
 	const splitRows = splitFileToRows(splitCompleteFile);
@@ -115,8 +81,6 @@ export function formatCodeText(completeFile, archiveType) {
 		}
 	});
 	
-	
-	console.log(performance.now() - time + "ms");
 	return newSplitCompleteFile;
 }
 
@@ -181,46 +145,46 @@ function splitFileByChars(text, archiveType) {
 		if (startPosition > index) {
 			continue;
 		}
-
-		if (!lastCommentChar) {
-			if (insideSimpleComment) {
-				if (letter == "\r") {
-					if (index + 1 < rowChars.length) {
-						const nextLetter = rowChars[index + 1];
-						if (nextLetter == "\n") {
-							insideSimpleComment = false;
-							if (index - startPosition != 0) {
-								splittedRow.push(text.substr(startPosition, index - startPosition));
+		
+		if ( actualFormat.slashComment ) {
+			if (!lastCommentChar) {
+				if (insideSimpleComment) {
+					if (letter == "\r") {
+						if (index + 1 < rowChars.length) {
+							const nextLetter = rowChars[index + 1];
+							if (nextLetter == "\n") {
+								insideSimpleComment = false;
+								if (index - startPosition != 0) {
+									splittedRow.push(text.substr(startPosition, index - startPosition));
+								}
+								splittedRow.push(letter);
+								startPosition = index + 1;
+								continue;
 							}
-							splittedRow.push(letter);
-							startPosition = index + 1;
-							continue;
 						}
 					}
+
+					continue;
 				}
 
-				continue;
-			}
-
-			if (insideMultipleComment) {
-				if (letter == "*") {
-					if (index + 1 < rowChars.length) {
-						const nextLetter = rowChars[index + 1];
-						if (nextLetter == "/") {
-							insideMultipleComment = false;
-							if (index - startPosition != 0) {
-								splittedRow.push(text.substr(startPosition, index + 2 - startPosition));
+				if (insideMultipleComment) {
+					if (letter == "*") {
+						if (index + 1 < rowChars.length) {
+							const nextLetter = rowChars[index + 1];
+							if (nextLetter == "/") {
+								insideMultipleComment = false;
+								if (index - startPosition != 0) {
+									splittedRow.push(text.substr(startPosition, index + 2 - startPosition));
+								}
+								startPosition = index + 2;
+								continue;
 							}
-							startPosition = index + 2;
-							continue;
 						}
 					}
+
+					continue;
 				}
 
-				continue;
-			}
-
-			if (slashCommentTypes.indexOf(archiveType)) {
 				if (letter == "/") {
 					if (index + 1 < rowChars.length) {
 						const nextLetter = rowChars[index + 1];

@@ -26,7 +26,7 @@ export default function BlogInit({children}) {
 			
 			window.scrollTo({top: y, behavior: 'smooth'});
 		}
-	}, [queryValue, yOffset])
+	}, [queryValue, removeQuery, yOffset])
 
 	useEffect(() => {
 		if ( windowSize[0] > 767) {

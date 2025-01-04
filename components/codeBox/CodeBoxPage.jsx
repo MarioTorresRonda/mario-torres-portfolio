@@ -8,7 +8,7 @@ export default function CodeBoxPage( { pageName, pageText, minimized, show, navB
 
     useEffect( () => {
         navBar.current.addPageToList( pageName );
-    },[ pageName ] )
+    },[navBar, pageName] )
 
     return <div className={`whitespace-pre-wrap flex flex-col overflow-auto ${show ? "block" : "hidden"} border-l-[1px] border-b-[1px] border-slate-700`}>
         {minimized.value && minimized.from != 0 && <CodeBoxRow key="-" rowText={"..."} />}

@@ -1,4 +1,5 @@
 export const JSX = {
+	slashComment: true,
     colors: [
         //Comments
         { color: "$#384887", search: [/^\/\//g] },
@@ -33,11 +34,11 @@ export const JSX = {
         {color: "$#22558A", search: ["from"]},
         {color: "$#9966B8", search: ["function"], variables: ["nextWordFunction"]},
         {color: "$#9966B9", search: ["."], variables: ["!nextWordFunction"]},
+        {color: "$#F280D0", search: ["false", "true", "{", "}", "null"]},
         {color: "$#DDBB88", searchPos: 1, search: ["("]},
         {color: "$#DA70D6", search: ["("], variables: ["!nextWordFunction"]},
         {color: "$#DA70D6", search: [")"], variables: [""]},
         {color: "$#DDBB88", search: null, conditions: ["nextWordFunction"], variables: ["!nextWordFunction"]},
-        {color: "$#F280D0", search: ["false", "true", "{", "}", "null"]},
         {color: "$#F280D0", search: [/^\d+$/g]},
     ],
     usedVariables: [
@@ -62,10 +63,10 @@ export const JSX = {
 function findHTMLElementIndexes( { splitCompleteFile, variableObject } ) {
 	const charOutsideHTML = ["|", "||", "&", ".", "(", ")", ","];
 	const ignoreBetweens = ['"', "'", "`", "´", ["{", "}"]];
-
+	
 	const insideElementIndexes = [];
 	const [openTags, closeTags] = findOpenAndCloseTags(splitCompleteFile);
-
+	
 	//If is valid, make string between openTag and closeTag, to be element valid
 	//it can't have any strange different, only text, string, equals signs and if is JSX, also can have brackets.
 	//Things inside string and brackets should be ignore
@@ -80,50 +81,51 @@ function findHTMLElementIndexes( { splitCompleteFile, variableObject } ) {
 
 			let element = [];
 			let illegalHTML = false;
-			let ignoreUntil = null;
+			let ignoreUntil = [];
 
 			insideElement.every((char, index) => {
+				var ignoring = ignoreUntil.length > 0;
 				//if is something we should start to ignore, we ignore until the character appears again
-				if (ignoreUntil) {
-					if (ignoreUntil == char) {
-						ignoreUntil = null;
-					}
-					return true;
-				} else {
-					let ignoreChar;
-					ignoreBetweens.every((ignore) => {
-						if (Array.isArray(ignore)) {
-							if (ignoreUntil) {
-								if (char == ignore[1]) {
-									ignoreChar = ignore[1];
-									return false;
-								}
-							} else {
-								if (char == ignore[0]) {
-									ignoreChar = ignore[1];
-									return false;
-								}
-							}
-						} else {
-							if (char == ignore) {
-								ignoreChar = ignore;
-								return false;
-							}
+				if (ignoring) {
+					for (let ignoreIndex = 0; ignoreIndex < ignoreUntil.length; ignoreIndex++) {
+						if ( ignoreUntil[ignoreIndex] == char ) {
+							ignoreUntil.splice( ignoreIndex, 1);
+							return true;
 						}
-						return true;
-					});
-
-					if (ignoreChar) {
-						ignoreUntil = ignoreChar;
-						return true;
 					}
 				}
-				if (charOutsideHTML.indexOf(char) != -1) {
-					illegalHTML = true;
-					return false;
+
+				let ignoreChar;
+				for (let ignoreIndex = 0; ignoreIndex < ignoreBetweens.length; ignoreIndex++) {
+					const ignore = ignoreBetweens[ignoreIndex];
+					if (Array.isArray(ignore)) {
+						if (char == ignore[0]) {
+							ignoreChar = ignore[1];
+							break;
+						}
+					}else{
+						if (char == ignore) {
+							ignoreChar = ignore;
+							break;
+						}
+					}
 				}
 
-				element.push(openTag + index);
+				if (ignoreChar) {
+					ignoreUntil = [ignoreChar, ...ignoreUntil];
+					return true;
+				}				
+
+				if ( !ignoring ) {
+
+					//If char is outside the normal HTML chars, then we stop searching from this < 
+					if (charOutsideHTML.indexOf(char) != -1) {
+						illegalHTML = true;
+						return false;
+					}
+
+					element.push(openTag + index);
+				}
 
 				return true;
 			});
@@ -131,7 +133,7 @@ function findHTMLElementIndexes( { splitCompleteFile, variableObject } ) {
 			if (illegalHTML) {
 				return false;
 			}
-			if (ignoreUntil) {
+			if (ignoreUntil.length > 0) {
 				return true;
 			}
 
