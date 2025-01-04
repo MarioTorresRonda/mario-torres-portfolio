@@ -8,12 +8,6 @@ export default function OnDocumentReady() {
     const localStorage = useLocalStorage();
 
     useEffect( () => {
-        const colection = document.getElementsByClassName("svg-inline--fa");
-        while (colection.length > 0) {
-          const element = colection[0];
-          element.classList.remove("svg-inline--fa");
-        }
-
         // On page load or when changing themes, best to add inline in `head` to avoid FOUC
         if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
           document.documentElement.classList.add('dark')
@@ -22,7 +16,7 @@ export default function OnDocumentReady() {
         }
 
 
-      }, [localStorage.theme])
+      }, [ localStorage, localStorage.theme ])
 
     return <>
     </>

@@ -1,12 +1,12 @@
 import {useRef, useEffect, useState} from "react";
 
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faExpandAlt as expandIcon, faCompressAlt as shrinkIcon, faCopy as copyIcon} from "@fortawesome/free-solid-svg-icons";
 import CodeBoxPage from "./CodeBoxPage";
 import CodeBoxNavBar from "./CodeBoxNavBar";
 import {formatCodeText} from "@/util/CodeFormatter";
 import Tooltip from "../fragments/Tooltip";
 import { isEmpty } from "@/util/Objects";
+import FAI from "../fragments/FAI";
 
 export default function CodeBox({files}) {
 	const notMinimizedObj = {
@@ -122,7 +122,7 @@ export default function CodeBox({files}) {
 			<div className={`absolute h-10 top-0 py-2 px-4 right-0 flex gap-4 bg-slate-900 border-t-[1px] border-slate-700 `}>
 				<div className="w-6 h-6">
 					<Tooltip text={["commons", "codeBox", "copyCode"]}>
-						<FontAwesomeIcon
+						<FAI
 							icon={copyIcon}
 							className={`h-full transition-transform ease-in-out hover:scale-[1.2] text-[#6688CC]`}
 							onClick={onCopyCode}
@@ -131,7 +131,7 @@ export default function CodeBox({files}) {
 				</div>
 				<div className="w-6 h-6">
 					<Tooltip text={minimized.icon.text}>
-						<FontAwesomeIcon
+						<FAI
 							icon={minimized.icon.svg}
 							className={`h-full transition-transform ease-in-out hover:scale-[1.2] text-[#6688CC]`}
 							onClick={onExpandButtonClicked}

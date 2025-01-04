@@ -1,8 +1,21 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+'use client'
 
-export default function FAI( { icon } ) {
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useEffect, useRef } from "react";
+
+export default function FAI( { icon, className, ...props } ) {
+
+    const first = useRef(null)
+
+    useEffect(() => {
+        first.current.classList.remove("svg-inline--fa");
+    }, [icon, first])
+    
+
     return ( <FontAwesomeIcon
+    {...props}
+    ref={first}
     icon={icon}
-    className={`text-slate-500 dark:text-stone-700 w-[20px] h-[20px] md:w-[35px] md:h-[35px] lg:w-[50px] lg:h-[50px] transition-transform ease-in-out hover:scale-[1.2] hover:text-slate-700 dark:hover:text-stone-500 `}
+    className={`${className} transition-transform ease-in-out `}
     /> )
 }

@@ -84,7 +84,26 @@ let messages = {
             title: "Development Plan",
             desc: "Same as done with the projects, I'll create a file with a list of blogs, were every blog will be in a JSON format.",
             desc2: "With the list on blogs, the mainpage Fragment will be made, every blog filling his title, subtitle, date and an Image in the blog description of the file.",
-            desc3: "the file field will redirect to an JSX archive that will be load asynchronously, having a similar structure of: "
+            desc3: "The file field will redirect to an JSX archive that will be load asynchronously, having a similar structure of: ",
+            desc4: "To utilize the localization already implemented, all the text inside the blog will be codes  of the localization file.",
+            desc5: "This codes will only be present on the localization file only if the blog is loaded, to save load time and memory used.",
+        },
+        "chapter 7": {
+            title: "Work",
+            desc: "Here i will explain all the steps of work needed to complete the wrote on the Plan.",
+            part1: {
+                title: "Implementation",
+                fragment1: {
+                    title: "Navbar fragment.",
+                    desc: "I added the blog nav to the already created navbar system, adding to the JSON config file an object with the Blog information",
+                    desc2: "Every object is the JSON is made of a Localization code, a number, a symbol and an url.",
+                    desc3: "Once saved the file and reload the page, it will be display on the new navbar. "
+                },
+                fragment2: {
+                    title: "Mainpage Fragment",
+                    desc: "We use the already existing styles to create a similar design as in the projects:."
+                }
+            }
         }
     }
 }

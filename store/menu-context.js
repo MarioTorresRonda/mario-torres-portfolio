@@ -4,7 +4,7 @@ import { createContext, useReducer } from 'react';
 import { usePathname } from 'next/navigation'
 import menus from '@/data/navBar';
 
-export const MenuContext = createContext({
+const initialMenu = {
     menu: { 
         symbol: '#',
         //Mainpage
@@ -13,7 +13,9 @@ export const MenuContext = createContext({
         page: {},
     },
     showValue: false,
-} );
+} 
+
+export const MenuContext = createContext(null);
 
 function MenuReducer(state, action) {
     
@@ -29,21 +31,20 @@ function MenuReducer(state, action) {
         state.showValue = false;
     }
 
-    return { ...state };
+    return state;
 }
 
 export default function MenuContextProvider( {children} ) {
     
-    let menu = null;
     Object.keys( menus ).forEach(key => {
         var path = usePathname();
         const slashIndex = path.indexOf("/", 2);
         if ( menus[key].url == path.substring(0, slashIndex != -1 ? slashIndex : path.length ) ) {
-            menu = menus[key];
+            initialMenu.menu = menus[key];
         }
     });
 
-    const [ menuState, menuDispatch ] = useReducer( MenuReducer, { menu : menu, showValue : false } )
+    const [ menuState, menuDispatch ] = useReducer( MenuReducer, initialMenu )
 
     function setMenu(menu) {
         menuDispatch({

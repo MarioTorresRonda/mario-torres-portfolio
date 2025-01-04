@@ -1,12 +1,12 @@
 'use client'
 
 import Message from "../fragments/Message";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretLeft as icon } from "@fortawesome/free-solid-svg-icons"
 import { MenuContext } from "@/store/menu-context";
 import { useNavigate } from "@/hooks/useNavigate";
 
 import {blog as blogMenu} from "@/data/navBar"
+import FAI from "../fragments/FAI";
 
 export default function BlogBackButton() {
     
@@ -17,7 +17,7 @@ export default function BlogBackButton() {
     }
 
     return ( <button onClick={onHandleBackClick} className="bg-slate-400 hover:bg-slate-500  dark:bg-stone-600 dark:hover:bg-stone-500 px-2 md:px-6 h-10 text-nowrap rounded-md flex items-center"> 
-        <FontAwesomeIcon 
+        <FAI 
             icon={icon} 
             className={`w-[20px] h-[20px] transition ease-in-out hover:scale-[1.2]`} 
         /> 

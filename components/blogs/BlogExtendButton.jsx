@@ -1,7 +1,6 @@
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCaretDown as icon} from "@fortawesome/free-solid-svg-icons";
 
-import { useEffect, useState } from "react";
+import FAI from "../fragments/FAI";
 
 export default function BlogExtendButton({ onHandleExtendClick, scrollExpanded, show, children}) {
 
@@ -18,7 +17,7 @@ export default function BlogExtendButton({ onHandleExtendClick, scrollExpanded, 
 			className={`${buttonClasses} hover:bg-slate-500 dark:hover:bg-stone-500 w-full text-nowrap justify-between`}
 		>
 			<button>
-				<FontAwesomeIcon
+				<FAI
 					icon={icon}
 					className={`w-[20px] h-[20px] transition ease-in-out hover:scale-[1.2] ` + (scrollExpanded && "rotate-180")}
 				/>

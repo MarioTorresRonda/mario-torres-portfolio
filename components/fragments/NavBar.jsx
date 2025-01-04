@@ -1,6 +1,5 @@
 'use client'
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import DinamicColors from "./DinamicColors"
 import NavBarItem from "./NavBarItem"
 import menus from "@/data/navBar"
@@ -8,6 +7,7 @@ import { faList as icon } from "@fortawesome/free-solid-svg-icons"
 import { useContext, useEffect, useState } from "react"
 import { MenuContext } from "@/store/menu-context"
 import MediaMode from "./MediaMode"
+import FAI from "./FAI"
 
 export default function NavBar() {
 
@@ -19,7 +19,7 @@ export default function NavBar() {
             setActualMenu( menu );
             hide();
         }
-    }, [menu, actualMenu]);
+    }, [menu, actualMenu, hide]);
 
 
     const hiddenClasses = "max-h-0 scale-y-0 opacity-0";
@@ -36,7 +36,7 @@ export default function NavBar() {
                 </div>
             </div>
             <div className="block mt-8 sm:hidden" onClick={() => { showValue ? hide() : show() }}>
-                <FontAwesomeIcon
+                <FAI
                     icon={icon}
                     className={`text-[--myColorStartSimple] w-[35px] h-[35px] transition-transform ease-in-out hover:scale-[1.2] hover:text-[--myColorEndSimple] `}
                 />

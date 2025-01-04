@@ -84,8 +84,27 @@ let messages = {
             title: "Plan de desarrollo",
             desc: "Parecido al funcionamiento de proyectos, creare un archivo con una lista de blogs, donde cada blog será un objeto JSON con formato:",
             desc2: "Con lo que tiene la lista de blogs, crearemos el Fragmento mainpage, donde mostrará los campos título, subtítulo, una fecha  la imagen con la descripción dada en el diseño por cada línea objeto de la lista",
-            desc3: "el campo file te redirigirá a un archivo JSX que se cargara de forma asíncrona, el archivo tendra una forma similar a: "
+            desc3: "el campo file te redirigirá a un archivo JSX que se cargara de forma asíncrona, el archivo tendra una forma similar a: ",
+            desc4: "Para utilizar el sistema de traducción ya implementado, todos los textos dentro del blog seran códigos del archivo de traducción.",
+            desc5: "Estos códigos solo se encontraran dentro del archivo de traducción si el blog ha sido cargado, para reducir tiempo de carga y memoria utilizada.",
         },
+        "chapter 7": {
+            title: "Trabajo",
+            desc: "Aquí explicaré todos los pasos del trabajo necesarios para completar lo descrito en el plan.",
+            part1: {
+                title: "Implementacion",
+                fragment1: {
+                    title: "Fragmento de la barra de navegación.",
+                    desc: "Añado el navegamiento Blog al sistema de navegación ya creado, añadiendo al archivo de configuración JSON un objeto con la información para el Blog.",
+                    desc2: "Cada objeto dentro del JSON, está formado por un código para la traducción, un número, un símbolo y una url.",
+                    desc3: "Una vez guardado el fichero y recargado la página, se mostrará el blog en la nueva barra de navegación."
+                },
+                fragment2: {
+                    title: "Fragmento en ventana principal",
+                    desc: "Utilizamos los estilos ya existente para crear un diseño parecido al de los proyectos:"
+                }
+            }
+        }
     }
 }
 

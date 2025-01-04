@@ -4,7 +4,6 @@ import { faGlobe } from "@fortawesome/free-solid-svg-icons";
 import { LocalizationContext } from "@/store/location-context";
 import { useContext } from "react";
 import FAI from "./FAI";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function Localization( { className, absolute } ) {
 
@@ -23,10 +22,10 @@ export default function Localization( { className, absolute } ) {
   return (
       <div className={`${ absolute ? absoluteClasses : initialClasses }`}>
         <button onClick={setLocale} className="w-full h-full" >
-          <FontAwesomeIcon
+          <FAI 
               icon={faGlobe}
-              className={`h-full transition-transform ease-in-out hover:scale-[1.2]  ${className}`}
-            />
+              className={`h-full transition-transform ease-in-out hover:scale-[1.2] ${className}`}
+          />
         </button>
       </div>
   );

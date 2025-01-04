@@ -1,10 +1,10 @@
 "use client";
 
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useContext, useEffect, useState } from "react";
 import Message from "../fragments/Message";
 import { LocalizationContext } from "@/store/location-context";
+import FAI from "../fragments/FAI";
 
 
 const waitTime = 4000;
@@ -53,7 +53,7 @@ export default function LoadingBlock() {
           )}
           {totalTime >= 2000 && (
             <>
-              <FontAwesomeIcon icon={faCheck} className="text-4xl h-14" />
+              <FAI icon={faCheck} className="text-4xl h-14" />
               <p className="text-sm md:ml-10 lg:text-base xl:text-xl text-balance mt-3 md:mt-0 ">
               <Message code={ ["mainPage", "loadingBlock", "completed"] } />
               </p>

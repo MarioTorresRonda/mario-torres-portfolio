@@ -28,16 +28,14 @@ export default function BlogResumeItemImage() {
       return () => {
         clearTimeout( timeout );
       }
-    }, [menu.blog, menu.oldBlog])
+    }, [menu, menu.blog, menu.oldBlog, setMenu])
     
     if ( menu.symbol != home.symbol ) {
         return (<div></div>);
     }
 
     function OnClickImage() {
-      const newMenu = structuredClone(blog);
-      newMenu.selectedPost = menu.blog;
-      navigate( newMenu );
+      navigate( blog, menu.blog.id );
     }
 
     return (<div>

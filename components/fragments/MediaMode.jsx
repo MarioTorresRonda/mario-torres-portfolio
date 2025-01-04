@@ -1,7 +1,6 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLightbulb as icon } from "@fortawesome/free-solid-svg-icons"
 import useLocalStorage from "@/hooks/useLocalStorage"
-import { useState } from "react";
+import FAI from "./FAI";
 
 const tailwindD = "group-hover:max-h-0 group-hover:max-w-0 group-hover:top-5 group-hover:max-h-10 group-hover:max-w-10 group-hover:max-h-14 group-hover:max-w-4 group-hover:top-0 group-hover:-top-2"
 
@@ -28,7 +27,7 @@ export default function MediaMode() {
         <div className={`absolute rounded-[100px] dark:bg-[--myColorStartSimple] bg-[--myColorEndSimple] ${bigCircleAnimation} opacity-20 dark:opacity-10`}>
         </div>
         <div className="absolute self-center top-2">
-            <FontAwesomeIcon
+            <FAI
                 icon={icon}
                 className={`w-[35px] h-[35px] text-slate-500 dark:text-stone-700`}
             />

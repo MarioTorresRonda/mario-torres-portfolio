@@ -2,8 +2,9 @@
 import { blogList } from "@/data/blogs";
 import ColoredButton from "../fragments/ColoredButton";
 import BlogResumeItem from "./BlogResumeItem";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { MenuContext } from "@/store/menu-context";
+import { home } from "@/data/navBar";
 
 
 export default function BlogResumeList() {
@@ -24,7 +25,7 @@ export default function BlogResumeList() {
             setMenu( menu );
         }
     }
-
+    
     return (
         <div className="flex flex-row items-center">           
             <div className="w-1/12 flex justify-center hover:scale-110">

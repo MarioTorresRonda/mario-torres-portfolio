@@ -8,11 +8,11 @@ export default function CharacterBlock({ className, startCharacter, endCharacter
     
     const [height, setHeight] = useState(0)
     const ref = useRef(null)
-    const windowSize = useWindowSize();
+    const  [ windowW, windowH ] = useWindowSize();
 
     useEffect(() => {
       setHeight(ref.current.clientHeight);
-    }, [windowSize[0], windowSize[1]])
+    }, [ windowW, windowH ])
 
     return (
 		<div className={`flex gap-2 svg-fondo ${mainClassName}`} >

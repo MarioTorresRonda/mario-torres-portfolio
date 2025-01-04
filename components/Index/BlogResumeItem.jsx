@@ -16,9 +16,7 @@ export default function BlogResumeItem( {blog} ) {
     }
 
     function onDblClickPost() {
-        const newMenu = structuredClone(newBlogMenu);
-        newMenu.selectedPost = blog;
-        navigate( newMenu );
+        navigate( newBlogMenu, blog.id );
     }
 
     var isSelected = menu.blog.id == blog.id;
