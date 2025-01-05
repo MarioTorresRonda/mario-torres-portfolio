@@ -1,22 +1,6 @@
-import {forwardRef, useEffect, useImperativeHandle, useState} from "react";
+export default function CodeBoxNavBar( {files, minimized, onSelectFile, selectedName} ) {
 
-const CodeBoxNavBar = forwardRef(function CodeBoxNavBar({minimized, onSelectFile, selectedName}, ref) {
-	const [pageList, setPageList] = useState([]);
-
-	function addPageToList(page) {
-		setPageList((prevPageList) => {
-			return prevPageList.indexOf(page) == -1 ? [...prevPageList, page] : prevPageList;
-		});
-	}
-
-	useImperativeHandle(ref, () => {
-		return {
-			addPageToList,
-			resetPageList: () => {
-				setPageList([]);
-			},
-		};
-	});
+	const pageList = files.map( (file) => { return file.name } )
 
 	function onHandleClickNavBarItem(key) {
 		onSelectFile(key);
@@ -48,6 +32,4 @@ const CodeBoxNavBar = forwardRef(function CodeBoxNavBar({minimized, onSelectFile
 			</div>
 		</div>
 	);
-});
-
-export default CodeBoxNavBar;
+};

@@ -101,7 +101,16 @@ let messages = {
                 },
                 fragment2: {
                     title: "Mainpage Fragment",
-                    desc: "We use the already existing styles to create a similar design as in the projects:."
+                    desc: "We use the already existing styles to create a similar design as in the projects:.",
+                    explication1: "the fragment <ContentBox>, is used to make the width and height of the box responsive.",
+                    explication2: "the pair of <div> divide the box in two halves, one for <BlogResumeList> and the other halve of the space one for <BlogResumeItemImage />.",
+                    fragment1: {
+                        title: "BlogResumeList:",
+                        desc: "The fragment is going to show 3 <BlogResumeItem> fragments , and arrows on the sides to switch betweens pages.",
+                        explanation1: "Going to show the first 3 blogs of the blog List.",
+                        explanation2: "Import the list to the fragment",
+                        explanation3: "To only show the first 3 blogs, it uses a variable named “page”, which will also let us also navegate.",
+                    },
                 }
             }
         }

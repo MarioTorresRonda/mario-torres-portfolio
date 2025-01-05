@@ -9,7 +9,7 @@ export default function DesignNavBar() {
     <BlogParagraph>
         <Message code={["Blog", "chapter 5", "fragment1", "desc"]}></Message>
     </BlogParagraph>
-    <ClientImage className="shadow shadow-black mb-2" src={Navbar_Fragment1} alt={[]}>
+    <ClientImage className="shadow shadow-black mb-4" src={Navbar_Fragment1} alt={[]}>
     </ClientImage>
     <BlogParagraph>
         <Message code={["Blog", "chapter 5", "fragment1", "desc2"]}></Message>

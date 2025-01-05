@@ -101,7 +101,17 @@ let messages = {
                 },
                 fragment2: {
                     title: "Fragmento en ventana principal",
-                    desc: "Utilizamos los estilos ya existente para crear un diseño parecido al de los proyectos:"
+                    desc: "Utilizamos los estilos ya existente para crear un diseño parecido al de los proyectos:",
+                    explication1: "el fragmento <ContentBox>, sirve para actualizar de forma responsiva el tamaño que utiliza el bloque.",
+                    explication2: "el conjunto de <div> sirven para otorgar mitad de espacio para el <BlogResumeList> y la otra mitad de espacio para <BlogResumeItemImage />.",
+                    fragment1: {
+                        title: "BlogResumeList:",
+                        desc: "El Fragmento va a mostrar 3 fragmentos <BlogResumeItem>, y flechas a los lados para cambiar entre páginas.",
+                        explanation1: "Mostrará los primeros 3 blogs de la lista de blogs.",
+                        explanation2: "Importamos la lista al fragmento.",
+                        explanation3: "Para mostrar solo 3 blogs, limitamos mediante una variable de “page”, la cual también nos permitirá navegar.",
+                    },
+                
                 }
             }
         }

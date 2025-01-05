@@ -1,16 +1,12 @@
 import { useEffect, useRef } from "react";
 import CodeBoxRow from "./CodeBoxRow";
 
-export default function CodeBoxPage( { pageName, pageText, minimized, show, navBar } ) {
+export default function CodeBoxPage( { pageText, minimized } ) {
 
 	const line = useRef(0);
 	line.current = 0;
 
-    useEffect( () => {
-        navBar.current.addPageToList( pageName );
-    },[navBar, pageName] )
-
-    return <div className={`whitespace-pre-wrap flex flex-col overflow-auto ${show ? "block" : "hidden"} border-l-[1px] border-b-[1px] border-slate-700`}>
+    return <div className={`whitespace-pre-wrap flex flex-col overflow-auto block border-l-[1px] border-b-[1px] border-slate-700`}>
         {minimized.value && minimized.from != 0 && <CodeBoxRow key="-" rowText={"..."} />}
         {
             pageText.map((row) => {

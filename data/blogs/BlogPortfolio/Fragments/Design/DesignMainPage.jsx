@@ -11,7 +11,7 @@ export default function DesignMainPage() {
                 <Message
                  code={["Blog", "chapter 5", "fragment2", "desc"]}></Message>
             </BlogParagraph>
-            <ClientImage className="shadow shadow-black mb-2" src={ProjectList_Fragment2} alt={[]} />
+            <ClientImage className="shadow shadow-black mb-4" src={ProjectList_Fragment2} alt={[]} />
         </>
     )
 }

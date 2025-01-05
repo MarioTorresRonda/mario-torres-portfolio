@@ -8,6 +8,11 @@ export const JS = {
         {color: "$#F280D0", search: null, conditions: [ "lastCharBackSlash" ], variables: [ "!lastCharBackSlash" ] },
         {color: "$#F280D0", search: ["\\"], variables: [ "lastCharBackSlash" ] },
         //Strings
+		{ color: "$#22AA44", search: ['`'], conditions: [ "isInsideBacktick" ], variables: [ "!isInsideBacktick" ] },
+        { color: "$#F280D0", search: ["}"], conditions: [ "isInsideBacktick" ], variables: [ "!isInsideBacktickBracket" ] },
+        { color: "$#F280D0", search: ["{"], conditions: [ "isInsideBacktick" ], variables: [ "isInsideBacktickBracket" ] },
+        { color: "$#22AA44", search: null, conditions: [ "isInsideBacktick", "!isInsideBacktickBracket" ] },
+        { color: "$#22AA44", search: ['`'], conditions: [ "!isInsideSemiColon", "!isInsideQuotation" ], variables: [ "isInsideBacktick" ] },
         { color: "$#22AA44", search: ['"'], conditions: [ "isInsideQuotation" ], variables: [ "!isInsideQuotation" ] },
         { color: "$#22AA44", search: null, conditions: [ "isInsideQuotation" ] },
         { color: "$#22AA44", search: ['"'], conditions: [ "!isInsideSemiColon" ], variables: [ "isInsideQuotation" ] },
