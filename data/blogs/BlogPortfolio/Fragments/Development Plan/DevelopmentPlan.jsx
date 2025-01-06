@@ -3,20 +3,23 @@ import BlogParagraph from "@/components/blogs/blogFragments/BlogParagraph";
 import CodeBox from "@/components/codeBox/CodeBox";
 import Message from "@/components/fragments/Message";
 
+import blogDescriptionText from  "!!raw-loader!@/data/blogs/BlogPortfolio/files/blog description.js";
+import blogExampleText from  "!!raw-loader!@/data/blogs/BlogPortfolio/files/blogExample.jsx";
+
 const files = [ 
     {
-        importFile : import( "!!raw-loader!@/data/blogs/BlogPortfolio/files/blog description.js" ),
+        plainText : blogDescriptionText,
         name : "Blog Description.js"
     },
     {
-        importFile : import( "!!raw-loader!@/data/blogs/BlogPortfolio/files/blogExample.jsx" ),
+        plainText : blogExampleText,
         name : "Blog Example.jsx",
     }
 ]
 const files1 = [...files]
 files1[0] = {...files[0], ...{ selected: true, from: 0, to: 8 }};
 const files2 = [...files]
-files2[1] = {...files[1], ...{ selected: true, from: 3, to: 14 }};
+files2[1] = {...files[1], ...{ selected: true, from: 3, to: 15 }};
 
 export default function DevelopmentPlan() {
     return <BlogChapter code={["Blog", "chapter 6", "title"]}>

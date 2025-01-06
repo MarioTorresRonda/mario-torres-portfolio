@@ -1,4 +1,4 @@
-import {useRef, useEffect, useState} from "react";
+import {useRef, useEffect, useState, useContext} from "react";
 
 
 import CodeBoxPage from "./CodeBoxPage";
@@ -7,9 +7,11 @@ import {formatCodeText} from "@/util/CodeFormatter";
 import { isEmpty } from "@/util/Objects";
 import CodeBoxButtons from "./CodeBoxButtons";
 import { minimizedObj } from "./minimizedObjs";
+import { CodeBoxContext } from "@/store/codebox-context";
 
 export default function CodeBox({files}) {
 
+	const { addFormattedFile } = useContext( CodeBoxContext )
     const [minimized, setMinimized] = useState(minimizedObj);
 	const [loadedFile, setLoadedFile] = useState({});
 	const [selectedFile, setSelectedFile] = useState(
@@ -17,22 +19,11 @@ export default function CodeBox({files}) {
 			return file.selected;
 		})
 	);
-
-	async function processFile( file ) {
-		const response = await file.importFile;
-		file.plainText = response;
-		file.extension = file.name.substr( file.name.lastIndexOf(".") + 1 );
-		return formatCodeText( response.default, file.extension );
-	}
-
+	
 	useEffect(() => {
-		const loadFile = async () => {
-			const time = performance.now();
-			setLoadedFile( await processFile(selectedFile) );
-			console.log( performance.now() - time + "ms");
-		};
-		loadFile();
-	}, [selectedFile]);
+		const formattedFile = addFormattedFile( selectedFile );
+		setLoadedFile( formattedFile );
+	}, [addFormattedFile, selectedFile]);
 
 	function onSelectFile(key) {
 		setSelectedFile(

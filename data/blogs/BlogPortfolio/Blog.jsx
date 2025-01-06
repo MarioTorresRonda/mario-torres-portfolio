@@ -27,7 +27,7 @@ export function Blog() {
 			{ Where() }
 			{ Ideas() }
 			{ Design() }
-			{ DevelopmentPlan() }	
+			{ DevelopmentPlan() }
 			{ Work() }
 		</BlogInit>
 	);

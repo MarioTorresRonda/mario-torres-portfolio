@@ -5,6 +5,7 @@ import BlogSideBar from "./BlogSideBar";
 import crypto from 'crypto';
 import BlogTitle from "./blogFragments/BlogTitle";
 import BlogChapter from "./blogFragments/BlogChapter";
+import CodeBoxContextProvider from "@/store/codebox-context";
 
 const chapterTypes = [
     BlogTitle,
@@ -59,9 +60,11 @@ export default function BlogMain( { Blog } ) {
     return <>
             <Suspense fallback={<div>Loading...</div>}>
                 <BlogSideBar blog={builtBlog} />
-                <div className="px-4 md:flex-auto md:w-3/4 pt-2 md:pt-0">
-                    { builtBlog && builtBlog }
-                </div>
+                <CodeBoxContextProvider>
+                    <div className="px-4 md:flex-auto md:w-3/4 pt-2 md:pt-0">
+                        { builtBlog && builtBlog }
+                    </div>
+                </CodeBoxContextProvider>
             </Suspense>
     </>
 }

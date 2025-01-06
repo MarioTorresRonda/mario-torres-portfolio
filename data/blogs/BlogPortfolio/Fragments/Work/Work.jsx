@@ -4,12 +4,20 @@ import BlogParagraph from "@/components/blogs/blogFragments/BlogParagraph";
 import CodeBox from "@/components/codeBox/CodeBox";
 import ClientImage from "@/components/fragments/ClientImage";
 import Message from "@/components/fragments/Message";
-import NavBar from "@/components/fragments/NavBar";
 import ProjectList_Fragment2 from "@/public/posts/BlogPortfolio/NavBar_result.png"; 
+
+import blogNavbarText from "!!raw-loader!@/data/blogs/BlogPortfolio/files/blog navbar.js"; 
+import blogResumeText from "!!raw-loader!@/components/Index/BlogsResume.jsx"; 
+import ContentBoxText from "!!raw-loader!@/components/Index/ContentBox.jsx";
+import BlogResumeListText from "!!raw-loader!@/components/Index/BlogResumeList.jsx";
+import ColoredButtonText from "!!raw-loader!@/components/fragments/ColoredButton.jsx";
+import BlogResumeItemText from "!!raw-loader!@/components/Index/BlogResumeItem.jsx";
+import BlogResumeItemImageText from "!!raw-loader!@/components/Index/BlogResumeItemImage.jsx";
+import blogsText from "!!raw-loader!@/data/blogs.js";
 
 const files = [ 
     {
-        importFile : import( "!!raw-loader!@/data/blogs/BlogPortfolio/files/blog navbar.js" ),
+        plainText : blogNavbarText,
         name : "navBar.js",
         selected: true,
         from: 21,
@@ -19,31 +27,31 @@ const files = [
 
 const files2 = [
     {
-        importFile : import( "!!raw-loader!@/components/Index/BlogsResume.jsx" ),
+        plainText : blogResumeText,
         name : "BlogsResume.jsx",
     },
     {
-        importFile : import( "!!raw-loader!@/components/Index/ContentBox.jsx" ),
+        plainText : ContentBoxText,
         name : "ContentBox.jsx",
     },
     {
-        importFile : import( "!!raw-loader!@/components/Index/BlogResumeList.jsx" ),
+        plainText : BlogResumeListText,
         name : "BlogResumeList.jsx",
     },
     {
-        importFile : import( "!!raw-loader!@/components/fragments/ColoredButton.jsx" ),
+        plainText : ColoredButtonText,
         name : "ColoredButton.jsx",
     },
     {
-        importFile : import( "!!raw-loader!@/components/Index/BlogResumeItem.jsx" ),
+        plainText : BlogResumeItemText,
         name : "BlogResumeItem.jsx",
     },
     {
-        importFile : import( "!!raw-loader!@/components/Index/BlogResumeItemImage.jsx" ),
+        plainText : BlogResumeItemImageText,
         name : "BlogResumeItemImage.jsx",
     },
     {
-        importFile : import( "!!raw-loader!@/data/blogs.js" ),
+        plainText : blogsText,
         name : "blogs.js",
     }
 ]
