@@ -3,27 +3,38 @@ import {useRef, useEffect, useState, useContext} from "react";
 
 import CodeBoxPage from "./CodeBoxPage";
 import CodeBoxNavBar from "./CodeBoxNavBar";
-import {formatCodeText} from "@/util/CodeFormatter";
 import { isEmpty } from "@/util/Objects";
 import CodeBoxButtons from "./CodeBoxButtons";
 import { minimizedObj } from "./minimizedObjs";
 import { CodeBoxContext } from "@/store/codebox-context";
+import { useFetch } from "@/hooks/useFetch";
+import { fetchCodeBoxFile } from "./htpp";
 
 export default function CodeBox({files}) {
 
-	const { addFormattedFile } = useContext( CodeBoxContext )
-    const [minimized, setMinimized] = useState(minimizedObj);
-	const [loadedFile, setLoadedFile] = useState({});
+	const [minimized, setMinimized] = useState(minimizedObj);
+	
 	const [selectedFile, setSelectedFile] = useState(
 		files.find((file) => {
 			return file.selected;
 		})
 	);
-	
+	const { addFormattedFile } = useContext( CodeBoxContext )
+	const [ formattedFile, setFormattedFile] = useState({});
+
+	const {
+		isFetching, 
+		fetchedData : loadedFile,
+		error,
+		setFetchedData : setLoadedFile
+	} = useFetch( fetchCodeBoxFile, selectedFile, selectedFile );
+
 	useEffect(() => {
-		const formattedFile = addFormattedFile( selectedFile );
-		setLoadedFile( formattedFile );
-	}, [addFormattedFile, selectedFile]);
+		if ( loadedFile.plainText ) {
+			const formattedFile = addFormattedFile( loadedFile );
+			setFormattedFile( formattedFile );
+		}
+	}, [addFormattedFile, loadedFile, isFetching]);
 
 	function onSelectFile(key) {
 		setSelectedFile(
@@ -37,7 +48,7 @@ export default function CodeBox({files}) {
 
 	let body = <div className="h-20 p-2"> Loading... </div>;
 
-	if ( !isEmpty( loadedFile ) ) {
+	if ( !isEmpty( formattedFile ) ) {
 		body = <>
 			<CodeBoxNavBar
 				files={files}
@@ -46,7 +57,7 @@ export default function CodeBox({files}) {
 				onSelectFile={onSelectFile}
 			/>
 			<CodeBoxPage
-				pageText={loadedFile}
+				pageText={formattedFile}
 				minimized={{...minimized, from: selectedFile.from, to: selectedFile.to}}
 			/>
 		</>

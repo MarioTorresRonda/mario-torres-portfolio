@@ -34,6 +34,7 @@ const splitChars = [
 ];
 
 export function formatCodeText(completeFile, archiveType) {
+
 	actualFormat = formats[archiveType.toUpperCase()];
 	const splitCompleteFile = splitFileByChars(completeFile);
 	const splitRows = splitFileToRows(splitCompleteFile);

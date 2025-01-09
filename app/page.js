@@ -5,7 +5,7 @@ import Socials from "@/components/Index/Socials";
 import Localization from "@/components/fragments/Localization";
 import ProjectsResume from "@/components/Index/ProjectsResume";
 import BlogsResume from "@/components/Index/BlogsResume";
-
+import { usePathname } from "next/navigation";
 
 export default function Home() {
   return (

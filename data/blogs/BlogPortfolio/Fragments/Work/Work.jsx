@@ -6,18 +6,9 @@ import ClientImage from "@/components/fragments/ClientImage";
 import Message from "@/components/fragments/Message";
 import ProjectList_Fragment2 from "@/public/posts/BlogPortfolio/NavBar_result.png"; 
 
-import blogNavbarText from "!!raw-loader!@/data/blogs/BlogPortfolio/files/blog navbar.js"; 
-import blogResumeText from "!!raw-loader!@/components/Index/BlogsResume.jsx"; 
-import ContentBoxText from "!!raw-loader!@/components/Index/ContentBox.jsx";
-import BlogResumeListText from "!!raw-loader!@/components/Index/BlogResumeList.jsx";
-import ColoredButtonText from "!!raw-loader!@/components/fragments/ColoredButton.jsx";
-import BlogResumeItemText from "!!raw-loader!@/components/Index/BlogResumeItem.jsx";
-import BlogResumeItemImageText from "!!raw-loader!@/components/Index/BlogResumeItemImage.jsx";
-import blogsText from "!!raw-loader!@/data/blogs.js";
-
 const files = [ 
     {
-        plainText : blogNavbarText,
+        route: "data/blogs/BlogPortfolio/files/blog navbar.js",
         name : "navBar.js",
         selected: true,
         from: 21,
@@ -27,31 +18,31 @@ const files = [
 
 const files2 = [
     {
-        plainText : blogResumeText,
+        route: "components/Index/BlogsResume.jsx",
         name : "BlogsResume.jsx",
     },
     {
-        plainText : ContentBoxText,
+        route: "components/Index/ContentBox.jsx",
         name : "ContentBox.jsx",
     },
     {
-        plainText : BlogResumeListText,
+        route : "components/Index/BlogResumeList.jsx",
         name : "BlogResumeList.jsx",
     },
     {
-        plainText : ColoredButtonText,
+        route : "components/fragments/ColoredButton.jsx",
         name : "ColoredButton.jsx",
     },
     {
-        plainText : BlogResumeItemText,
+        route : "components/Index/BlogResumeItem.jsx",
         name : "BlogResumeItem.jsx",
     },
     {
-        plainText : BlogResumeItemImageText,
+        route : "components/Index/BlogResumeItemImage.jsx",
         name : "BlogResumeItemImage.jsx",
     },
     {
-        plainText : blogsText,
+        route : "data/blogs.js",
         name : "blogs.js",
     }
 ]

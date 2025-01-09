@@ -3,16 +3,13 @@ import BlogParagraph from "@/components/blogs/blogFragments/BlogParagraph";
 import CodeBox from "@/components/codeBox/CodeBox";
 import Message from "@/components/fragments/Message";
 
-import blogDescriptionText from  "!!raw-loader!@/data/blogs/BlogPortfolio/files/blog description.js";
-import blogExampleText from  "!!raw-loader!@/data/blogs/BlogPortfolio/files/blogExample.jsx";
-
 const files = [ 
     {
-        plainText : blogDescriptionText,
+        route: "data/blogs/BlogPortfolio/files/blog description.js",
         name : "Blog Description.js"
     },
     {
-        plainText : blogExampleText,
+        route: "data/blogs/BlogPortfolio/files/blogExample.jsx",
         name : "Blog Example.jsx",
     }
 ]
