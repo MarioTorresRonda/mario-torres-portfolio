@@ -61,6 +61,12 @@ let messages = {
             copyCode: "Copiar codigo al portapapeles.",
             expandCode: "Mostrar fichero completo.",
             shrinkCode: "Mostrar solo lo importante."
+        },
+        configuration: {
+            changeColor1 : "Cambiar Color 1.",
+            changeColor2 : "Cambiar Color 2.",
+            lightMode: "Cambiar al modo claro.",
+            darkMode: "Cambiar al modo oscuro.",
         }
     }
 }

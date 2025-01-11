@@ -6,7 +6,7 @@ export default function CodeBoxPage( { pageText, minimized } ) {
 	const line = useRef(0);
 	line.current = 0;
 
-    return <div className={`whitespace-pre-wrap flex flex-col overflow-auto block border-l-[1px] border-b-[1px] border-slate-700`}>
+    return <div className={`whitespace-pre-wrap flex flex-col overflow-auto block border-l-[1px] border-b-[1px] border-slate-700 text-white`}>
         {minimized.value && minimized.from != 0 && <CodeBoxRow key="-" rowText={"..."} />}
         {
             pageText.map((row) => {

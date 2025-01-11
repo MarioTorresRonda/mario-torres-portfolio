@@ -39,7 +39,7 @@ export default function BlogSideBar({ blog }) {
     }
 
     return (
-        <div className={`flex w-full flex-col md:w-1/4 p-2 z-10`} style={{height: `${sideBarHeight}px`}} >
+        <div className={`flex w-full flex-col md:w-1/4 p-1 md:p-2 z-10`} style={{height: `${sideBarHeight}px`}} >
             <BlogBagNavBox navBar={navBar} updateSideBarHeight={updateSideBarHeight}>
                 <BlogNavBar navBarItems={navBar} />
             </BlogBagNavBox>

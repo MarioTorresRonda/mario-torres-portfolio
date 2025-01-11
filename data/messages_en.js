@@ -62,6 +62,12 @@ let messages = {
             copyCode: "Copy code to the clipboard.",
             expandCode: "Show whole file.",
             shrinkCode: "Show only the sauce."
+        },
+        configuration: {
+            changeColor1 : "Change Color 1.",
+            changeColor2 : "Change Color 2.",
+            lightMode: "Switch to light mode.",
+            darkMode: "switch to dark mode.",
         }
     }
 }

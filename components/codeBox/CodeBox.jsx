@@ -8,7 +8,7 @@ import CodeBoxButtons from "./CodeBoxButtons";
 import { minimizedObj } from "./minimizedObjs";
 import { CodeBoxContext } from "@/store/codebox-context";
 import { useFetch } from "@/hooks/useFetch";
-import { fetchCodeBoxFile } from "./htpp";
+import { fetchCodeBoxFile } from "./http";
 
 export default function CodeBox({files}) {
 

@@ -21,7 +21,7 @@ export default function BlogLoader({blogId}) {
 
     return (
     <ContentBox>
-        <div className="flex flex-col md:flex-row w-full">
+        <div className="flex flex-col md:flex-row w-full overflow-hidden">
             <BlogMain Blog={ Blog } />
         </div>
     </ContentBox> )

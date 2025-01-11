@@ -14,7 +14,5 @@ export async function fetchCodeBoxFile( file ) {
         throw new Error('Failed to fetch meals');
     }
 
-    console.log( resData.message );
-
     return resData.message;
 }

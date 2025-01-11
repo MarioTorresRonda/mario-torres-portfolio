@@ -13,7 +13,6 @@ export default function CodeBoxNavBar( {files, minimized, onSelectFile, selected
 					if ( minimized && element != selectedName ) {
 						return <></>;
 					}
-
 					return (
 						<div
 							key={element}

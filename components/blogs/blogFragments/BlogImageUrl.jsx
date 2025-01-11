@@ -4,6 +4,7 @@ import {useRef} from "react";
 import RiskyModal from "@/components/fragments/RiskyModal";
 import Message from "@/components/fragments/Message";
 import FAI from "@/components/fragments/FAI";
+import { useMessageText } from "@/hooks/useMessageText";
 
 export default function BlogImageUrl({title, desc, url, imageSrc}) {
 	const ref = useRef();
@@ -11,6 +12,8 @@ export default function BlogImageUrl({title, desc, url, imageSrc}) {
 	function onHandleClick() {
 		ref.current.open();
 	}
+
+	const getText = useMessageText()
 
 	return (
 		<>
@@ -20,6 +23,7 @@ export default function BlogImageUrl({title, desc, url, imageSrc}) {
 				<button
 					onClick={onHandleClick}
 					className="hover:scale-125 hover:text-stone-300 focus:scale-125 focus:text-stone-300"
+					aria-label={getText(title) + " link"}
 				>
 					<FAI icon={icon} className="h-5 m-1 z-20 duration-100 " />
 				</button>

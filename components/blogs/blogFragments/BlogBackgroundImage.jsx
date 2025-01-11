@@ -7,6 +7,7 @@ export default function BlogBackgroundImage({
   className,
   imageClass,
   clientImagClass,
+  priority,
   ...props
 }) {
 
@@ -14,11 +15,12 @@ export default function BlogBackgroundImage({
     className = className ? className : "";
     clientImagClass = clientImagClass ? clientImagClass : "[]";
     imageAlt = imageAlt ? imageAlt : [];
+    priority = priority ? true : false;
 
   return (
     <div className={ "relative " +  className} {...props}>
       <div className={`flex absolute ` + imageClass} >
-        <ClientImage width="auto" height="auto" src={imageSrc} alt={imageAlt} className={clientImagClass} />
+        <ClientImage width="auto" height="auto" src={imageSrc} alt={imageAlt} className={clientImagClass} priority={priority} />
       </div>
       <div className="absolute h-full w-full">
         {children}

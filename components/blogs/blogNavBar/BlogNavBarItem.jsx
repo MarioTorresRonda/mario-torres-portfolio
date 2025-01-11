@@ -16,7 +16,7 @@ export default function BlogNavBarItem( {id, children, level} ) {
 	}
 
 	return (
-		<button className={"text-stone-400 w-full h-full text-left " + levels[level]} onClick={handleOnClick}>
+		<button className={"dark:text-stone-400 text-stone-600 w-full h-full text-left " + levels[level]} onClick={handleOnClick}>
 			{children}
 		</button>
 	);

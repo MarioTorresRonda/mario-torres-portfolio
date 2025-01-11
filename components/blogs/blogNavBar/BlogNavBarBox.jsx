@@ -53,7 +53,7 @@ export default function BlogBagNavBox({ navBar, updateSideBarHeight, children}) 
 
     return ( 
         <div ref={boxFixed}>
-            <div className={`flex flex-col w-[calc(98vw-15px-0.5rem)] md:w-[25vw] xl:w-[16vw] bg-slate-200 dark:bg-stone-800 ${boxClassPosition}`}>
+            <div className={`flex flex-col w-[98vw] md:w-[25vw] xl:w-[16vw] bg-slate-200 dark:bg-stone-800 ${boxClassPosition}`}>
                 <BlogBackButton />
                 <BlogNavBarScroll expanded={scrollExpanded} onContentUpdate={setShowExpandButton} navBar={navBar} >
                     {children}

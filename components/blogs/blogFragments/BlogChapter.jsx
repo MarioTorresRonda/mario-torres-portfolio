@@ -15,7 +15,7 @@ export default function BlogChapter( { level, code, children, id} ) {
     return(
         <ScrollAnchor anchor={id}>
             <p className={` ${ textLevel[maxLevel] } mb-4`}> <Message code={code} /> </p>
-            <div className="ml-3" >
+            <div className="ml-[1vw]" >
                 {children}
             </div>
         </ScrollAnchor>

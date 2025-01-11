@@ -21,6 +21,6 @@ export default function BlogBackButton() {
             icon={icon} 
             className={`w-[20px] h-[20px] transition ease-in-out hover:scale-[1.2]`} 
         /> 
-        <div className="hidden md:block"> <Message code={ ["mainPage", "blogs", "back" ] } /> </div>
+        <div className="block"> <Message code={ ["mainPage", "blogs", "back" ] } /> </div>
     </button> )
 }
