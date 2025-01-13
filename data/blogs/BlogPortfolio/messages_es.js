@@ -110,6 +110,8 @@ let messages = {
                         explanation1: "Mostrará los primeros 3 blogs de la lista de blogs.",
                         explanation2: "Importamos la lista al fragmento.",
                         explanation3: "Para mostrar solo 3 blogs, limitamos mediante una variable de “page”, la cual también nos permitirá navegar.",
+                        explanation4: "Y la utilizaremos en mostrar la variable de la lista de blogs:",
+                        explanation5: "Para poder navegar entre los diferentes “paginas” de la lista, añadiremos botones a los lados para que modifiquen el numero que se muestra",
                     },
                 
                 }

@@ -55,6 +55,10 @@ const files2_3 = [...files2]
 files2_3[2] = {...files2[2], ...{ selected: true, from: 2, to: 2 } };
 const files2_4 = [...files2]
 files2_4[2] = {...files2[2], ...{ selected: true, from: 13, to: 13 } };
+const files2_5 = [...files2]
+files2_5[2] = {...files2[2], ...{ selected: true, from: 41, to: 47 } };
+const files2_6 = [...files2]
+files2_6[2] = {...files2[2], ...{ selected: true, from: 33, to: 37 } };
 
 export default function Work() {
     return <BlogChapter code={["Blog", "chapter 7", "title"]}>
@@ -100,6 +104,14 @@ export default function Work() {
                         <Message code={["Blog", "chapter 7", "part1", "fragment2", "fragment1", "explanation3"]}></Message>
                     </BlogParagraph>
                     <CodeBox files={files2_4}></CodeBox>
+                    <BlogParagraph>
+                        <Message code={["Blog", "chapter 7", "part1", "fragment2", "fragment1", "explanation4"]}></Message>
+                    </BlogParagraph>
+                    <CodeBox files={files2_5}></CodeBox>
+                    <BlogParagraph>
+                        <Message code={["Blog", "chapter 7", "part1", "fragment2", "fragment1", "explanation5"]}></Message>
+                    </BlogParagraph>
+                    <CodeBox files={files2_6}></CodeBox>
                 </BlogChapter>
             </BlogChapter>
         </BlogChapter>

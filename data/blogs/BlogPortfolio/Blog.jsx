@@ -14,7 +14,6 @@ import headerImg from '@/public/posts/BlogPortfolio/Blog Preview.png';
 import Design from "./Fragments/Design/Design";
 import DevelopmentPlan from "./Fragments/Development Plan/DevelopmentPlan";
 import Work from "./Fragments/Work/Work";
-import LazyLoadComponent from "@/components/fragments/LazyLoadComponent";
 
 export function Blog() {
 	return (
@@ -23,7 +22,6 @@ export function Blog() {
 				<BlogTitle code={["Blog", "title"]}></BlogTitle>
 				<BlogSubtitle code={["Blog", "subtitle"]}></BlogSubtitle>
 			</MainImage>
-				
 			{ WorkPlan() }
 			{ Reason() }
 			{ Where() }

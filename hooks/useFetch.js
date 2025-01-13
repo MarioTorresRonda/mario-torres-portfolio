@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-export function useFetch( fetchFn, body, defaultValue ) {
+export function useFetch( fetchFn, body, defaultValue, cached ) {
 
     const [isFetching, setIsFetching] = useState(false);
     const [error, setError] = useState();
@@ -19,7 +19,9 @@ export function useFetch( fetchFn, body, defaultValue ) {
           setIsFetching(false);
         }
     
-        fetchData();
+        if ( !cached ) {
+          fetchData();
+        }
       }, [fetchFn, defaultValue]);
 
     return {

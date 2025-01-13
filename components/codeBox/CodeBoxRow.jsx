@@ -13,14 +13,13 @@ export default function CodeBoxRow({rowNum, rowText}) {
 	return (
 		<div className="flex flex-row gap-1 w-full text-nowrap">
 			<span className="select-none text-right min-w-10 w-10"> {rowNum} </span>
-			<LazyLoadComponent>
+
 			<p className="text-[#6688CC]">
 				{rowColors.map((word) => {
 					col.current++;
 					return <CodeBoxColors key={rowNum + ";" + col.current} rowWord={word} />;
 				})}
 			</p>
-			</LazyLoadComponent>
 		</div>
 	);
 }

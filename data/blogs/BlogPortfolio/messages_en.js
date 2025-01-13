@@ -109,7 +109,9 @@ let messages = {
                         desc: "The fragment is going to show 3 <BlogResumeItem> fragments , and arrows on the sides to switch betweens pages.",
                         explanation1: "Going to show the first 3 blogs of the blog List.",
                         explanation2: "Import the list to the fragment",
-                        explanation3: "To only show the first 3 blogs, it uses a variable named “page”, which will also let us also navegate.",
+                        explanation3: "To only show the first 3 blogs, it uses a variable named “page”, which will also let us also navigate.",
+                        explanation4: "And the variable will be used to show the blog list:",
+                        explanation5: "To be able to navigate, it will be necessary the buttons on the sides, making the buttons change the page variable"
                     },
                 }
             }
