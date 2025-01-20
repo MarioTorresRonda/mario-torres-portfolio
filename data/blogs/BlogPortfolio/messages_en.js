@@ -137,6 +137,13 @@ let messages = {
                     selectedBlog : {
                         title: "Selected Blog",
                         desc: "If a blog is selected (via url), it will display the blog loaded asynchronously, also letting the user deselect the selected blog.",
+                        asynchronousLoad: {
+                            title: "Asynchronous Load",
+                            step1: "Calling an async method that will load the blog and save on state",
+                            step2: "The async method will use the id of the blog to import the Blog.jsx inside the route of the id",
+                            step3: "But before this import, it will load the locales of the blog, using the locale context:",
+                            step4: "being getAsyncBlogLocale, another import of an json file with all the texts"
+                        }
                     }
                 }
             }

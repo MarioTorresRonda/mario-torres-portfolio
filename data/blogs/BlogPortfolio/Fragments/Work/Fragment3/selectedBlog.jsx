@@ -1,0 +1,62 @@
+import BlogChapter from "@/components/blogs/blogFragments/BlogChapter";
+import BlogParagraph from "@/components/blogs/blogFragments/BlogParagraph";
+import CodeBox from "@/components/codeBox/CodeBox";
+import Message from "@/components/fragments/Message";
+
+const files = [ 
+    {
+        route: "app/blogs/[blogId]/page.js",
+        name : "[blogId]/page.jsx",
+    },
+    {
+        route: "components/blogs/BlogLoader.jsx",
+        name : "BlogLoader.jsx",
+    },
+    {
+        route: "store/location-context.js",
+        name : "location-context.js",
+    },
+    {
+        route: "util/Localization.js",
+        name : "Localization.js",
+    },
+]
+
+const files1 = [...files]
+files1[0] = {...files[0], ...{ selected: true, from: 3, to: 7 } };
+const files2 = [...files]
+files2[1] = {...files[1], ...{ selected: true, from: 18, to: 20 } };
+const files3 = [...files]
+files3[1] = {...files[1], ...{ selected: true, from: 8, to: 11 } };
+const files4 = [...files]
+files4[2] = {...files[2], ...{ selected: true, from: 49, to: 49 } };
+const files5 = [...files]
+files5[3] = {...files[3], ...{ selected: true, from: 11, to: 14 } };
+
+
+export default function selectedBlog() {
+    return <BlogChapter code={["Blog", "chapter 7", "part1", "fragment3", "selectedBlog", "title"]}>
+                <BlogParagraph>
+                    <Message code={["Blog", "chapter 7", "part1", "fragment3", "selectedBlog", "desc"]}></Message>
+                </BlogParagraph>
+                <CodeBox files={files1}></CodeBox>
+                <BlogChapter code={["Blog", "chapter 7", "part1", "fragment3", "selectedBlog", "asynchronousLoad", "title"]}>
+                    <BlogParagraph>
+                        <Message code={["Blog", "chapter 7", "part1", "fragment3", "selectedBlog", "asynchronousLoad", "step1"]}></Message>
+                    </BlogParagraph>
+                    <CodeBox files={files2}></CodeBox>
+                    <BlogParagraph>
+                        <Message code={["Blog", "chapter 7", "part1", "fragment3", "selectedBlog", "asynchronousLoad", "step2"]}></Message>
+                    </BlogParagraph>
+                    <CodeBox files={files3}></CodeBox>
+                    <BlogParagraph>
+                        <Message code={["Blog", "chapter 7", "part1", "fragment3", "selectedBlog", "asynchronousLoad", "step3"]}></Message>
+                    </BlogParagraph>
+                    <CodeBox files={files4}></CodeBox>
+                    <BlogParagraph>
+                        <Message code={["Blog", "chapter 7", "part1", "fragment3", "selectedBlog", "asynchronousLoad", "step4"]}></Message>
+                    </BlogParagraph>
+                    <CodeBox files={files5}></CodeBox>
+                </BlogChapter>
+            </BlogChapter>
+}

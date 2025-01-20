@@ -137,6 +137,13 @@ let messages = {
                     selectedBlog : {
                         title: "Blog seleccionado",
                         desc: "Si hay un blog seleccionado ( mediante la url ), mostrará el blog cargado asíncronamente, permitiendo al usuario deseleccionar el blog.",
+                        asynchronousLoad: {
+                            title: "Carga asíncrona",
+                            step1: "LLamando al método asíncrono se cargará el blog y se guardará en el estado",
+                            step2: "La llamada asíncrona usará el id del blog, importando el Blog.jsx dentro de la ruta con el id.",
+                            step3: "Pero antes de realizar el import, se cargará las traducciones, utilizando el localizationContext:",
+                            step4: "siendo getAsyncBlogLocale, otro import a un fichero Json con todos los textos."
+                        }
                     }
                 }
             }

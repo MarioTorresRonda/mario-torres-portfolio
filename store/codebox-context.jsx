@@ -41,7 +41,6 @@ export default function CodeBoxContextProvider( {children} ) {
     const addLoadedFile = useCallback ( async ( file ) => {
         const compressedKey = file.route;
         if ( codeBoxState.loadedFiles[compressedKey] ) {
-            console.log( "cached" );
             return codeBoxState.loadedFiles[compressedKey];
         }
 
@@ -54,7 +53,6 @@ export default function CodeBoxContextProvider( {children} ) {
             },
         }) 
 
-        console.log( "not cached" );
         return loadedFile;
     }, [codeBoxState.loadedFiles]  )
     
