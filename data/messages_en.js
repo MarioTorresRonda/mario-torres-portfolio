@@ -26,6 +26,8 @@ let messages = {
             list: {
                 blog1: "My own Blog",
                 descBlog1: "Working blog inside portfolio with post selector loaded asynchronous and localization implemented.",
+                blog2: "Code Formatted Box",
+                descBlog2: "Working code syntax formatted box inside my web, made with own JS and type support",
             },
         },
         loadingBlock: {

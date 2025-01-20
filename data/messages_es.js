@@ -25,6 +25,8 @@ let messages = {
             list: {
                 blog1: "Mi propio blog",
                 descBlog1: "Implementacion del blog dentro del portfolio, con selector de post mediante carga asincrona y sistema de traducción.",
+                blog2: "Caja de código formateado",
+                descBlog2: "Caja con sintaxis de código formateada en mi web, a partir de mi propio JS y con soporte de tipos",
             }
         },
         loadingBlock: {

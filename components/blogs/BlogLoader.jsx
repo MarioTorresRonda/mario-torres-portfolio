@@ -19,10 +19,9 @@ export default function BlogLoader({blogId}) {
         asyncLoad( blogId, setBlogLocalization ).then( (response) => { setBlog( response.Blog ) }  );
     }, [blogId, setBlogLocalization, locale])
 
-    return (
-    <ContentBox>
+    return <ContentBox>
         <div className="flex flex-col md:flex-row w-full overflow-hidden">
             <BlogMain Blog={ Blog } />
         </div>
-    </ContentBox> )
+    </ContentBox> 
 }

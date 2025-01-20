@@ -9,9 +9,10 @@ export default function BlogInfoPanel( {children} ) {
                 <FAI icon={icon}></FAI>
             </div>
             <div className="flex flex-col gap-2">
-                {children.map( (child, index) => {
+                { Array.isArray( children ) && children.map( (child, index) => {
                     return (<div key={index}> {child} </div>);
                 })}
+                { !Array.isArray( children ) && <div > {children} </div> }
             </div>
         </div>
     )

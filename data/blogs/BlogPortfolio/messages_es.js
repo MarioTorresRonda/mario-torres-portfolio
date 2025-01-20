@@ -53,7 +53,7 @@ let messages = {
             },
             fragment3: {
                 title: "Fragmento principal.",
-                desc:  "Se diviira en dos estados:",
+                desc:  "Se dividira en dos estados:",
                 part1: {
                     title: "Sin post seleccionado.",
                     desc:  "Se mostrará una ventana con una lista, la lista contendrá un scroll infinito de todo los post que hay actualmente, el cual estará por:",
@@ -111,9 +111,33 @@ let messages = {
                         explanation2: "Importamos la lista al fragmento.",
                         explanation3: "Para mostrar solo 3 blogs, limitamos mediante una variable de “page”, la cual también nos permitirá navegar.",
                         explanation4: "Y la utilizaremos en mostrar la variable de la lista de blogs:",
-                        explanation5: "Para poder navegar entre los diferentes “paginas” de la lista, añadiremos botones a los lados para que modifiquen el numero que se muestra",
+                        pages: {
+                            title: "Paginación",
+                            explanation: "Para poder navegar entre los diferentes “paginas” de la lista, añadiremos botones a los lados para que modifiquen el numero que se muestra",
+                        },
+                        blogResumeItem: {
+                            title: "BlogResumeItem",
+                            explanation: "Este fragmento se creará por cada blog en la página, mostrando el título, y la descripción de cada blog, y permitido seleccionar al usuario el blog",
+                        }
                     },
-                
+                    fragment2: {
+                        title: "BlogResumeItemImage:",
+                        desc: "Will display the date and the mainImage of the blog that is selected",
+                    },
+                },
+                fragment3: {
+                    title: "Fragmento principal.",
+                    desc: "Usaremos “pages router” de nextJS para dividir la implementación en páginas.",
+                    unselectedBlog : {
+                        title: "Blog sin seleccionar",
+                        desc: "Si no hay blog seleccionado, mostraremos una lista para seleccionar un blog.",
+                        descList: "La lista se contendrá en los márgenes de las ventanas y será en sentido vertical.",
+                        descElement: "Siendo la lista, elementos formados por el título, la descripción, la antigüedad y la imagen del blog."
+                    },
+                    selectedBlog : {
+                        title: "Blog seleccionado",
+                        desc: "Si hay un blog seleccionado ( mediante la url ), mostrará el blog cargado asíncronamente, permitiendo al usuario deseleccionar el blog.",
+                    }
                 }
             }
         }

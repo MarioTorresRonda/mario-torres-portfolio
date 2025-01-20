@@ -111,8 +111,33 @@ let messages = {
                         explanation2: "Import the list to the fragment",
                         explanation3: "To only show the first 3 blogs, it uses a variable named “page”, which will also let us also navigate.",
                         explanation4: "And the variable will be used to show the blog list:",
-                        explanation5: "To be able to navigate, it will be necessary the buttons on the sides, making the buttons change the page variable"
+                        pages: {
+                            title: "Page system",
+                            explanation: "To be able to navigate, it will be necessary the buttons on the sides, making the buttons change the page variable"
+                        },
+                        blogResumeItem: {
+                            title: "BlogResumeItem",
+                            explanation: "This fragment will be created for each element in the page, showing the title, and description of each blog, letting the user open the blog."
+                        }
                     },
+                    fragment2: {
+                        title: "BlogResumeItemImage:",
+                        desc: "Will display the date and the mainImage of the blog that is selected",
+                    },
+                },
+                fragment3: {
+                    title: "Main fragment.",
+                    desc: "We will use the pages router of nextJS to divide the implementation into pages.",
+                    unselectedBlog : {
+                        title: "Unselected Blog",
+                        desc: "If it is not a selected blog, it will display a list to select one blog.",
+                        descList: "The list will stay on window margins, and be displayed in vertical direction.",
+                        descElement: "Being the list, elements made of the title, the description, the age and an image of the blog.",
+                    },
+                    selectedBlog : {
+                        title: "Selected Blog",
+                        desc: "If a blog is selected (via url), it will display the blog loaded asynchronously, also letting the user deselect the selected blog.",
+                    }
                 }
             }
         }
