@@ -143,6 +143,14 @@ let messages = {
                             step2: "The async method will use the id of the blog to import the Blog.jsx inside the route of the id",
                             step3: "But before this import, it will load the locales of the blog, using the locale context:",
                             step4: "being getAsyncBlogLocale, another import of an json file with all the texts"
+                        },
+                        processBlog: {
+                            title: "Process the Blog",
+                            step1: "Once the blog is loaded, it is gonna be processed, reading the react element and doing changes for each element.",
+                            list: [
+                                "If it is title, or chapter, we are gonna add a key, to anchor to the element on searches, and a level to show how many chapter are child of",
+                                "If the element have children,  we are going to do the same operation described before, but in the children"
+                            ]
                         }
                     }
                 }

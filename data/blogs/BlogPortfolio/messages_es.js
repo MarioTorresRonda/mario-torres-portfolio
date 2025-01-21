@@ -143,6 +143,14 @@ let messages = {
                             step2: "La llamada asíncrona usará el id del blog, importando el Blog.jsx dentro de la ruta con el id.",
                             step3: "Pero antes de realizar el import, se cargará las traducciones, utilizando el localizationContext:",
                             step4: "siendo getAsyncBlogLocale, otro import a un fichero Json con todos los textos."
+                        },
+                        processBlog: {
+                            title: "Procesar el Blog",
+                            step1: "Una vez que tenemos cargado el blog, vamos a procesarlo, leyendo el elemento react y realizando cambios para cada elemento.",
+                            list: [
+                                "Si es titulo, o capitulo, le añadiremos una clave, para poder anclarnos al elemento en búsquedas, un nivel para contar dentro de cuantos capitulos es hijo",
+                                "Si el elemento tiene hijos, haremos la misma operación que la descrita arriba pero para los hijos"
+                            ]
                         }
                     }
                 }

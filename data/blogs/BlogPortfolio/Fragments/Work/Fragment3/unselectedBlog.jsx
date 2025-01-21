@@ -28,7 +28,7 @@ files1[0] = {...files[0], ...{ selected: true, from: 4, to: 8 } };
 const files2 = [...files]
 files2[2] = {...files[2], ...{ selected: true, from: 35, to: 49 } };
 
-export default function unselectedBlog() {
+export default function UnselectedBlog() {
     return <BlogChapter code={["Blog", "chapter 7", "part1", "fragment3", "unselectedBlog", "title"]}>
                 <BlogParagraph>
                     <Message code={["Blog", "chapter 7", "part1", "fragment3", "unselectedBlog", "desc"]}></Message>

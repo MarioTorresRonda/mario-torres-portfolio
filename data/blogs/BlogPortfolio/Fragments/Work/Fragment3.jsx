@@ -2,8 +2,8 @@ import BlogChapter from "@/components/blogs/blogFragments/BlogChapter";
 import BlogParagraph from "@/components/blogs/blogFragments/BlogParagraph";
 import Message from "@/components/fragments/Message";
 
-import unselectedBlog from "./Fragment3/unselectedBlog";
-import selectedBlog from "./Fragment3/selectedBlog";
+import UnselectedBlog from "./Fragment3/UnselectedBlog";
+import SelectedBlog from "./Fragment3/SelectedBlog";
 
 
 export default function Fragment3() {
@@ -11,7 +11,7 @@ export default function Fragment3() {
         <BlogParagraph>
             <Message code={["Blog", "chapter 7", "part1", "fragment3", "desc"]}></Message>
         </BlogParagraph>
-        { unselectedBlog() }
-        { selectedBlog() }
+        { UnselectedBlog() }
+        { SelectedBlog() }
     </BlogChapter>
 }
