@@ -12,19 +12,25 @@ export default function BlogInit({children}) {
     const queryValue = encodeURIComponent( getQuery( "chapter" ) );
 
 	const [ yOffset, setYOffset ] = useState( -20 );
+	const [ lastQuery, setLastQuery ] = useState();
     const windowSize = useWindowSize()
 
 
 	useEffect(() => {
-		if ( queryValue && queryValue != "null" ) {
-			const element = document.getElementById(queryValue);
-			if ( !element ) {
-				removeQuery({ queryId: "chapter"});
-				return;
+		if ( lastQuery != queryValue ) {
+
+			setLastQuery( queryValue )
+
+			if ( queryValue && queryValue != "null" ) {
+				const element = document.getElementById(queryValue);
+				if ( !element ) {
+					removeQuery({ queryId: "chapter"});
+					return;
+				}
+				const y = element.getBoundingClientRect().top + window.scrollY + yOffset;
+				
+				window.scrollTo({top: y, behavior: 'smooth'});
 			}
-			const y = element.getBoundingClientRect().top + window.scrollY + yOffset;
-			
-			window.scrollTo({top: y, behavior: 'smooth'});
 		}
 	}, [queryValue, removeQuery, yOffset])
 

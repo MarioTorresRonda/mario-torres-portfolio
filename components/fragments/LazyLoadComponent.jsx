@@ -1,32 +1,33 @@
+import useElementPosition from '@/hooks/useElementPosition';
+import useWindowSize from '@/hooks/useWindowSize';
 import React, { useEffect, useState, useRef } from 'react';
 
-const LazyLoadComponent = ({ children, onHide, onLoad }) => {
+const LazyLoadComponent = ({ children, onHide, onLoad, height }) => {
+
   const [isVisible, setIsVisible] = useState(false);
-  const elementRef = useRef(null);
+  const { ref, position } = useElementPosition();
+  const [ windowW, windowH ] = useWindowSize();
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if ( onLoad && entry.isIntersecting ) {
+    if ( position.top + height > -50 && position.top -50 < windowH ) {
+      if ( !isVisible ) {
+        if ( onLoad ) {
           onLoad();
         }
-        if ( onHide && !entry.isIntersecting ) {
+      }
+      setIsVisible( true );
+    }else{
+      if ( isVisible ) {
+        if ( onHide ) {
           onHide();
-        }        
-        setIsVisible( entry.isIntersecting );
-      },
-      { threshold: 0.1 } // Load when at least 10% of the element is visible
-    );
-
-    if (elementRef.current) {
-      observer.observe(elementRef.current);
+        }
+      }
+      setIsVisible( false );
     }
-
-    return () => observer.disconnect(); // Clean up the observer
-  }, []);
+  }, [isVisible, onHide, onLoad, position, windowH, height]);
 
   return (
-    <div ref={elementRef}>
+    <div ref={ref}>
       {isVisible ? children : null}
     </div>
   );

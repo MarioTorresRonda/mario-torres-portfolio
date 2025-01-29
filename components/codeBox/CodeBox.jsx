@@ -10,8 +10,10 @@ export default function CodeBox( {files} ) {
 	const [shown, setShown] = useState(false);
 
 	function onHide() {
-		setHeight( outsideBox.current.offsetHeight );
-		setShown( false );
+		if ( outsideBox.current ) {
+			setHeight( outsideBox.current.offsetHeight + 16 );
+			setShown( false );
+		}
 	}
 
 	function onLoad() {
@@ -24,7 +26,7 @@ export default function CodeBox( {files} ) {
 	}
 
 	return ( <div ref={outsideBox} style={ styles }>
-		<LazyLoadComponent onHide={onHide} onLoad={onLoad}>
+		<LazyLoadComponent onHide={onHide} onLoad={onLoad} height={height}>
 			<CodeBoxMain files={files}></CodeBoxMain>
 		</LazyLoadComponent> 
 	</div>
