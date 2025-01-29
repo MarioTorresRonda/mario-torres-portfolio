@@ -151,6 +151,18 @@ let messages = {
                                 "Si es titulo, o capitulo, le añadiremos una clave, para poder anclarnos al elemento en búsquedas, un nivel para contar dentro de cuantos capitulos es hijo",
                                 "Si el elemento tiene hijos, haremos la misma operación que la descrita arriba pero para los hijos"
                             ]
+                        },
+                        processNavBar: {
+                            title: "Procesar el NavBar",
+                            desc: "Una vez tengamos procesado el blog, cargaremos el blog y el navbar asociado a este,el procesamiento del navbar será parecido al del blog.",
+                            list: [
+                                "Leeremos si el elemento tiene contenido que mostrar en el navbar.",
+                                "Teniendo en cuenta que solo tendrán id los fragmentos dentro del blog que sean capítulos y títulos.",
+                                "Añadiremos por cada uno de estos, un objeto NavBarItem a una lista.",
+                                "Este objeto utilizara tanto el nombre, como el id y el nivel del elemento.",                                
+                                "Si el elemento tiene hijos, haremos la misma operación que la descrita arriba pero para los hijos",
+                                "La lista es dibujada una vez terminado este proceso."
+                            ]
                         }
                     }
                 }

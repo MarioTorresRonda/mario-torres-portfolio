@@ -151,6 +151,18 @@ let messages = {
                                 "If it is title, or chapter, we are gonna add a key, to anchor to the element on searches, and a level to show how many chapter are child of",
                                 "If the element have children,  we are going to do the same operation described before, but in the children"
                             ]
+                        },
+                        processNavBar: {
+                            title: "Process the NavBar",
+                            desc: "Once we have processed the blog, we will load the blog along with its associated navbar. The processing of the navbar will be similar to that of the blog.",
+                            list: [
+                                "We will read if the element have content to display on the navbar",
+                                "Keep in mind that only the fragments within the blog that are chapters and titles will have an ID. <br> ",
+                                "For each of these, we will add a NavBarItem object to a list.",
+                                "This object will use the element's name, ID, and level.",
+                                "If the element have children,  we are going to do the same operation described before, but in the children",
+                                "The list will be rendered once this process is complete.",
+                            ]
                         }
                     }
                 }

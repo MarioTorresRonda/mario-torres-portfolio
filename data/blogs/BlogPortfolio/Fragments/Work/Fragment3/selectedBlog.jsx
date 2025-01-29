@@ -26,6 +26,10 @@ const files = [
         route: "components/blogs/BlogMain.jsx",
         name : "BlogMain.jsx",
     },
+    {
+        route: "components/blogs/BlogSideBar.jsx",
+        name : "BlogSideBar.jsx",
+    },
 ]
 
 const files1 = [...files]
@@ -42,6 +46,15 @@ const files6 = [...files]
 files6[4] = {...files[4], ...{ selected: true, from: 22, to: 29 } };
 const files7 = [...files]
 files7[4] = {...files[4], ...{ selected: true, from: 31, to: 42 } };
+const files8 = [...files]
+files8[5] = {...files[5], ...{ selected: true, from: 10, to: 12 } };
+const files9 = [...files]
+files9[5] = {...files[5], ...{ selected: true, from: 13, to: 21 } };
+const files10 = [...files]
+files10[5] = {...files[5], ...{ selected: true, from: 9, to: 9 } };
+const files11 = [...files]
+files11[5] = {...files[5], ...{ selected: true, from: 42, to: 46 } };
+
 
 
 export default function SelectedBlog() {
@@ -82,6 +95,19 @@ export default function SelectedBlog() {
                         elementClass="flex flex-col gap-2 w-full"
                         char="●"
                         contentArray={ [ <CodeBox files={files6}></CodeBox>, <CodeBox files={files7}></CodeBox> ] }
+                    />
+                </BlogChapter>
+                <BlogChapter code={["Blog", "chapter 7", "part1", "fragment3", "selectedBlog", "processNavBar", "title"]}>
+                    <BlogParagraph>
+                        <Message code={["Blog", "chapter 7", "part1", "fragment3", "selectedBlog", "processNavBar", "desc"]}></Message>
+                    </BlogParagraph>
+                    <BlogList
+                        list={ getText( ["Blog", "chapter 7", "part1", "fragment3", "selectedBlog", "processNavBar", "list"] ).map((item) => {
+                            return <p key={item}> {item} </p>;
+                        }) }
+                        elementClass="flex flex-col gap-2 w-full"
+                        char="●"
+                        contentArray={ [ <CodeBox files={files10}></CodeBox>, <></>, <CodeBox files={files8}></CodeBox>, <></>, <CodeBox files={files9}></CodeBox>, <CodeBox files={files11}></CodeBox> ] }
                     />
                 </BlogChapter>
             </BlogChapter>
