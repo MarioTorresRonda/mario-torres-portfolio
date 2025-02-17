@@ -1,52 +1,55 @@
-'use client'
+"use client";
 
-import { MenuContext } from "@/store/menu-context"
-import { useContext, useEffect } from "react"
+import {MenuContext} from "@/store/menu-context";
+import {useEffect, useState} from "react";
 import ClientImage from "../fragments/ClientImage";
 import Message from "../fragments/Message";
-import { blog, home } from "@/data/navBar";
-import { useNavigate } from "@/hooks/useNavigate";
-import { useMessageText } from "@/hooks/useMessageText";
+import {useNavigate} from "@/hooks/useNavigate";
+import {useMessageText} from "@/hooks/useMessageText";
+import {blogList} from "@/data/blogs";
+import { blog as newBlogMenu } from "@/data/navBar";
 
-export default function BlogResumeItemImage() {
+export default function BlogResumeItemImage({blog}) {
+	const [oldBlog, setOldBlog] = useState(blogList[0]);
+	const {navigate} = useNavigate(MenuContext);
+	const getText = useMessageText();
 
-    var { menu, setMenu } = useContext( MenuContext );
-    const { navigate } = useNavigate( MenuContext );
-    const getText = useMessageText();
-    var isShow = menu.oldBlog == menu.blog;
-    const dateFormat = getText(["commons", "dateFormat"]);
+	var isShow = oldBlog == blog;
+	const dateFormat = getText(["commons", "dateFormat"]);
 
-    useEffect(() => {
-      let timeout = null;
-      if ( menu.symbol == home.symbol ) {
-        timeout = setTimeout(() => {
-          menu.oldBlog = menu.blog
-          setMenu( menu );
-        }, 200);
-      }
-        
-      return () => {
-        clearTimeout( timeout );
-      }
-    }, [menu, menu.blog, menu.oldBlog, setMenu])
-    
-    if ( menu.symbol != home.symbol ) {
-        return (<div></div>);
-    }
+	useEffect(() => {
+		const timeout = setTimeout(() => {
+			setOldBlog(blog);
+		}, 200);
 
-    function OnClickImage() {
-      navigate( blog, menu.blog.id );
-    }
+		return () => {
+			clearTimeout(timeout);
+		};
+	}, [blog, setOldBlog]);
 
-    return (<div>
-        <div className="overflow-hidden max-w-[400px] ">
-          <div className={ ( !isShow ? "-translate-y-80" : "" ) + " transition-all flex justify-center" }  >
-              <ClientImage onClick={OnClickImage} height={250} className=" mt-3 mb-5 scale-100 hover:scale-110 transition-all w-auto" src={ menu.oldBlog.image } alt={["mainPage","blogs","imageAlt"]}/>
-          </div>
-        </div>
-        <div className="text-center">
-        <p> <Message code={ ["mainPage", "blogs", "from"] } />: {  new Date( menu.oldBlog.date ).toLocaleDateString(dateFormat)  } </p>
-        </div>
-    </div>
-    )
+	function OnClickImage() {
+		navigate(newBlogMenu, blog.id);
+	}
+
+	return (
+		<div>
+			<div className="overflow-hidden max-w-[400px] ">
+				<div className={(!isShow ? "-translate-y-80" : "") + " transition-all flex justify-center"}>
+					<ClientImage
+						onClick={OnClickImage}
+						height={250}
+						className=" mt-3 mb-5 scale-100 hover:scale-110 transition-all w-auto"
+						src={oldBlog.image}
+						alt={["mainPage", "blogs", "imageAlt"]}
+					/>
+				</div>
+			</div>
+			<div className="text-center">
+				<p>
+					{" "}
+					<Message code={["mainPage", "blogs", "from"]} />: {new Date(oldBlog.date).toLocaleDateString(dateFormat)}{" "}
+				</p>
+			</div>
+		</div>
+	);
 }

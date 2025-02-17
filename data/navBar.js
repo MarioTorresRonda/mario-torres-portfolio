@@ -1,13 +1,8 @@
-import { blogList } from "./blogs";
-
 const home = {
     title:["mainPage", "mainTitle"],
     num:"01",
     url:"/",
-    symbol: "#",
-    oldBlog : blogList[0],
-    blog: blogList[0],
-    page: 0
+    symbol: "#"
 }
 
 const projects = {

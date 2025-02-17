@@ -1,25 +1,22 @@
 'use client'
 
-import { useContext } from "react";
 import Message from "../fragments/Message";
 import { MenuContext } from "@/store/menu-context";
 import { blog as newBlogMenu } from "@/data/navBar";
 import { useNavigate } from "@/hooks/useNavigate";
-
-export default function BlogResumeItem( {blog} ) {
-    const { menu, setMenu } = useContext( MenuContext );
+export default function BlogResumeItem( {blog, blogState} ) {
     const { navigate } = useNavigate( MenuContext );
+    const [ selectedBlog, setSelectedBlog ] = blogState;
 
     function onHandleSelectPost() {
-        menu.blog = blog;
-        setMenu(menu);
+        setSelectedBlog( blog );
     }
 
     function onDblClickPost() {
         navigate( newBlogMenu, blog.id );
     }
 
-    var isSelected = menu.blog.id == blog.id;
+    var isSelected = selectedBlog.id == blog.id;
 
     return (
     <div className="flex relative mb-2" onClick={onHandleSelectPost} onDoubleClick={onDblClickPost} >

@@ -1,7 +1,5 @@
 import useUtilsSearchParam from "@/hooks/useUtilsSearchParam";
-import { MenuContext } from "@/store/menu-context";
 import { capLevel, levels } from "@/util/Blogs";
-import { useContext } from "react";
 
 export default function BlogNavBarItem( {id, children, level} ) {
 

@@ -1,7 +1,5 @@
 import useUtilsSearchParam from "@/hooks/useUtilsSearchParam";
-import { MenuContext } from "@/store/menu-context";
-import { useSearchParams } from "next/navigation";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 
 export default function ScrollAnchor( {anchor, children} ) {

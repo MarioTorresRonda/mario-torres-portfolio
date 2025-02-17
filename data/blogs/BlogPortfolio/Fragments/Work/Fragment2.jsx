@@ -36,21 +36,21 @@ const files2 = [
 ]
 
 const files2_1 = [...files2]
-files2_1[0] = {...files2[0], ...{ selected: true, from: 9, to: 20 } };
+files2_1[0] = {...files2[0], ...{ selected: true, from: 15, to: 26 } };
 const files2_2 = [...files2]
-files2_2[6] = {...files2[6], ...{ selected: true, from: 3, to: 11 } };
+files2_2[6] = {...files2[6], ...{ selected: true, from: 5, to: 11 } };
 const files2_3 = [...files2]
-files2_3[2] = {...files2[2], ...{ selected: true, from: 2, to: 2 } };
+files2_3[2] = {...files2[2], ...{ selected: true, from: 3, to: 3 } };
 const files2_4 = [...files2]
 files2_4[2] = {...files2[2], ...{ selected: true, from: 13, to: 13 } };
 const files2_5 = [...files2]
-files2_5[2] = {...files2[2], ...{ selected: true, from: 41, to: 47 } };
+files2_5[2] = {...files2[2], ...{ selected: true, from: 41, to: 45 } };
 const files2_6 = [...files2]
-files2_6[2] = {...files2[2], ...{ selected: true, from: 33, to: 37 } };
+files2_6[2] = {...files2[2], ...{ selected: true, from: 32, to: 36 } };
 const files2_7 = [...files2]
-files2_7[4] = {...files2[4], ...{ selected: true, from: 25, to: 32 } };
+files2_7[4] = {...files2[4], ...{ selected: true, from: 21, to: 30 } };
 const files2_8 = [...files2]
-files2_8[5] = {...files2[5], ...{ selected: true, from: 41, to: 51 } };
+files2_8[5] = {...files2[5], ...{ selected: true, from: 36, to: 52 } };
 
 export default function Fragment2() {
     return <BlogChapter code={["Blog", "chapter 7", "part1", "fragment2", "title"]}>
