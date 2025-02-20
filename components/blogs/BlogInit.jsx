@@ -4,6 +4,7 @@ import Message from "../fragments/Message";
 import { useSearchParams } from "next/navigation";
 import useUtilsSearchParam from "@/hooks/useUtilsSearchParam";
 import useWindowSize from "@/hooks/useWindowSize";
+import useDocumentHeight from "@/hooks/useDocumentHeight";
 
 export default function BlogInit({children}) {
 
@@ -13,15 +14,19 @@ export default function BlogInit({children}) {
 
 	const [ yOffset, setYOffset ] = useState( -20 );
 	const [ lastQuery, setLastQuery ] = useState();
-    const windowSize = useWindowSize()
+    const windowSize = useWindowSize();
+	const documentHeight = useDocumentHeight();
 
+	const [lastWindowHeight, setLastWindowHeight] = useState(documentHeight);
+	const [scrolling, setScrolling ] = useState( false );
 
 	useEffect(() => {
-		if ( lastQuery != queryValue ) {
-
+		if ( lastQuery != queryValue || ( documentHeight != lastWindowHeight && scrolling ) ) {
+			
 			setLastQuery( queryValue )
 
 			if ( queryValue && queryValue != "null" ) {
+				//If element does not exist, do not continue to search or scroll
 				const element = document.getElementById(queryValue);
 				if ( !element ) {
 					removeQuery({ queryId: "chapter"});
@@ -29,10 +34,28 @@ export default function BlogInit({children}) {
 				}
 				const y = element.getBoundingClientRect().top + window.scrollY + yOffset;
 				
-				window.scrollTo({top: y, behavior: 'smooth'});
+				setLastWindowHeight( documentHeight );
+				window.scrollTo({top: y});
+				document.body.style.overflow = 'hidden';
+				setScrolling( true );
 			}
 		}
-	}, [queryValue, removeQuery, yOffset])
+
+
+		
+	}, [lastQuery, queryValue, removeQuery, yOffset, documentHeight, lastWindowHeight, scrolling])
+	
+	useEffect(() => {
+		const timeout = setTimeout(() => {
+			document.body.style.overflow = '';
+			setScrolling( false );
+		}, 500);
+		
+		return () => {
+			clearTimeout( timeout );
+		}
+	}, [ documentHeight, lastWindowHeight, scrolling ])
+	
 
 	useEffect(() => {
 		if ( windowSize[0] > 767) {
@@ -40,7 +63,7 @@ export default function BlogInit({children}) {
 		}else{
 			setYOffset( -220 );
 		}
-	}, [windowSize])
+	}, [windowSize]);
 	
 
 	return <div className="flex flex-col gap-2">{children}</div>;
