@@ -29,7 +29,7 @@ const files = [
     {
         route: "components/blogs/BlogSideBar.jsx",
         name : "BlogSideBar.jsx",
-    },
+    }
 ]
 
 const files1 = [...files]
@@ -56,6 +56,27 @@ const files11 = [...files]
 files11[5] = {...files[5], ...{ selected: true, from: 42, to: 46 } };
 
 
+const fragmentFiles = [
+    {
+        route: "components/blogs/blogFragments/BlogTitle.jsx",
+        name : "BlogTitle.jsx",
+    },
+    {
+        route: "components/blogs/blogFragments/BlogChapter.jsx",
+        name : "BlogChapter.jsx",
+    },
+    {
+        route: "components/blogs/blogFragments/BlogList.jsx",
+        name : "BlogList.jsx",
+    },
+]
+
+const fragmentFiles1 = [...fragmentFiles]
+fragmentFiles1[0] = {...fragmentFiles1[0], ...{ selected: true, from: 5, to: 11 } };
+const fragmentFiles2 = [...fragmentFiles]
+fragmentFiles2[1] = {...fragmentFiles2[1], ...{ selected: true, from: 15, to: 22 } };
+const fragmentFiles3 = [...fragmentFiles]
+fragmentFiles3[2] = {...fragmentFiles3[2], ...{ selected: true, from: 10, to: 22 } };
 
 export default function SelectedBlog() {
 
@@ -109,6 +130,22 @@ export default function SelectedBlog() {
                         char="●"
                         contentArray={ [ <CodeBox files={files10}></CodeBox>, <></>, <CodeBox files={files8}></CodeBox>, <></>, <CodeBox files={files9}></CodeBox>, <CodeBox files={files11}></CodeBox> ] }
                     />
+                </BlogChapter>
+                <BlogChapter code={["Blog", "chapter 7", "part1", "fragment3", "selectedBlog", "blogContent", "title"]}>
+                    <BlogParagraph>
+                        <Message code={["Blog", "chapter 7", "part1", "fragment3", "selectedBlog", "blogContent", "desc"]}></Message>
+                    </BlogParagraph>
+                    <BlogList
+                        list={ getText( ["Blog", "chapter 7", "part1", "fragment3", "selectedBlog", "blogContent", "list"] ).map((item) => {
+                            return <p key={item}> {item} </p>;
+                        }) }
+                        elementClass="flex flex-col gap-2 w-full"
+                        char="●"
+                        contentArray={ [ <CodeBox files={fragmentFiles1}></CodeBox>, <CodeBox files={fragmentFiles2}></CodeBox>, <CodeBox files={fragmentFiles3}></CodeBox> ] }
+                    />
+                    <BlogParagraph>
+                        <Message code={["Blog", "chapter 7", "part1", "fragment3", "selectedBlog", "blogContent", "end"]}></Message>
+                    </BlogParagraph>
                 </BlogChapter>
             </BlogChapter>
 }

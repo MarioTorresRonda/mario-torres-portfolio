@@ -20,7 +20,7 @@ export default function BlogLoader({blogId}) {
     }, [blogId, setBlogLocalization, locale])
 
     return <ContentBox>
-        <div className="flex flex-col md:flex-row w-full overflow-hidden">
+        <div className="flex flex-col md:flex-row w-full overflow-hidden md:overflow-visible ">
             <BlogMain Blog={ Blog } />
         </div>
     </ContentBox> 

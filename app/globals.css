@@ -141,10 +141,18 @@
   }
 
   .tooltip {
-    @apply invisible absolute bg-slate-200 dark:bg-stone-900 rounded-lg px-5 py-0 text-center w-32 top-full left-1/2 ml-[-64px];
+    @apply invisible absolute text-base bg-slate-200 dark:bg-stone-900 rounded-lg px-5 py-0 text-center w-32 top-full left-1/2 ml-[-64px];
+  }
+
+  .tooltip-UP {
+    @apply invisible absolute text-base bg-slate-200 dark:bg-stone-900 rounded-lg px-5 py-0 text-center w-32 bottom-full left-1/2 ml-[-64px];
   }
 
   .has-tooltip:hover .tooltip {
+    @apply visible z-50 animate-tooltipAnimation;
+  }
+
+  .has-tooltip:hover .tooltip-UP {
     @apply visible z-50 animate-tooltipAnimation;
   }
 

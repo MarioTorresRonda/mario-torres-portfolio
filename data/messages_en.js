@@ -29,6 +29,9 @@ let messages = {
                 blog2: "Code Formatted Box",
                 descBlog2: "Working code syntax formatted box inside my web, made with own JS and type support",
             },
+            comingSoon: "More coming soon",
+            end: "End.",
+            scrollToTop: "Scroll to top",
         },
         loadingBlock: {
             randomText: [

@@ -163,10 +163,31 @@ let messages = {
                                 "If the element have children,  we are going to do the same operation described before, but in the children",
                                 "The list will be rendered once this process is complete.",
                             ]
+                        },
+                        blogContent: {
+                            title: "Blog Content",
+                            desc: "The blog will be made of chapters, titles and texts and others React components, some examples:",
+                            list: [
+                                "Title.",
+                                "Chapters.",
+                                "Unordered BlogList"
+                            ],
+                            end: "In the future I will add more components to show different content in the blog"
                         }
                     }
                 }
             }
+        },
+        "chapter 8": {
+            title: "Summary:",
+            text1: "although I have taken more than a year to finish all the planning, It was gripping to be solving the setbacks and always following the implementation plan of the Blog.",
+            text2: "over this time, I have develop other projects that will be added to the list of Projects and do a Blog explaining its.",
+            listText: "For future Blog, I would like to improve some aspects:",
+            list: [
+                "Depict all better before implementing it.",
+                "Close the project to a reasonable end.",
+                "Set myself a deadline."
+            ],
         }
     }
 }

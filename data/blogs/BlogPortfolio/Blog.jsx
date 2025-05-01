@@ -14,6 +14,8 @@ import headerImg from '@/public/posts/BlogPortfolio/Blog Preview.png';
 import Design from "./Fragments/Design/Design";
 import DevelopmentPlan from "./Fragments/Development Plan/DevelopmentPlan";
 import Work from "./Fragments/Work/Work";
+import Summary from "./Fragments/Summary";
+import End from "@/components/blogs/blogFragments/End";
 
 export function Blog() {
 	return (
@@ -29,6 +31,8 @@ export function Blog() {
 			{ Design() }
 			{ DevelopmentPlan() }
 			{ Work() }
+			{ Summary()}
+			<End endCode={["mainPage", "blogs", "end"]} ></End>
 		</BlogInit>
 	);
 }

@@ -163,10 +163,31 @@ let messages = {
                                 "Si el elemento tiene hijos, haremos la misma operación que la descrita arriba pero para los hijos",
                                 "La lista es dibujada una vez terminado este proceso."
                             ]
+                        },
+                        blogContent: {
+                            title: "Contenido del Blog",
+                            desc: "El blog estará formado de capítulos, títulos, textos y otros componentes React, unos ejemplos:",
+                            list: [
+                                "Titulo.",
+                                "Capitulo.",
+                                "Lista sin orden "
+                            ],
+                            end: "En un futuro añadiré más fragmentos para mostrar contenido diferente en el blog"
                         }
                     }
                 }
             }
+        },
+        "chapter 8": {
+            title: "Conclusión:",
+            text1: "Aunque haya tardado más de un año en terminar todo el proceso, ha sido interesante ir enfrentando a los contratiempos y siempre llevar un plan para implementar el Blog.",
+            text2: "Durante este tiempo, he realizado otros proyectos que no tardaré mucho en sumar a la lista  de Proyectos y hacer un blog dedicado a ellos.",
+            listText: "Para futuros Blog me gustaría mejor algunos aspectos:",
+            list: [
+                "Describir todo mejor antes de implementarlo.",
+                "Cerrar más el objetivo a un objetivo.",
+                "Intentar colocarme alguna fecha límite."
+            ],
         }
     }
 }
