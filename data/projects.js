@@ -1,21 +1,14 @@
-import react from '@/public/react-2.svg'
 import portfolioImage from '@/public/portfolio.png';
+import {react, next, tailwind, GCloud, javascript } from './techs';
 
 export const projectList = [
     { 
         id: 1,
         name: ["portfolio"],
         url: "https://github.com/MarioTorresRonda/mario-torres-portfolio",
-        tech: [ 'react', 'next', 'tailwind', 'firebase' ],
+        tech: [ react, javascript, tailwind, next, GCloud ],
         description: ["portfolioDesc"],
         image: portfolioImage
     }
 ];
 
-export const techs = {
-    react : {
-        url: 'https://react.dev/',
-        img: react.src,
-        name: 'ReactJS'
-    }
-}

@@ -45,6 +45,9 @@ export default function BlogItem( {blog} ) {
                     <button onClick={onHandleClick} className="transition-all duration-200 bg-slate-400 hover:bg-slate-500 dark:bg-stone-600 dark:hover:bg-stone-500 py-2 px-6 h-12 text-nowrap mt-auto rounded-md w-min self-end"> <Message code={ ["mainPage", "blogs", "viewMore" ] } /> </button>
                 </div>
             </div>
+            <div>
+
+            </div>
             <div className="color-fondo h-1 w-full md:h-0 md:w-0"></div>
         </div> 
     )
