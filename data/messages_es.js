@@ -10,6 +10,12 @@ let messages = {
                 portfolio: "Porfolio React",
                 portfolioDesc: "Portfolio responsivo creado con React, que contiene mis proyectos, experiencia e intereses como desarrollador."
             },
+            techs: {
+                frontend: "Frontend", 
+                backend: "Backend",
+                cloud: "Cloud",
+                DB: "DDBB"
+            },
             imageAlt : "Vista previa del proyecto"
         },
         blogs: {

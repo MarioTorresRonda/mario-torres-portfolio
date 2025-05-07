@@ -13,7 +13,7 @@ export default function TechBadge( { tech } ) {
     
     return <>
         <RiskyModal modalRef={ref} url={tech.url} />
-        <div className={` ${tech.color} px-2 py-1 rounded-md hover:scale-95 transition-all flex flex-row gap-1`} onClick={onHandleClick}> 
+        <div className={` ${tech.color} px-2 py-1 rounded shadow-md  shadow-black/20 dark:shadow-black/50 hover:scale-95 transition-all flex flex-row gap-1`} onClick={onHandleClick}> 
              { tech.img && <div className="relative w-8 block"> <Image src={tech.img} fill={true} alt="icon" /> </div> } 
             <p>{ tech.name }</p>
         </div>
