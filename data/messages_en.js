@@ -9,7 +9,9 @@ let messages = {
             mainDesc: "Most detailed list of my favorite projects",
             list: {
                 portfolio: "React Portfolio",
-                portfolioDesc: "Responsive React Portfolio that contains my projects, experience and interests as a developer"
+                portfolioDesc: "Responsive React Portfolio that contains my projects, experience and interests as a developer",
+                factorKubata: "Factor Kubata",
+                factorKubataDesc: "Official page of an amateur team for the game League of Legends.",
             },
             techs: {
                 frontend: "Interfaz", 

@@ -1,3 +1,5 @@
+'use client'
+
 import Message from "../fragments/Message";
 import ContentBox from "./ContentBox";
 import { projectList } from "@/data/projects";
@@ -5,8 +7,12 @@ import ProjectResumeItem from "./ProjectResumeItem";
 import ClientLink from "../fragments/ClientLink";
 import ClientImage from "../fragments/ClientImage";
 import { projects } from "@/data/navBar";
+import { useState } from "react";
+import ProjectResumeImage from "./ProjectsResumeImage";
 
 export default function ProjectsResume() {
+
+    const [selectedProject, setSelectedProject] = useState( projectList[0] );
     return <>
         <ContentBox height={"auto"} className="mb-10">
             <div className="px-6 flex flex-col lg:flex-row w-full">
@@ -17,7 +23,7 @@ export default function ProjectsResume() {
                         <ul className="mt-2">
                             {projectList.map((item, index) => {    
                                 return ( <li key={item.id}> 
-                                    <ProjectResumeItem name={item.name} description={item.description} isOdd={index % 2 == 0}  />
+                                    <ProjectResumeItem project={item} isOdd={index % 2 == 0} onSelectProject={setSelectedProject}  />
                                 </li> )
                             })}
                         </ul>
@@ -27,14 +33,7 @@ export default function ProjectsResume() {
                     </ClientLink>
                 </div>
                 <div className="lg:w-1/2 flex items-center justify-center">
-                    <div className="max-w-[500px]">
-                        <ClientImage
-                            className="w-auto"
-                            src={projectList[0].image}
-                            alt={["mainPage", "projects", "imageAlt"]}
-                        >
-                        </ClientImage>
-                    </div>
+                    <ProjectResumeImage project={selectedProject} />
                 </div>
             </div>
         </ContentBox>

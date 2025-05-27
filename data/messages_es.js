@@ -7,8 +7,10 @@ let messages = {
             mainTitle: "Proyectos",
             mainDesc: "Lista detallada de mis proyectos favoritos.",
             list: {
-                portfolio: "Porfolio React",
-                portfolioDesc: "Portfolio responsivo creado con React, que contiene mis proyectos, experiencia e intereses como desarrollador."
+                portfolio: "Portafolio React",
+                portfolioDesc: "Portafolio responsivo creado con React, que contiene mis proyectos, experiencia e intereses como desarrollador.",
+                factorKubata: "Factor Kubata",
+                factorKubataDesc: "Página oficial de un equipo amateur del videojuego League Of Legends."
             },
             techs: {
                 frontend: "Frontend", 
