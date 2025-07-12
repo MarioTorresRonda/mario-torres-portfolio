@@ -1,6 +1,6 @@
 import Localization from "@/components/fragments/Localization";
 import ContentBox from "@/components/Index/ContentBox";
-import ProjectList from "@/components/projects/projectList";
+import ProjectList from "@/components/projects/ProjectList";
 import TechColor from "@/components/projects/TechColor";
 import { techColors } from "@/data/techs";
 
