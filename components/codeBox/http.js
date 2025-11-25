@@ -11,7 +11,7 @@ export async function fetchCodeBoxFile( file ) {
     const resData = await response.json();
 
     if ( !response.ok ) {
-        throw new Error('Failed to fetch meals');
+        throw new Error('Failed to fetch file');
     }
 
     return resData.message;
