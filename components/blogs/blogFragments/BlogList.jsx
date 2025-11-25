@@ -9,15 +9,15 @@ export default function BlogList( { listClass, elementClass, list, char, content
 
     return (
         <ul  className={"ml-2 " + listClass}>
-            { list.map( (element, index) => 
-            <li key={crypto.randomUUID()} className="flex gap-2 svg-fondo items-center">
+            { list.map( (element, index) => {
+            return <li key={element.key} className="flex gap-2 svg-fondo items-center">
                 <div className="mb-auto"><SVG char={char} height={24}/></div>
                 <div className={elementClass}>
                     {element}
                     { contentArray[index] && contentArray[index] }
                 </div>
-            </li> ) 
-            }
+            </li>  
+            } ) }
         </ul>
     )
 }
