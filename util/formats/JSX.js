@@ -21,12 +21,7 @@ export const JSX = {
         { color: "$#22AA44", search: ["'"], variables: [ "isInsideSemiColon" ] },
         //HTML
         {color: null, search: ["/"], conditions: ["isInsideHTML"], variables: [""]},
-        {
-            color: "$#9966B8",
-            search: [/^[A-Z]/g],
-            conditions: ["nextWordElement", "isInsideHTML"],
-            variables: ["!nextWordElement"],
-        },
+        {  color: "$#9966B8", search: [/^[A-Z]/g], conditions: ["nextWordElement", "isInsideHTML"],  variables: ["!nextWordElement"], },
         {color: "$#225589", search: null, conditions: ["nextWordElement", "isInsideHTML"], variables: ["!nextWordElement"]},
         {color: null, search: ["<"], conditions: ["isInsideHTML"], variables: ["nextWordElement", "insideElement"]},
         {color: null, search: [">"], conditions: ["isInsideHTML"], variables: ["!insideElement"]},

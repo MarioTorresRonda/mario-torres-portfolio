@@ -53,7 +53,6 @@ export default function CodeBoxButtons( { minimizedState : [ minimized, setMinim
                         onClick={onExpandButtonClicked}
                     />
                 </Tooltip>
-                
             </div>
         </div>
     )

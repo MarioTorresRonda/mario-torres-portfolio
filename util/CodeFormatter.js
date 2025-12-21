@@ -6,31 +6,11 @@ let actualFormat;
 
 //keywords for splitting the text before formatting
 const splitChars = [
-	"=",
-	'"',
-	"'",
-	"`",
-	"´",
-	"\\",
-	"(",
-	")",
-	"{",
-	"}",
-	"[",
-	"]",
-	".",
-	";",
-	" ",
-	",",
-	"+",
-	"-",
-	"!",
-	"<",
-	">",
-	"\r",
-	"\n",
-	"/",
-	"*",
+	'"', "'", "`", "´",
+	"=", "+", "-", "/", "*", "<", ">",
+	"\\", "\r", "\n",
+	"(", ")", "{", "}", "[", "]",
+	".", ";", " ", ",", "!", 
 ];
 
 export function formatCodeText(completeFile, archiveType) {
@@ -73,7 +53,7 @@ export function formatCodeText(completeFile, archiveType) {
 			coloredRow.push(coloredFragment);
 		}
 		//we sum two bc \r and \n are ignored every lane
-		globalIndex += splitRow.length + 2;
+		globalIndex += splitRow.length + 1;
 		coloredRow = fixNewLines( coloredRow );
 		if ( Array.isArray( coloredRow ) ) {
 			newSplitCompleteFile.push( ...coloredRow);
@@ -141,28 +121,22 @@ function splitFileByChars(text, archiveType) {
 	let insideMultipleComment = false;
 
 	for (let index = 0; index < rowChars.length; index++) {
-		const letter = rowChars[index];
-
 		if (startPosition > index) {
 			continue;
 		}
+		const letter = rowChars[index];
 		
 		if ( actualFormat.slashComment ) {
 			if (!lastCommentChar) {
 				if (insideSimpleComment) {
-					if (letter == "\r") {
-						if (index + 1 < rowChars.length) {
-							const nextLetter = rowChars[index + 1];
-							if (nextLetter == "\n") {
-								insideSimpleComment = false;
-								if (index - startPosition != 0) {
-									splittedRow.push(text.substr(startPosition, index - startPosition));
-								}
-								splittedRow.push(letter);
-								startPosition = index + 1;
-								continue;
-							}
+					if (letter == "\n") {
+						insideSimpleComment = false;
+						if (index - startPosition != 0) {
+							splittedRow.push(text.substr(startPosition, index - startPosition));
 						}
+						splittedRow.push(letter);
+						startPosition = index + 1;
+						continue;
 					}
 
 					continue;
@@ -246,14 +220,9 @@ function splitFileToRows(splitCompleteFile) {
 
 	for (let index = 0; index < splitCompleteFile.length; index++) {
 		const split = splitCompleteFile[index];
-		if (split == "\r") {
-			if (index + 1 < splitCompleteFile.length) {
-				const nextSplit = splitCompleteFile[index + 1];
-				if (nextSplit == "\n") {
-					rows.push(splitCompleteFile.slice(lastRowIndex, index));
-					lastRowIndex = index + 2;
-				}
-			}
+		if (split == "\n") {
+			rows.push(splitCompleteFile.slice(lastRowIndex, index));
+			lastRowIndex = index + 1;
 		}
 	}
 
