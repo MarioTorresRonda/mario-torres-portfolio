@@ -150,7 +150,7 @@ let messages = {
         },
         summary: {
             title: "Summary",
-            text1: "This time if was hard and impractical to write de blog, because I did implemented every in just 1 week and before a plan was made, so thats why there is not a implementation plan for every part.",
+            text1: "This time it was hard and impractical to write tbe blog, because I did implemented everything in just 1 week and before a plan was made, so thats why there is not a implementation plan for every part.",
             text2: "I would liked to have ended work and projects and to being able to focus in ann specific thing to finish, but along this time, I hade added more projects to the list of ending projects.  ",
             text3: "For now, I don't want to better my blogs, because everything i want to become better is in the planning and preparing of the blogs and projects, I also have many projects yet to explain before I start developing other project from zero. "
         }

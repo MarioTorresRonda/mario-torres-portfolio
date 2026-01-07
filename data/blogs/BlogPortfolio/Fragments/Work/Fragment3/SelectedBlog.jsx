@@ -7,27 +7,27 @@ import { useMessageText } from "@/hooks/useMessageText";
 
 const files = [ 
     {
-        route: "app/blogs/[blogId]/page.js",
+        route: "data/blogs/BlogPortfolio/files/SelectedBlog/page.txt",
         name : "[blogId]/page.jsx",
     },
     {
-        route: "components/blogs/BlogLoader.jsx",
+        route: "data/blogs/BlogPortfolio/files/SelectedBlog/BlogLoader.txt",
         name : "BlogLoader.jsx",
     },
     {
-        route: "store/location-context.js",
+        route: "data/blogs/BlogPortfolio/files/SelectedBlog/location-context.txt",
         name : "location-context.js",
     },
     {
-        route: "util/Localization.js",
+        route: "data/blogs/BlogPortfolio/files/SelectedBlog/Localization.txt",
         name : "Localization.js",
     },
     {
-        route: "components/blogs/BlogMain.jsx",
+        route: "data/blogs/BlogPortfolio/files/SelectedBlog/BlogMain.txt",
         name : "BlogMain.jsx",
     },
     {
-        route: "components/blogs/BlogSideBar.jsx",
+        route: "data/blogs/BlogPortfolio/files/SelectedBlog/BlogSideBar.txt",
         name : "BlogSideBar.jsx",
     }
 ]
@@ -58,15 +58,15 @@ files11[5] = {...files[5], ...{ selected: true, from: 42, to: 46 } };
 
 const fragmentFiles = [
     {
-        route: "components/blogs/blogFragments/BlogTitle.jsx",
+        route: "data/blogs/BlogPortfolio/files/Fragment3/BlogTitle.txt",
         name : "BlogTitle.jsx",
     },
     {
-        route: "components/blogs/blogFragments/BlogChapter.jsx",
+        route: "data/blogs/BlogPortfolio/files/Fragment3/BlogChapter.txt",
         name : "BlogChapter.jsx",
     },
     {
-        route: "components/blogs/blogFragments/BlogList.jsx",
+        route: "data/blogs/BlogPortfolio/files/Fragment3/BlogList.txt",
         name : "BlogList.jsx",
     },
 ]
@@ -115,7 +115,7 @@ export default function SelectedBlog() {
                         }) }
                         elementClass="flex flex-col gap-2 w-full"
                         char="●"
-                        contentArray={ [ <CodeBox files={files6}></CodeBox>, <CodeBox files={files7}></CodeBox> ] }
+                        contentArray={ [ <CodeBox files={files6} key="files_6"></CodeBox>, <CodeBox files={files7} key="files_7"></CodeBox> ] }
                     />
                 </BlogChapter>
                 <BlogChapter code={["Blog", "chapter 7", "part1", "fragment3", "selectedBlog", "processNavBar", "title"]}>
@@ -128,7 +128,7 @@ export default function SelectedBlog() {
                         }) }
                         elementClass="flex flex-col gap-2 w-full"
                         char="●"
-                        contentArray={ [ <CodeBox files={files10}></CodeBox>, <></>, <CodeBox files={files8}></CodeBox>, <></>, <CodeBox files={files9}></CodeBox>, <CodeBox files={files11}></CodeBox> ] }
+                        contentArray={ [ <CodeBox files={files10} key="files_10"></CodeBox>, <></>, <CodeBox files={files8} key="files_8"></CodeBox>, <></>, <CodeBox files={files9} key="files_9"></CodeBox>, <CodeBox files={files11} key="files_11"></CodeBox> ] }
                     />
                 </BlogChapter>
                 <BlogChapter code={["Blog", "chapter 7", "part1", "fragment3", "selectedBlog", "blogContent", "title"]}>
@@ -141,7 +141,7 @@ export default function SelectedBlog() {
                         }) }
                         elementClass="flex flex-col gap-2 w-full"
                         char="●"
-                        contentArray={ [ <CodeBox files={fragmentFiles1}></CodeBox>, <CodeBox files={fragmentFiles2}></CodeBox>, <CodeBox files={fragmentFiles3}></CodeBox> ] }
+                        contentArray={ [ <CodeBox files={fragmentFiles1} key="fragmentFiles_1"></CodeBox>, <CodeBox files={fragmentFiles2} key="fragmentFiles_2" ></CodeBox>, <CodeBox files={fragmentFiles3} key="fragmentFiles_3"></CodeBox> ] }
                     />
                     <BlogParagraph>
                         <Message code={["Blog", "chapter 7", "part1", "fragment3", "selectedBlog", "blogContent", "end"]}></Message>

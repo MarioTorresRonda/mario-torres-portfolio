@@ -8,17 +8,17 @@ import blogListImage from "@/public/posts/BlogPortfolio/Blog List.png";
 
 const files = [ 
     {
-        route: "app/blogs/page.js",
+        route: "data/blogs/BlogPortfolio/files/UnselectedBlog/page.txt",
         name : "blogs/page.jsx",
 
     },
     {
-        route: "components/blogs/BlogsList.jsx",
+        route: "data/blogs/BlogPortfolio/files/UnselectedBlog/BlogsList.txt",
         name : "blogList.jsx",
 
     },
     {
-        route: "components/blogs/BlogItem.jsx",
+        route: "data/blogs/BlogPortfolio/files/UnselectedBlog/BlogItem.txt",
         name : "BlogItem.jsx",
     }
 ]

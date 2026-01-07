@@ -10,6 +10,9 @@ import Reason from "./fragments/Reason/Reason";
 import Where from "./fragments/Where/Where";
 import Ideas from "./fragments/Ideas/Ideas";
 import Design from "./fragments/Design/Design";
+import Implementation from "./fragments/Implementation/Implementation";
+import Work from "./fragments/Work/Work";
+import Summary from "./fragments/Summary";
 
 export function Blog() {
 	return (
@@ -22,6 +25,9 @@ export function Blog() {
 			{ Where() }
 			{ Ideas() }
 			{ Design() }
+			{ Implementation() }
+			{ Work() }
+			{ Summary() }
 		</BlogInit>
 	);
 }

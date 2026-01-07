@@ -1,0 +1,10 @@
+const files = [ 
+    {
+        route: "data/blogs/BlogPortfolio/files/blog description.js",
+        name : "Blog Description.js"
+    },
+    {
+        route: "data/blogs/BlogPortfolio/files/blogExample.jsx",
+        name : "Blog Example.jsx",
+    }
+]

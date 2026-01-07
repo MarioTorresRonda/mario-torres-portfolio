@@ -11,9 +11,9 @@ export default function Maximized() {
         <BlogChapter code={["codeBox", "design", "maximized", "title"]}>
             <BlogParagraph>
                 <Message code={["codeBox", "design", "maximized", "text"]}></Message>
+                <ClientImage className="shadow shadow-black mb-4" src={img} alt={[]}>
+                </ClientImage>
             </BlogParagraph>
-            <ClientImage className="shadow shadow-black mb-4" src={img} alt={[]}>
-            </ClientImage>
         </BlogChapter>
     )
 }

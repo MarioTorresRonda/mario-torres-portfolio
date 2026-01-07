@@ -7,7 +7,7 @@ export const blogList = [
         title: ["blog2"], 
         subtitle: ["descBlog2"],
         image: codeBoxImageMain,
-        date: 1767823528777
+        date: 1737331286433
     },
     {
         id: "BlogPortfolio", 

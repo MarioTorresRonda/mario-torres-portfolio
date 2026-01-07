@@ -5,11 +5,11 @@ import Message from "@/components/fragments/Message";
 
 const files = [ 
     {
-        route: "data/blogs/BlogPortfolio/files/blog description.js",
+        route: "data/blogs/BlogPortfolio/files/blog description.txt",
         name : "Blog Description.js"
     },
     {
-        route: "data/blogs/BlogPortfolio/files/blogExample.jsx",
+        route: "data/blogs/BlogPortfolio/files/blogExample.txt",
         name : "Blog Example.jsx",
     }
 ]

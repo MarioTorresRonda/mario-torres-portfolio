@@ -2,7 +2,7 @@
 let messages = {
     mainPage: { 
         mainTitle: "Welcome.",
-        mainDescription1: `I'm Mario and i'm a FullStack engineer, I had develop multiple application in various engines and frameworks, I also have knowledge on differents programming languages`,
+        mainDescription1: `I'm Mario and i'm a FullStack engineer, I had developed multiple application in various engines and frameworks, I also have knowledge on differents programming languages`,
         mainDescription2: 'I love to be updated with the new technologies, and I prove it learning new ways, methods and stacks to always develop profesional projects',
         projects: {
             mainTitle: "Projects",

@@ -3,14 +3,7 @@ const nextConfig = {
 	webpack: (config, options) => {
 		config.module.rules.push({
 			test: /\.txt/i,
-			use: [
-				{
-					loader: "raw-loader",
-					options: {
-						esModule: false,
-					},
-				},
-			],
+			type: "asset/source"
 		});
 
 		return config;

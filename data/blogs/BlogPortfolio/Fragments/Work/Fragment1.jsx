@@ -7,7 +7,7 @@ import ProjectList_Fragment2 from "@/public/posts/BlogPortfolio/NavBar_result.pn
 
 const files = [ 
     {
-        route: "data/blogs/BlogPortfolio/files/blog navbar.js",
+        route: "data/blogs/BlogPortfolio/files/blog navbar.txt",
         name : "navBar.js",
         selected: true,
         from: 21,

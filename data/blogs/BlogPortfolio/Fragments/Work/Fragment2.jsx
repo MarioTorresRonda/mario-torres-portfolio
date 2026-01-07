@@ -6,31 +6,31 @@ import Message from "@/components/fragments/Message";
 
 const files2 = [
     {
-        route: "components/Index/BlogsResume.jsx",
+        route: "data/blogs/BlogPortfolio/files/Fragment2/BlogsResume.txt",
         name : "BlogsResume.jsx",
     },
     {
-        route: "components/Index/ContentBox.jsx",
+        route: "data/blogs/BlogPortfolio/files/Fragment2/ContentBox.txt",
         name : "ContentBox.jsx",
     },
     {
-        route : "components/Index/BlogResumeList.jsx",
+        route : "data/blogs/BlogPortfolio/files/Fragment2/BlogResumeList.txt",
         name : "BlogResumeList.jsx",
     },
     {
-        route : "components/fragments/ColoredButton.jsx",
+        route : "data/blogs/BlogPortfolio/files/Fragment2/ColoredButton.txt",
         name : "ColoredButton.jsx",
     },
     {
-        route : "components/Index/BlogResumeItem.jsx",
+        route : "data/blogs/BlogPortfolio/files/Fragment2/BlogResumeItem.txt",
         name : "BlogResumeItem.jsx",
     },
     {
-        route : "components/Index/BlogResumeItemImage.jsx",
+        route : "data/blogs/BlogPortfolio/files/Fragment2/BlogResumeItemImage.txt",
         name : "BlogResumeItemImage.jsx",
     },
     {
-        route : "data/blogs.js",
+        route : "data/blogs/BlogPortfolio/files/Fragment2/blogs.txt",
         name : "blogs.js",
     }
 ]
