@@ -15,7 +15,7 @@ function getRandomText(text) {
 
 export default function LoadingBlock() {
 
-  let text = useContext( LocalizationContext ).lang.mainPage.loadingBlock.randomText;
+  let text = useContext( LocalizationContext ).mainLang.mainPage.loadingBlock.randomText;
   const [randomText, setRandomText] = useState(text[0]);
   const [totalTime, setTotalTime] = useState(0);
   

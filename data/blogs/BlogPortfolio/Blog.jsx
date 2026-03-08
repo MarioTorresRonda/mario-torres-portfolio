@@ -17,7 +17,7 @@ import Work from "./Fragments/Work/Work";
 import Summary from "./Fragments/Summary";
 import End from "@/components/blogs/blogFragments/End";
 
-export function Blog() {
+export function Blog(  ) {
 	return (
 		<BlogInit>
 			<MainImage img={headerImg}>

@@ -11,7 +11,7 @@ export default function CodeBoxNavBar( {files, minimized, onSelectFile, selected
 			<div className="bg-slate-700 flex pl-[1px] pt-[1px] gap-[1px] h-full w-full overflow-x-hidden hover:overflow-x-auto pr-20">
 				{pageList.map((element) => {
 					if ( minimized && element != selectedName ) {
-						return <></>;
+						return;
 					}
 					return (
 						<div

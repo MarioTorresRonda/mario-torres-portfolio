@@ -1,12 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-	webpack: (config, options) => {
-		config.module.rules.push({
-			test: /\.txt/i,
-			type: "asset/source"
-		});
-
-		return config;
+	turbopack: {
+		rules: {
+			'*.txt': {
+				loaders: ['raw-loader'],
+			}
+		}
 	},
 };
 

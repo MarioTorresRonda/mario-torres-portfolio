@@ -42,8 +42,10 @@ let messages = {
             },
             buttons : {
                 text: "Los botones deberán localizarse flotantes en alguna esquina de la caja de texto, y nos permitirán:",
-                button1: "Abrir la caja, mostrando el fichero entero, y mostrando en el navbar todos los ficheros relacionados.",
-                button2: "Copiar el código que se muestra, esto deberá corresponder al texto que se está mostrando (maximizado o minimizado)",
+                buttons: [ 
+                    "Abrir la caja, mostrando el fichero entero, y mostrando en el navbar todos los ficheros relacionados.",
+                    "Copiar el código que se muestra, esto deberá corresponder al texto que se está mostrando (maximizado o minimizado)"
+                ]
             }
         },
         work: {

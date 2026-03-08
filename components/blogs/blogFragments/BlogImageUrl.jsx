@@ -6,14 +6,12 @@ import Message from "@/components/fragments/Message";
 import FAI from "@/components/fragments/FAI";
 import { useMessageText } from "@/hooks/useMessageText";
 
-export default function BlogImageUrl({title, desc, url, imageSrc}) {
+export default function BlogImageUrl({title, desc, url, imageSrc, getText } ) {
 	const ref = useRef();
 
 	function onHandleClick() {
 		ref.current.open();
 	}
-
-	const getText = useMessageText()
 
 	return (
 		<>

@@ -1,4 +1,4 @@
-export default function BlogParagraph( { className, children, ...props } ) {
+export default function BlogParagraph( { className, children, getText, ...props } ) {
 
     className = className ? className : "";
 

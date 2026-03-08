@@ -6,14 +6,16 @@ import crypto from 'crypto';
 import BlogTitle from "./blogFragments/BlogTitle";
 import BlogChapter from "./blogFragments/BlogChapter";
 import CodeBoxContextProvider from "@/store/codebox-context";
+import { useMessageText } from "@/hooks/useMessageText";
 
 const chapterTypes = [
     BlogTitle,
     BlogChapter
 ]
 
-function createBlogComponent( layer, level, parentName ) {
-    if ( layer != null ) {
+function createBlogComponent( layer, level, parentName, getText ) {
+    if ( layer != null && layer != " " ) {
+        console.log( layer.type, layer.props )
         //This types indicates when chapter start, chapters are shown in navbar.
         const isChapter = chapterTypes.indexOf( layer.type ) != -1;
         let finalKey = null;
@@ -28,20 +30,25 @@ function createBlogComponent( layer, level, parentName ) {
             finalKey = encodeURIComponent( compressedKey.substring(0, 15) );
         }
 
-        if ( layer.props.children ) {
-            if ( Array.isArray( layer.props.children ) ) {
-                const childrenArray = [];
-                childrenArray.push( ...layer.props.children.map( element => createBlogComponent( element, level, parentName ) ) );
-                let iterator = 0;
-                childrenObj = childrenArray.map( element => {
-                        return <Fragment key={name + iterator++}> { element } </Fragment>;
-                } );
-            }else{
-                childrenObj = createBlogComponent( layer.props.children,level + 1, parentName );
+        try{
+            
+            if ( layer.props.children ) {
+                if ( Array.isArray( layer.props.children ) ) {
+                    const childrenArray = [];
+                    childrenArray.push( ...layer.props.children.map( element => createBlogComponent( element, level, parentName, getText ) ) );
+                    let iterator = 0;
+                    childrenObj = childrenArray.map( element => {
+                        return <Fragment key={name + iterator++} > { element } </Fragment>;
+                    } );
+                }else{
+                    childrenObj = createBlogComponent( layer.props.children,level + 1, parentName, getText );
+                }
             }
+        }catch( e ) {
+            throw new Error( e );
         }
 
-        const newLayer = cloneElement( layer, {...layer.props, level, id : finalKey }, childrenObj );
+        const newLayer = cloneElement( layer, {...layer.props, level, id : finalKey, getText }, childrenObj );
         return newLayer;
     }
     return null;
@@ -49,11 +56,13 @@ function createBlogComponent( layer, level, parentName ) {
 
 export default function BlogMain( { Blog } ) {
 
+    const getText = useMessageText();
     const [builtBlog, setBuiltBlog] = useState(null);
+
 
     useEffect(() => {
         if ( Blog ) {
-            setBuiltBlog( createBlogComponent( Blog, -1, [] ) );
+            setBuiltBlog( createBlogComponent( Blog, -1, [], getText ) );
         }
     }, [Blog])
 

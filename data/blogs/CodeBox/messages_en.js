@@ -42,8 +42,10 @@ let messages = {
             },
             buttons : {
                 text: "The buttons will be floating in a corner of the text box, and it will alow us to:",
-                button1: "Maximized the box, showing the whole file, and showing in the navbar all files related.",
-                button2: "Copy the code that is shown, this will related to the text is displayed (maximized or minimized)", 
+                buttons: [
+                    "Maximized the box, showing the whole file, and showing in the navbar all files related.",
+                    "Copy the code that is shown, this will related to the text is displayed (maximized or minimized)"
+                ] 
             }
         },
         work: {

@@ -1,3 +1,5 @@
+'use client'
+
 import useUtilsSearchParam from "@/hooks/useUtilsSearchParam";
 import { capLevel, levels } from "@/util/Blogs";
 

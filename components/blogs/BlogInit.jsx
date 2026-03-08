@@ -1,7 +1,6 @@
-import BlogNavBarItem from "./blogFragments/BlogNavBarItem";
-import {useEffect, useState} from "react";
-import Message from "../fragments/Message";
-import { useSearchParams } from "next/navigation";
+'use client'
+
+import { useEffect, useState } from "react";
 import useUtilsSearchParam from "@/hooks/useUtilsSearchParam";
 import useWindowSize from "@/hooks/useWindowSize";
 import useDocumentHeight from "@/hooks/useDocumentHeight";

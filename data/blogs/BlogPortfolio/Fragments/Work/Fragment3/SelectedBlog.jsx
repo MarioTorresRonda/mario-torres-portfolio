@@ -3,7 +3,8 @@ import BlogList from "@/components/blogs/blogFragments/BlogList";
 import BlogParagraph from "@/components/blogs/blogFragments/BlogParagraph";
 import CodeBox from "@/components/codeBox/CodeBox";
 import Message from "@/components/fragments/Message";
-import { useMessageText } from "@/hooks/useMessageText";
+import BlogGetTextChildren from "@/components/blogs/blogFragments/BlogGetTextChildren";
+import { returnListAsPs } from "@/util/Blogs";
 
 const files = [ 
     {
@@ -78,10 +79,9 @@ fragmentFiles2[1] = {...fragmentFiles2[1], ...{ selected: true, from: 15, to: 22
 const fragmentFiles3 = [...fragmentFiles]
 fragmentFiles3[2] = {...fragmentFiles3[2], ...{ selected: true, from: 10, to: 22 } };
 
-export default function SelectedBlog() {
 
-    const getText = useMessageText();
 
+export default function SelectedBlog( props ) {
     return <BlogChapter code={["Blog", "chapter 7", "part1", "fragment3", "selectedBlog", "title"]}>
                 <BlogParagraph>
                     <Message code={["Blog", "chapter 7", "part1", "fragment3", "selectedBlog", "desc"]}></Message>
@@ -109,40 +109,49 @@ export default function SelectedBlog() {
                     <BlogParagraph>
                         <Message code={["Blog", "chapter 7", "part1", "fragment3", "selectedBlog", "processBlog", "step1"]}></Message>
                     </BlogParagraph>
-                    <BlogList
-                        list={ getText( ["Blog", "chapter 7", "part1", "fragment3", "selectedBlog", "processBlog", "list"] ).map((item) => {
-                            return <p key={item}> {item} </p>;
-                        }) }
-                        elementClass="flex flex-col gap-2 w-full"
-                        char="●"
-                        contentArray={ [ <CodeBox files={files6} key="files_6"></CodeBox>, <CodeBox files={files7} key="files_7"></CodeBox> ] }
-                    />
+                    <BlogGetTextChildren 
+                        prop="list" 
+                        code={["Blog", "chapter 7", "part1", "fragment3", "selectedBlog", "processBlog", "list"]}
+                        func={returnListAsPs}
+                    >
+                        <BlogList
+                            elementClass="flex flex-col gap-2 w-full"
+                            char="●"
+                            contentArray={ [ <CodeBox files={files6} key="files_6"></CodeBox>, <CodeBox files={files7} key="files_7"></CodeBox> ] }
+                        />
+                    </BlogGetTextChildren>
                 </BlogChapter>
                 <BlogChapter code={["Blog", "chapter 7", "part1", "fragment3", "selectedBlog", "processNavBar", "title"]}>
                     <BlogParagraph>
                         <Message code={["Blog", "chapter 7", "part1", "fragment3", "selectedBlog", "processNavBar", "desc"]}></Message>
                     </BlogParagraph>
-                    <BlogList
-                        list={ getText( ["Blog", "chapter 7", "part1", "fragment3", "selectedBlog", "processNavBar", "list"] ).map((item) => {
-                            return <p key={item}> {item} </p>;
-                        }) }
-                        elementClass="flex flex-col gap-2 w-full"
-                        char="●"
-                        contentArray={ [ <CodeBox files={files10} key="files_10"></CodeBox>, <></>, <CodeBox files={files8} key="files_8"></CodeBox>, <></>, <CodeBox files={files9} key="files_9"></CodeBox>, <CodeBox files={files11} key="files_11"></CodeBox> ] }
-                    />
+                    <BlogGetTextChildren 
+                        prop="list" 
+                        code={["Blog", "chapter 7", "part1", "fragment3", "selectedBlog", "processNavBar", "list"]}
+                        func={returnListAsPs}
+                    >
+                        <BlogList
+                            elementClass="flex flex-col gap-2 w-full"
+                            char="●"
+                            contentArray={ [ <CodeBox files={files10} key="files_10"></CodeBox>, <></>, <CodeBox files={files8} key="files_8"></CodeBox>, <></>, <CodeBox files={files9} key="files_9"></CodeBox>, <CodeBox files={files11} key="files_11"></CodeBox> ] }
+                        />
+                    </BlogGetTextChildren>
                 </BlogChapter>
                 <BlogChapter code={["Blog", "chapter 7", "part1", "fragment3", "selectedBlog", "blogContent", "title"]}>
                     <BlogParagraph>
                         <Message code={["Blog", "chapter 7", "part1", "fragment3", "selectedBlog", "blogContent", "desc"]}></Message>
                     </BlogParagraph>
-                    <BlogList
-                        list={ getText( ["Blog", "chapter 7", "part1", "fragment3", "selectedBlog", "blogContent", "list"] ).map((item) => {
-                            return <p key={item}> {item} </p>;
-                        }) }
-                        elementClass="flex flex-col gap-2 w-full"
-                        char="●"
-                        contentArray={ [ <CodeBox files={fragmentFiles1} key="fragmentFiles_1"></CodeBox>, <CodeBox files={fragmentFiles2} key="fragmentFiles_2" ></CodeBox>, <CodeBox files={fragmentFiles3} key="fragmentFiles_3"></CodeBox> ] }
-                    />
+                    <BlogGetTextChildren 
+                        prop="list" 
+                        code={["Blog", "chapter 7", "part1", "fragment3", "selectedBlog", "blogContent", "list"]}
+                        func={returnListAsPs}
+                    >
+                        <BlogList
+                            elementClass="flex flex-col gap-2 w-full"
+                            char="●"
+                            contentArray={ [ <CodeBox files={fragmentFiles1} key="fragmentFiles_1"></CodeBox>, <CodeBox files={fragmentFiles2} key="fragmentFiles_2" ></CodeBox>, <CodeBox files={fragmentFiles3} key="fragmentFiles_3"></CodeBox> ] }
+                        />
+                    </BlogGetTextChildren>
                     <BlogParagraph>
                         <Message code={["Blog", "chapter 7", "part1", "fragment3", "selectedBlog", "blogContent", "end"]}></Message>
                     </BlogParagraph>

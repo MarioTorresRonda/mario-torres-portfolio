@@ -1,3 +1,5 @@
+'use client'
+
 import useUtilsSearchParam from "@/hooks/useUtilsSearchParam";
 import { useEffect, useState } from "react";
 

@@ -8,7 +8,7 @@ import FAI from "./FAI";
 export default function Localization( { className, absolute } ) {
 
   className = className ? className : "";
-  const { locale, lang, setLocalization } = useContext( LocalizationContext );
+  const { locale, setLocalization } = useContext( LocalizationContext );
 
   function setLocale(e) {
     e.stopPropagation();

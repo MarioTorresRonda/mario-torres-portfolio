@@ -17,7 +17,7 @@ export default function BlogLoader({blogId}) {
 
     useEffect(() => {
         asyncLoad( blogId, setBlogLocalization ).then( (response) => { setBlog( response.Blog ) }  );
-    }, [blogId, setBlogLocalization, locale])
+    }, [blogId, locale])
 
     return <ContentBox>
         <div className="flex flex-col md:flex-row w-full overflow-hidden md:overflow-visible ">

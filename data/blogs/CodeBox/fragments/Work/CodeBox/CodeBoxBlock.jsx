@@ -11,8 +11,6 @@ import Buttons from "./Buttons";
 
 export default function CodeBoxBlock() {
 
-    const getText = useMessageText();
-
     const files = [ 
         {
             route: "data/blogs/CodeBox/files/CodeBoxMain.txt",
@@ -36,8 +34,8 @@ export default function CodeBoxBlock() {
         <BlogChapter code={["codeBox", "work", "implementation", "codeBox", "title"]}>
             <BlogParagraph>
                 <Message code={["codeBox", "work", "implementation", "codeBox", "text"]}></Message>
-                <CodeBox files={files1}></CodeBox> 
             </BlogParagraph>
+            <CodeBox files={files1}></CodeBox> 
             { NavBar( { files } ) }
             { Body( { files } ) }
             { Buttons( { files } ) }

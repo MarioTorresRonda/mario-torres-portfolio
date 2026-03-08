@@ -5,7 +5,6 @@ import { getDefaultLocale, getAsyncLocale, getAsyncBlogLocale } from "@/util/Loc
 import merge from '@/util/Objects';
 
 export const LocalizationContext = createContext({
-    lang: {},
     mainLang: {},
     blogLang: {},
     locale: 'en',
@@ -24,41 +23,35 @@ function LocalizationReducer(state, action) {
         state.blogLang = action.payload.blogLang;
     }
 
-    return state;
+    return {...state};
 }
 
 export default function LocalizationContextProvider( {children} ) {
 
-    const [ localizationState, localizationDispatch ] = useReducer( LocalizationReducer, { lang : {...getDefaultLocale()}, blogLang : {}, locale: 'en' } )
+    const [ localizationState, localizationDispatch ] = useReducer( LocalizationReducer, { mainLang : {...getDefaultLocale()}, blogLang : {}, locale: 'en' } )
 
-    const [locale, setLocale] = useState(localizationState.locale);
-    const [mainLang, setMainLang] = useState(localizationState.lang);
-    const [blogLang, setBlogLang] = useState(localizationState.blogLang);
-
-    async function setlocale(locale) {
+    async function setLocale(locale) {
         const mainLang = await getAsyncLocale( locale );
         localizationDispatch({
             type: "SET",
             payload: { locale : locale, mainLang : mainLang, }
         });
-        setLocale( locale );
-        setMainLang( mainLang );
     }   
     
-    async function setblog( blog ) {
-        const blogLang = await getAsyncBlogLocale( locale, blog );
+    async function setBlog( blog ) {
+        const blogLang = await getAsyncBlogLocale( localizationState.locale, blog );
         localizationDispatch({
             type: "SETBLOG",
             payload: { blogLang : blogLang }
         });
-        setBlogLang( blogLang );
     }
 
     const ctxValue = {
-        lang: merge(mainLang, blogLang),
-        locale: locale,
-        setLocalization : setlocale,
-        setBlogLocalization: setblog,
+        mainLang: localizationState.mainLang,
+        blogLang: localizationState.blogLang,
+        locale: localizationState.locale,
+        setLocalization : setLocale,
+        setBlogLocalization: setBlog,
     }
 
     return <LocalizationContext.Provider value={ctxValue}>

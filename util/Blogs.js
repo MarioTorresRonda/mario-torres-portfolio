@@ -48,3 +48,9 @@ export function capLevel( level ) {
 
 	return level;
 }
+
+export function returnListAsPs( list ) {
+    return list.map((item) => {
+        return <p key={item}> {item} </p>;
+    })
+}

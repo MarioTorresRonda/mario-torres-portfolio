@@ -1,3 +1,5 @@
+'use client'
+
 import useUtilsSearchParam from "@/hooks/useUtilsSearchParam";
 import { MenuContext } from "@/store/menu-context";
 import { useContext } from "react";
