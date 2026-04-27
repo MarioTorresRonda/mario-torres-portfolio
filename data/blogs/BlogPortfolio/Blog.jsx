@@ -4,7 +4,7 @@ import BlogTitle from "@/components/blogs/blogFragments/BlogTitle";
 import BlogSubtitle from "@/components/blogs/blogFragments/BlogSubtitle";
 
 import BlogInit from "@/components/blogs/BlogInit";
-import MainImage from "./Fragments/MainImage";
+import MainImage from "@/components/blogs/blogFragments/MainImage";
 import Reason from "./Fragments/Reason/Reason";
 import WorkPlan from "./Fragments/WorkPlan";
 import Where from "./Fragments/Where";

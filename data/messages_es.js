@@ -35,6 +35,8 @@ let messages = {
                 descBlog1: "Implementacion del blog dentro del portfolio, con selector de post mediante carga asincrona y sistema de traducción.",
                 blog2: "Caja de código formateado",
                 descBlog2: "Caja con sintaxis de código formateada en mi web, a partir de mi propio JS y con soporte de tipos",
+                ["future0P&M"]: "Future 0: Puzzles Y Recompensa",
+                ["descfuture0P&M"]: "Nuevo sistema de puzzle y de recompensa en el juego Future 0 desarrollado por Mirai Vision",
             },
             comingSoon: "Más contenido proximamente",
             end: "Fin.",

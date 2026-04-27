@@ -36,6 +36,8 @@ let messages = {
                 descBlog1: "Working blog inside portfolio with post selector loaded asynchronous and localization implemented.",
                 blog2: "Code Formatted Box",
                 descBlog2: "Working code syntax formatted box inside my web, made with own JS and type support",
+                ["future0P&M"]: "Future 0: Puzzles & Rewards",
+                ["descfuture0P&M"]: "New Puzzle & Rewards circuit in the game Future 0 developed by Mirai Vision",
             },
             comingSoon: "More coming soon",
             end: "End.",
