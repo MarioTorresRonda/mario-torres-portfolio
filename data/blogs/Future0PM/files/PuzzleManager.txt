@@ -1,0 +1,102 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using Fungus;
+
+public class PuzzleManager : MonoBehaviour
+{
+    
+    public static PuzzleManager instance;
+    public bool running;
+
+    public GameObject ventana;
+    public bool destroy = false;
+    GameObject instancedVentana;
+
+    public FragmentoScriptableObject[] optionsToSelect;
+    public List<FragmentoScriptableObject> anterioresIntentos;
+    FragmentoScriptableObject check;
+
+    void Awake()
+    {
+        instance = this;
+        running = false;
+    }
+
+    private void Update()
+    {
+        if (instancedVentana != null)
+        {
+            if (!destroy)
+            {
+                if (instancedVentana.transform.localScale.x < 1)
+                {
+                    instancedVentana.transform.localScale += new Vector3(1f, 1f, 1f) * Time.deltaTime * (1000f / 200f);
+
+                    if (instancedVentana.transform.localScale.x > 1)
+                    {
+                        instancedVentana.transform.localScale = new Vector3(1f, 1f, 1f);
+                    }
+                }
+            }
+
+            if (destroy)
+            {
+                instancedVentana.transform.localScale -= new Vector3(1f, 1f, 1f) * Time.deltaTime * (1000f / 200f);
+
+                if (instancedVentana.transform.localScale.x < 0.001f)
+                {
+                    Object.Destroy(instancedVentana);
+                    destroy = false;
+                }
+
+            }
+
+        }
+    }
+
+    public void IniciarPuzle( AskFragment command )
+    {
+        MenuMovil.getInstance().abrirMovil();
+
+        if ( command.getCorrecto() == 0 )
+        {
+            running = true;
+            instancedVentana = Instantiate(ventana, MenuMovil.getInstance().ventanas.transform);
+            instancedVentana.transform.localScale = new Vector3(0.001f, 0.001f, 0.001f);
+            optionsToSelect = command.getFragmentoElegir().Length == 0 ? MenuMovil.getInstance().listaFragmentos : command.getFragmentoElegir();
+            anterioresIntentos = new List<FragmentoScriptableObject>(0);
+            StartCoroutine(ComprobarFragmento(command));
+        }
+    }
+
+    public IEnumerator ComprobarFragmento( AskFragment command )
+    {
+        FragmentoScriptableObject toCheck = command.getFragmento();
+
+        while ( check == null || toCheck.id != check.id )
+        {
+            if ( check != null )
+            {
+                anterioresIntentos.Add(check);
+                check = null;
+                command.setCorrecto(-1);
+                command.OnEnter();
+            }
+
+            yield return new WaitForEndOfFrame();
+        }
+
+        command.setCorrecto( 1 );
+        command.OnEnter();
+        destroy = true;
+        running = false;
+        int puzzlePuntos = 10 - ( Mathf.Min( anterioresIntentos.Count * 2, 6 ));
+        PuuzzlePointsManager.instance.AñadirValor( command.getIdentificador(), puzzlePuntos );
+        yield return null;
+    }
+
+    public void SeleccionarFragmento( FragmentoScriptableObject fragmento ) {
+        check = fragmento;
+    }
+}

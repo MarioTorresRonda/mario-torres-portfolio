@@ -1,12 +1,13 @@
 import blogPreviewImage from '@/public/posts/BlogPortfolio/Blog Preview.png';
 import codeBoxImageMain from "@/public/posts/codeBox/CodeBoxMainImage.jpg";
+import future0PMImageMain from "@/public/posts/future0PM/mainImage.png";
 
 export const blogList = [
     {
         id: "Future0PM", 
         title: ["future0P&M"], 
         subtitle: ["descfuture0P&M"],
-        image: blogPreviewImage,
+        image: future0PMImageMain,
         date: 1777201542117
     }, 
     {

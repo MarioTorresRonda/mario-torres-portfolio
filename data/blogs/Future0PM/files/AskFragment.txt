@@ -1,0 +1,187 @@
+// This code is part of the Fungus library (https://github.com/snozbot/fungus)
+// It is released for free under the MIT open source license (https://github.com/snozbot/fungus/blob/master/LICENSE)
+
+using Unity.Collections;
+using UnityEngine;
+using Fungus;
+
+[CommandInfo(
+                 "Narrative",
+                 "AskFragment",
+                 "Ask for a fragment and check if is the correct one.")]
+[AddComponentMenu("")]
+public class AskFragment : Command, ILocalizable
+{
+    // Removed this tooltip as users's reported it obscures the text box
+    [Tooltip("Identificador de la prueba")]
+    [SerializeField] protected string identificador;
+
+    // Removed this tooltip as users's reported it obscures the text box
+    [Tooltip("Clave del texto")]
+    [SerializeField] protected TextoScriptableObject clave;
+
+    [Tooltip("Fragmento que debe elegir")]
+    [SerializeField] protected FragmentoScriptableObject fragmento;
+
+    [Tooltip("Fragmentos que dispone para elegir")]
+    [SerializeField] protected FragmentoScriptableObject[] fragmentoElegir;
+
+    //-1 fallo
+    //0 sin responder
+    //1 correcto
+    [Tooltip("Ha superado la prueba")]
+     protected int correcto = 0; 
+
+    [Tooltip("Notes about this story text for other authors, localization, etc.")]
+    [SerializeField] protected string description = "";
+
+    //add wait for vo that overrides stopvo
+
+    [Tooltip("Sets the active Say dialog with a reference to a Say Dialog object in the scene. All story text will now display using this Say Dialog.")]
+    [SerializeField] protected SayDialog setSayDialog;
+
+    #region Public members
+
+    public override void OnEnter()
+    {
+
+        if (setSayDialog != null)
+        {
+            SayDialog.ActiveSayDialog = setSayDialog;
+        }
+
+        var sayDialog = SayDialog.GetSayDialog();
+        if (sayDialog == null)
+        {
+            Continue();
+            return;
+        }
+
+        var flowchart = GetFlowchart();
+
+        sayDialog.SetActive(true);
+
+        string displayText = "";
+        try
+        {
+            if ( correcto == 1 )
+            {
+                displayText = "Has acertado";
+            }
+            else if ( correcto == -1 )
+            {
+                displayText = "Has fallado";
+            }
+            else
+            {
+                displayText = "Elige un fragmento"; //LenguajeManager.instance.VerLenguaje(clave);
+            }
+        }
+        catch
+        {
+            Debug.LogError($"Falta que el bloque \"{ParentBlock.BlockName}\" un Comando \"Say\" tenga campo Texto relleno");
+        }
+
+        var activeCustomTags = CustomTag.activeCustomTags;
+        for (int i = 0; i < activeCustomTags.Count; i++)
+        {
+            var ct = activeCustomTags[i];
+            displayText = displayText.Replace(ct.TagStartSymbol, ct.ReplaceTagStartWith);
+            if (ct.TagEndSymbol != "" && ct.ReplaceTagEndWith != "")
+            {
+                displayText = displayText.Replace(ct.TagEndSymbol, ct.ReplaceTagEndWith);
+            }
+        }
+
+        string subbedText = flowchart.SubstituteVariables(displayText);
+
+
+        foreach (var item in PuuzzlePointsManager.instance.listaPuzzles)
+        {
+            if (item.Key == getIdentificador())
+            {
+                Continue();
+                return;
+            }
+        }
+
+        sayDialog.Say(subbedText, true, true, true, true, false, null, delegate {
+            if (correcto == 1) {
+                Continue();
+                return;
+            }
+
+            PuzzleManager.instance.IniciarPuzle(this);
+        });
+    }
+
+    public override string GetSummary()
+    {
+        string namePrefix = "";
+        return namePrefix + "\"" + identificador + "\"";
+    }
+
+    public override Color GetButtonColor()
+    {
+        return new Color32(184, 210, 235, 255);
+    }
+
+    public override void OnStopExecuting()
+    {
+        var sayDialog = SayDialog.GetSayDialog();
+        if (sayDialog == null)
+        {
+            return;
+        }
+
+        sayDialog.Stop();
+    }
+
+    #endregion
+
+    #region ILocalizable implementation
+
+    public virtual string GetStandardText()
+    {
+        return "";
+    }
+
+    public virtual void SetStandardText(string standardText) { }
+
+    public virtual string GetDescription()
+    {
+        return description;
+    }
+
+    public virtual string GetStringId()
+    {
+        // String id for Say commands is SAY.<Localization Id>.<Command id>.[Character Name]
+        return "SAY." + GetFlowchartLocalizationId() + "." + itemId + ".";
+    }
+
+    public FragmentoScriptableObject getFragmento()
+    {
+        return fragmento;
+    }
+
+    public void setCorrecto( int _c)
+    {
+        correcto = _c;
+    }
+
+    public int getCorrecto()
+    {
+        return correcto;
+    }
+
+    public string getIdentificador()
+    {
+        return identificador;
+    }
+    public FragmentoScriptableObject[] getFragmentoElegir()
+    {
+        return fragmentoElegir;
+    }
+
+    #endregion
+}

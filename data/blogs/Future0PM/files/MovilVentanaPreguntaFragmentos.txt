@@ -1,0 +1,54 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class MovilVentanaPreguntaFragmentos : MonoBehaviour
+{
+    FragmentoScriptableObject[] listaFragmentos;
+
+    public RectTransform panelFragmentos;
+    GridLayoutGroup gridFragmentos;
+
+    public GameObject preguntaPrefab;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        gridFragmentos = panelFragmentos.GetComponent<GridLayoutGroup>();
+        listaFragmentos = PuzzleManager.instance.optionsToSelect;
+        RellenarVentanaPrincipal();
+    }
+
+    public void RellenarVentanaPrincipal()
+    {
+        foreach (Transform child in panelFragmentos.transform)
+        {
+            DestroyImmediate(child.gameObject);
+        }
+
+        foreach (var nuevoChildSO in listaFragmentos)
+        {
+            GameObject nuevoChild = Instantiate(preguntaPrefab, panelFragmentos.transform);
+
+            if (nuevoChild != null)
+            {
+                Pregunta fragmentoGO = nuevoChild.GetComponent<Pregunta>();
+                fragmentoGO.fragmento = nuevoChildSO;
+            }
+        }
+
+        float altura = gridFragmentos.padding.bottom + gridFragmentos.padding.top;
+        altura += (gridFragmentos.cellSize.y + gridFragmentos.spacing.y) * listaFragmentos.Length;
+        altura -= gridFragmentos.spacing.y * 2;
+
+        float alturaMinima = MenuMovil.getInstance().ventanas.GetComponent<RectTransform>().sizeDelta.y;
+        alturaMinima -= 110;
+
+        altura = altura > alturaMinima ? altura : alturaMinima;
+
+        panelFragmentos.sizeDelta = new Vector2(panelFragmentos.sizeDelta.x, altura);
+        panelFragmentos.anchoredPosition = new Vector2(panelFragmentos.anchoredPosition.x, (-1 * altura / 2));
+
+    }
+}

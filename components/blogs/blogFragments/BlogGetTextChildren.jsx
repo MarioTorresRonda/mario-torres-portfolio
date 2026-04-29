@@ -6,7 +6,7 @@ export default function BlogGetTextChildren( { getText, prop, code, codeArray, f
     let propValue = null;
     if ( codeArray ) {
         propValue = []
-        propValue.push( codeArray.map( codeSuffix => getText( [...code, codeSuffix] ) ) );
+        propValue.push.apply( propValue, codeArray.map( codeSuffix => getText( [...code, codeSuffix] ) ) );
     }else{
         propValue = getText( code  );
     }

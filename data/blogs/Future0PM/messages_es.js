@@ -35,13 +35,15 @@ let messages = {
                 text: "Será un sistema con instancia estática para poder ser accedida desde todos los sitios, se encontrara dentro del prefab Managers para que se instance en todas las escenas, contará con estos campos:",
                 prop1: "con un diccionario:",
                 prop1desc1: "Clave:  cadena, que será el identificador único de ese puzzle/gasto",
-                prop1desc2: "Valor: entero, que será la cantidad que suma o resta",
+                prop1desc2:                     "Valor: entero, que será la cantidad que suma o resta",
                 prop2: "un valor total, que se calculará al modificar al diccionario, sumando todos los valores de este mismo.",
                 method: "y contendrá estas funciones:",
-                method1: "Iniciar valor: utilizará el motor de guardado para cargar los campos de este objeto.",
-                method2: "Guardar: utilizará el motor de guardado para guardar los campos de este objeto.",
-                method3: "Sumar valor: Añadirá al diccionario el id del puzzle resuelto.",
-                method4: "Gastar valor: primero comprobará que una vez restado el coste, el valor total es positivo, y si es así, añadirá al diccionario el id del gasto.",
+                methods: [
+                    "Iniciar valor: utilizará el motor de guardado para cargar los campos de este objeto.",
+                    "Guardar: utilizará el motor de guardado para guardar los campos de este objeto.",
+                    "Sumar valor: Añadirá al diccionario el id del puzzle resuelto.",
+                    "Gastar valor: primero comprobará que una vez restado el coste, el valor total es positivo, y si es así, añadirá al diccionario el id del gasto.",
+                ]
             },
         },
         work: {

@@ -1,0 +1,93 @@
+using Save;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class PuuzzlePointsManager : MonoBehaviour, IDataPersistence
+{
+    public static PuuzzlePointsManager instance;
+    public Dictionary<string, int> listaPuzzles;
+    private int _total = 0;
+    public int Total { get => _total; }
+
+    public void actualizarPaneles()
+    {
+        PuzzlePointsPanel[] listadoPaneles = FindObjectsOfType<PuzzlePointsPanel>();
+        foreach (var panel in listadoPaneles)
+        {
+            panel.ActualizarPuntos(_total);
+        }
+    }
+
+    public void LoadGame(GameData data)
+    {
+        InitListado(data.puzzles);
+        actualizarPaneles();
+    }
+    public void SaveGame(ref GameData data)
+    {
+        data.puzzles = SaveListado();
+    }
+
+    void Awake()
+    {
+        instance = this;
+    }
+
+    public void InitListado( string[] listadoP )
+    {
+        listaPuzzles = new Dictionary<string, int>();
+        foreach (var item in listadoP)
+        {
+            string[] itemSplit = item.Split(GameData.separator);
+            listaPuzzles.Add(itemSplit[0], int.Parse( itemSplit[1] ) );
+        }
+        _total = ObtenerTotal();
+    }
+
+    public string[] SaveListado( )
+    {
+        List<string> listadoP = new List<string>();
+        foreach (var item in listaPuzzles)
+        {
+            listadoP.Add( item.Key + GameData.separator + item.Value.ToString() );
+        }
+        return listadoP.ToArray();
+    }
+
+    public void AñadirValor( string id, int valor )
+    {
+        listaPuzzles[id] = valor;
+        _total = ObtenerTotal();
+        actualizarPaneles();
+    }
+
+    public bool GastarValor( string id, int valor )
+    {
+        if ( ObtenerTotal() - valor > 0 )
+        {
+            AñadirValor(id, valor);
+            return true;
+        }
+        return false;
+    }
+
+    public int ObtenerTotal()
+    {
+        int totalSum = 0;
+        foreach (var item in listaPuzzles)
+        {
+            totalSum += item.Value;
+        }
+        return totalSum;
+    }
+
+    public void LoadSettings(SettingsData data)
+    {
+        //throw new System.NotImplementedException();
+    }
+    public void SaveSettings(ref SettingsData data)
+    {
+        //throw new System.NotImplementedException();
+    }
+}

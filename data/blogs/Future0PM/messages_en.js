@@ -14,8 +14,8 @@ let messages = {
         },
         ideas: {
             title: "Ideas",
-            text: "The question circuit is something really common, is not inspired in any game specially",
-            imgText: "Proffesor Layton for the points circuit (picarats)",
+            idea1: "The question circuit is something really common, is not inspired in any game specially",
+            idea2: "Professor Layton for the points circuit (picarats)",
         },
         design: {
             title: "Design",
@@ -36,13 +36,14 @@ let messages = {
                 prop1: "a dictionary:",
                 prop1desc1: "Key: string that contains the unique identification of the puzzle/expense",
                 prop1desc2: "Value: int that contains the quantity of the sum or sub",
-                prop2: "a total vlue, that is calculated every time the dictionary is changed, adding all the values of the elements.",
-
+                prop2: "a total value, that is calculated every time the dictionary is changed, adding all the values of the elements.",
                 method: "and this methods:",
-                method1: "Start value: will use the save manager, to load the props inside the save to this system.",
-                method2: "Save: will use the save manager, to save the props of this system inside the save.",
-                method3: "Add value: add to the dictionary the id and valuer of the finished question.",
-                method4: "Subtract value: First, check if the value without the cost is positive, if it is, then, add to the dictionary with the id and expense",
+                methods: [
+                    "Start value: will use the save manager, to load the props inside the save to this system.",
+                    "Save: will use the save manager, to save the props of this system inside the save.",
+                    "Add value: add to the dictionary the id and valuer of the finished question.",
+                    "Subtract value: First, check if the value without the cost is positive, if it is, then, add to the dictionary with the id and expense",
+                ]
             },
         },
         work: {
@@ -56,7 +57,7 @@ let messages = {
             puzzleSystem: {
                 title: "Puzzle system",
                 text1: "This system will be the one displaying inside the phone, the list given in the command, and wait the user to choose an option inside the window in the phone, validating if is correct or not, and then continuing or showing the phone again..",
-                text2: "SIf is right, this system will be turn off until a command starts again, before that, it will add the points to the system points.",
+                text2: "If is right, this system will be turn off until a command starts again, before that, it will add the points to the system points.",
             },
             FragmentViewWindow: {
                 title: "Window to Choose Fragment.",
@@ -66,7 +67,7 @@ let messages = {
             pointSystem: {
                 title: "Points system",
                 text1: "It have the interface of the save manager, so it can modified the saved game .",
-                text2: "The list its obtain from the dictionary that have this system, aldo containing the methods for formatting and parsing the list. ",
+                text2: "The list its obtain from the dictionary that have this system, also containing the methods for formatting and parsing the list. ",
                 text3: "Also the method to edit the list.",
                 text4: "And a method to check if the expense can be bought.",
             },

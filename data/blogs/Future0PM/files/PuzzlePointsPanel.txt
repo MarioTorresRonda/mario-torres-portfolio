@@ -1,0 +1,14 @@
+using System.Collections;
+using System.Collections.Generic;
+using TMPro;
+using UnityEngine;
+
+public class PuzzlePointsPanel : MonoBehaviour
+{
+    public TMP_Text textoPuntos;
+
+    public void ActualizarPuntos( int total )
+    {
+        textoPuntos.SetText( total.ToString() );
+    }
+}

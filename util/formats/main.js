@@ -1,5 +1,6 @@
 import { JSX } from "./JSX";
 import { JS } from "./JS";
+import { CS } from "./CS";
 
 /* 
     formats to apply for each archive type (JS, JSX, HTML, ...)
@@ -32,5 +33,6 @@ import { JS } from "./JS";
 
 export const formats = {
     JSX,
-    JS
+    JS,
+    CS
 };

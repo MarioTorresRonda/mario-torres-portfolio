@@ -1,0 +1,31 @@
+using System.Collections;
+using System.Collections.Generic;
+using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class Pregunta : MonoBehaviour
+{
+    public FragmentoScriptableObject fragmento;
+
+    public Button boton;
+    public TMP_Text texto;
+    public Image image;
+
+    public AudioClip click;
+
+    void Start()
+    {
+        texto.text = LenguajeManager.instance.VerLenguaje(fragmento.textoPrincipal);
+        image.sprite = fragmento.imagen;
+    }
+
+    public void onClickButton()
+    {
+        AudioPlayer.instance.PlaySonido(click);
+        PuzzleManager.instance.SeleccionarFragmento(fragmento);
+
+        boton.interactable = false;
+
+    }
+}

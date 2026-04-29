@@ -36,7 +36,7 @@ export default function FileContext(getText) {
 			</BlogParagraph>
 			<BlogGetTextChildren
 				prop="list"
-				code={["codeBox", "work", "implementation", "formats", "list"]}
+				code={["codeBox", "work", "implementation", "fileContext"]}
 				codeArray={["footer2_1", "footer2_2", "footer2_3"]}
 				func={returnListAsPs}
 			>
